@@ -60,19 +60,17 @@ function Home() {
   return (
     <div id="top" className="relative min-h-screen text-white">
       <Navbar />
-      <main>
-        <Hero />
-        <Problem />
-        <Solution />
-        <WhyWalor />
-        <Technology />
-        <BusinessImpact />
-        <Sustainability />
-        <Trust />
-        <Vision />
-        <About />
-        <Contact />
-      </main>
+      <Hero />
+      <Problem />
+      <Solution />
+      <WhyWalor />
+      <Technology />
+      <BusinessImpact />
+      <Sustainability />
+      <Trust />
+      <Vision />
+      <About />
+      <Contact />
       <Footer />
     </div>
   );
