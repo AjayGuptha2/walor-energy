@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 
 type PartId = "cells-old" | "cells-new" | "bms" | "casing";
