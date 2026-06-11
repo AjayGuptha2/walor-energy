@@ -140,7 +140,7 @@ function DesktopSticky() {
   );
 }
 
-import { useState, useEffect } from "react";
+
 
 function ActiveBoundary() {
   const [active, setActive] = useState<PartId | null>(null);
