@@ -17,15 +17,17 @@ function LabelText({ progress }: { progress: MotionValue<number> }) {
   return (
     <div className="relative h-5 w-full">
       {labels.map((txt, i) => {
-        const start = i === 0 ? 0 : i * 0.2 - 0.04;
-        const end = i === 0 ? 0.04 : i * 0.2 + 0.04;
-        const next = i === labels.length - 1 ? 1.01 : (i + 1) * 0.2 - 0.04;
+        const isFinal = i === labels.length - 1;
+        // Show window: [in, peak, peakHold, out] — strictly increasing within [0,1]
+        const inAt = i === 0 ? 0 : Math.max(0, i * 0.2 - 0.04);
+        const peak = i === 0 ? 0.04 : Math.min(1, i * 0.2 + 0.04);
+        const out = isFinal ? 1 : Math.min(1, (i + 1) * 0.2 - 0.04);
+        const fadeOut = isFinal ? 1 : Math.min(1, (i + 1) * 0.2);
         const opacity = useTransform(
           progress,
-          [start, end, next, next + 0.04],
-          [0, 1, 1, 0],
+          isFinal ? [inAt, peak, 1] : [inAt, peak, out, fadeOut],
+          isFinal ? [0, 1, 1] : [0, 1, 1, 0],
         );
-        const isFinal = i === labels.length - 1;
         return (
           <motion.div
             key={i}

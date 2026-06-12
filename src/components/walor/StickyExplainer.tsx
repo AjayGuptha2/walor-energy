@@ -12,11 +12,11 @@ const PANELS: { id: PartId; title: string; desc: string }[] = [
 
 export function StickyExplainer() {
   return (
-    <section className="relative bg-[#0A0A0A] py-20 md:py-28" id="how-it-works">
+    <section className="relative bg-[#F6F7FB] py-20 md:py-28" id="how-it-works">
       <div className="walor-container">
         <div className="text-center mb-16">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#00BFFF]">// How It Works</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">Inside a Walor Revival</h2>
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#2323FF]">// How It Works</span>
+          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-foreground">Inside a Walor Revival</h2>
         </div>
 
         {/* Mobile: stacked */}
@@ -45,7 +45,7 @@ function PackDiagram({ active }: { active: PartId | null }) {
   const is = (p: PartId) => active === p;
   const dim = (p: PartId) => (active && !is(p) ? 0.25 : 1);
   const glow = (p: PartId) =>
-    is(p) ? "drop-shadow(0 0 12px #00BFFF) drop-shadow(0 0 24px rgba(0,191,255,0.6))" : "none";
+    is(p) ? "drop-shadow(0 0 12px #2323FF) drop-shadow(0 0 24px rgba(0,191,255,0.6))" : "none";
 
   return (
     <svg viewBox="0 0 400 320" className="w-full h-full">
@@ -53,7 +53,7 @@ function PackDiagram({ active }: { active: PartId | null }) {
       <motion.rect
         x="20" y="40" width="360" height="240" rx="20"
         fill="#0d0d0d"
-        stroke={is("casing") ? "#00BFFF" : "#ffffff22"}
+        stroke={is("casing") ? "#2323FF" : "#0A102422"}
         strokeWidth={is("casing") ? 3 : 2}
         animate={{ opacity: dim("casing"), filter: glow("casing") }}
         transition={{ duration: 0.4 }}
@@ -63,11 +63,11 @@ function PackDiagram({ active }: { active: PartId | null }) {
         animate={{ opacity: dim("bms"), filter: glow("bms") }}
         transition={{ duration: 0.4 }}
       >
-        <rect x="50" y="60" width="300" height="36" rx="4" fill="#0a1f2e" stroke={is("bms") ? "#00BFFF" : "#00BFFF55"} strokeWidth="1.5" />
+        <rect x="50" y="60" width="300" height="36" rx="4" fill="#0a1f2e" stroke={is("bms") ? "#2323FF" : "#2323FF55"} strokeWidth="1.5" />
         {Array.from({ length: 10 }).map((_, i) => (
-          <rect key={i} x={62 + i * 30} y={70} width="18" height="6" rx="1" fill={is("bms") ? "#00BFFF" : "#00BFFF99"} />
+          <rect key={i} x={62 + i * 30} y={70} width="18" height="6" rx="1" fill={is("bms") ? "#2323FF" : "#2323FF99"} />
         ))}
-        <circle cx="340" cy="78" r="3" fill={is("bms") ? "#39FF14" : "#39FF1488"} />
+        <circle cx="340" cy="78" r="3" fill={is("bms") ? "#2323FF" : "#2323FF88"} />
       </motion.g>
 
       {/* Old degraded cell cluster (left side) */}
@@ -86,8 +86,8 @@ function PackDiagram({ active }: { active: PartId | null }) {
               width="18"
               height="60"
               rx="3"
-              fill={is("cells-old") ? "#444" : "#2a2a2a"}
-              stroke={is("cells-old") ? "#00BFFF" : "#ffffff22"}
+              fill={is("cells-old") ? "#9CA3AF" : "#D1D5DB"}
+              stroke={is("cells-old") ? "#2323FF" : "#0A102422"}
               strokeWidth="1"
             />
           );
@@ -110,8 +110,8 @@ function PackDiagram({ active }: { active: PartId | null }) {
               width="28"
               height="60"
               rx="3"
-              fill={is("cells-new") ? "url(#cellGrad)" : "#0a1f1a"}
-              stroke={is("cells-new") ? "#39FF14" : "#39FF1466"}
+              fill={is("cells-new") ? "url(#cellGrad)" : "#EAF0FF"}
+              stroke={is("cells-new") ? "#2323FF" : "#2323FF66"}
               strokeWidth="1.2"
             />
           );
@@ -120,8 +120,8 @@ function PackDiagram({ active }: { active: PartId | null }) {
 
       <defs>
         <linearGradient id="cellGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor="#39FF14" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#00CED1" stopOpacity="0.4" />
+          <stop offset="0%" stopColor="#2323FF" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#2323FF" stopOpacity="0.4" />
         </linearGradient>
       </defs>
     </svg>
@@ -153,7 +153,7 @@ function ActiveBoundary() {
     return () => window.removeEventListener("walor:active-part", onActive);
   }, []);
   return (
-    <div className="w-full max-w-[520px] aspect-[4/3] rounded-2xl border border-white/10 bg-black/40 p-6">
+    <div className="w-full max-w-[520px] aspect-[4/3] rounded-2xl border border-foreground/10 bg-foreground/[0.04] p-6">
       <PackDiagram active={active} />
     </div>
   );
@@ -171,9 +171,9 @@ function DesktopPanel({ part, title, desc }: { part: PartId; title: string; desc
         animate={{ opacity: inView ? 1 : 0.35, x: inView ? 0 : 8 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#00BFFF] mb-3">Step</div>
-        <h3 className="text-2xl md:text-3xl font-bold text-white">{title}</h3>
-        <p className="mt-4 text-white/65 text-base leading-relaxed">{desc}</p>
+        <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#2323FF] mb-3">Step</div>
+        <h3 className="text-2xl md:text-3xl font-bold text-foreground">{title}</h3>
+        <p className="mt-4 text-foreground/65 text-base leading-relaxed">{desc}</p>
       </motion.div>
     </div>
   );
@@ -184,13 +184,13 @@ function MobileBlock({ part, title, desc }: { part: PartId; title: string; desc:
   const inView = useInView(ref, { once: false, margin: "-30%" });
   return (
     <div ref={ref} className="flex flex-col gap-4">
-      <div className="rounded-xl border border-white/10 bg-black/40 p-4 aspect-[4/3]">
+      <div className="rounded-xl border border-foreground/10 bg-foreground/[0.04] p-4 aspect-[4/3]">
         <PackDiagram active={inView ? part : null} />
       </div>
       <div>
-        <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#00BFFF]">Step</div>
-        <h3 className="mt-2 text-xl font-bold text-white">{title}</h3>
-        <p className="mt-2 text-white/65 text-sm leading-relaxed">{desc}</p>
+        <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#2323FF]">Step</div>
+        <h3 className="mt-2 text-xl font-bold text-foreground">{title}</h3>
+        <p className="mt-2 text-foreground/65 text-sm leading-relaxed">{desc}</p>
       </div>
     </div>
   );

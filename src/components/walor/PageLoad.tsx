@@ -23,8 +23,8 @@ export function PageLoad() {
         <motion.div
           key="pageload"
           className="fixed inset-0 z-[200] pointer-events-none"
-          initial={{ backgroundColor: "#050505" }}
-          animate={{ backgroundColor: ["#050505", "#050505", "#0A1628"] }}
+          initial={{ backgroundColor: "#FAFAFB" }}
+          animate={{ backgroundColor: ["#FAFAFB", "#FAFAFB", "#FAFAFB"] }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, times: [0, 0.85, 1] }}
         >
@@ -34,7 +34,7 @@ export function PageLoad() {
               background:
                 "linear-gradient(90deg, transparent, #E0F7FF 45%, #ffffff 50%, #E0F7FF 55%, transparent)",
               filter: "blur(2px)",
-              boxShadow: "0 0 120px 40px rgba(0,191,255,0.65)",
+              boxShadow: "0 0 120px 40px rgba(35,35,255,0.45)",
             }}
             initial={{ x: "-50vw", opacity: 0 }}
             animate={{ x: "120vw", opacity: [0, 1, 1, 0] }}
