@@ -395,16 +395,16 @@ function CapabilityViz({ id }: { id: string }) {
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full p-6">
         <defs>
           <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="oklch(0.76 0.17 165)" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="oklch(0.76 0.17 165)" stopOpacity="0" />
+            <stop offset="0%" stopColor="#2323FF" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#2323FF" stopOpacity="0" />
           </linearGradient>
         </defs>
         {[20, 40, 60, 80].map((y) => (
-          <line key={y} x1="0" y1={y} x2="100" y2={y} stroke="white" strokeOpacity="0.05" strokeWidth="0.2" />
+          <line key={y} x1="0" y1={y} x2="100" y2={y} stroke="#0A1024" strokeOpacity="0.05" strokeWidth="0.2" />
         ))}
         <motion.polyline
           fill="none"
-          stroke="oklch(0.76 0.17 165)"
+          stroke="#2323FF"
           strokeWidth="0.6"
           points={points}
           initial={{ pathLength: 0 }}
@@ -420,7 +420,7 @@ function CapabilityViz({ id }: { id: string }) {
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-5 gap-1 p-4">
         {Array.from({ length: 40 }).map((_, i) => {
           const heat = Math.random();
-          const color = heat > 0.7 ? "oklch(0.7 0.2 30)" : heat > 0.4 ? "oklch(0.78 0.15 80)" : "oklch(0.76 0.17 165)";
+          const color = heat > 0.7 ? "oklch(0.7 0.2 30)" : heat > 0.4 ? "oklch(0.78 0.15 80)" : "#2323FF";
           return (
             <motion.div
               key={i}
