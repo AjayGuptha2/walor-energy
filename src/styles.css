@@ -66,8 +66,9 @@
   --walor-blue: oklch(0.18 0.04 250);          /* #0A1628 */
   --walor-blue-mid: oklch(0.24 0.06 255);      /* #0D2550 */
   --walor-blue-light: oklch(0.32 0.07 258);    /* #163466 */
-  --walor-green: oklch(0.76 0.17 165);         /* #00C896 */
-  --walor-green-dim: oklch(0.68 0.16 165);     /* #00A87A */
+  /* Primary accent shifted to electric blue #2323FF for site-wide consistency */
+  --walor-green: oklch(0.42 0.31 268);         /* #2323FF */
+  --walor-green-dim: oklch(0.50 0.28 268);     /* lighter #2323FF tint */
 
   /* Map shadcn → Walor dark theme by default */
   --background: var(--walor-blue);
