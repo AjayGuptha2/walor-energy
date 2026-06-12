@@ -27,7 +27,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-[oklch(0.18_0.04_250/0.85)] backdrop-blur-xl border-b border-foreground/5"
+          ? "bg-background/85 backdrop-blur-xl border-b border-foreground/5"
           : "bg-transparent"
       )}
     >
@@ -53,7 +53,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button asChild className="hidden md:inline-flex bg-[var(--walor-green)] text-[var(--walor-blue)] hover:bg-[var(--walor-green-dim)] font-medium">
+          <Button asChild className="hidden md:inline-flex bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium">
             <a href="#contact">Book Fleet Assessment</a>
           </Button>
           <button
@@ -67,7 +67,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden bg-[var(--walor-blue)]/95 backdrop-blur-xl border-t border-foreground/5">
+        <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-foreground/5">
           <ul className="walor-container py-6 flex flex-col gap-4">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
@@ -81,7 +81,7 @@ export function Navbar() {
               </li>
             ))}
             <li>
-              <Button asChild className="w-full bg-[var(--walor-green)] text-[var(--walor-blue)] hover:bg-[var(--walor-green-dim)]">
+              <Button asChild className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)]">
                 <a href="#contact" onClick={() => setOpen(false)}>Book Fleet Assessment</a>
               </Button>
             </li>

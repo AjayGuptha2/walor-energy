@@ -114,7 +114,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.3} className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild size="lg" className="bg-[var(--walor-green)] text-[var(--walor-blue)] hover:bg-[var(--walor-green-dim)] font-medium h-12 px-6">
+          <Button asChild size="lg" className="bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium h-12 px-6">
             <a href="#contact">
               Book Fleet Assessment <ArrowRight className="ml-1 size-4" />
             </a>
@@ -136,7 +136,7 @@ function Hero() {
             { v: "2×", k: "Battery Life", d: "extended service life" },
             { v: "60%", k: "Battery Waste", d: "diverted from landfill" },
           ].map((m) => (
-            <StaggerItem key={m.k} className="bg-[var(--walor-blue)]/40 p-6 md:p-8">
+            <StaggerItem key={m.k} className="bg-foreground/[0.025] p-6 md:p-8">
               <div className="font-mono text-3xl md:text-4xl text-gradient-green font-bold">{m.v}</div>
               <div className="mt-2 text-sm font-medium text-foreground">{m.k}</div>
               <div className="text-xs text-foreground/55 mt-0.5">{m.d}</div>
@@ -237,7 +237,7 @@ function Solution() {
   ];
 
   return (
-    <section className="walor-section relative bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
+    <section className="walor-section relative bg-foreground/[0.03] border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="The Walor Process"
@@ -318,7 +318,7 @@ function Technology() {
   const current = caps.find((c) => c.id === active)!;
 
   return (
-    <section id="technology" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
+    <section id="technology" className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Technology"
@@ -372,7 +372,7 @@ function Technology() {
               <h3 className="mt-4 text-2xl font-semibold">{current.label}</h3>
               <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{current.detail}</p>
 
-              <div className="mt-6 flex-1 min-h-[260px] rounded-xl bg-[var(--walor-blue)]/60 border border-foreground/5 relative overflow-hidden">
+              <div className="mt-6 flex-1 min-h-[260px] rounded-xl bg-foreground/[0.04] border border-foreground/5 relative overflow-hidden">
                 <CapabilityViz id={active} />
               </div>
             </div>
@@ -574,7 +574,7 @@ function Sustainability() {
   const nodes = ["Manufacturing", "Deployment", "Degradation", "Walor Revival", "Extended Life", "Sustainable Reuse"];
 
   return (
-    <section id="sustainability" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
+    <section id="sustainability" className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Sustainability"
@@ -676,7 +676,7 @@ function Vision() {
   ];
 
   return (
-    <section className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
+    <section className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Vision"
@@ -697,7 +697,7 @@ function Vision() {
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">{ph.p}</span>
                     <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isCurrent ? "bg-[var(--walor-green)] text-[var(--walor-blue)]" : "bg-foreground/5 text-foreground/40"
+                      isCurrent ? "bg-[var(--walor-green)] text-white" : "bg-foreground/5 text-foreground/40"
                     }`}>
                       {ph.s}
                     </span>
@@ -878,7 +878,7 @@ function Contact() {
                     type="submit"
                     disabled={submitting}
                     size="lg"
-                    className="w-full bg-[var(--walor-green)] text-[var(--walor-blue)] hover:bg-[var(--walor-green-dim)] font-medium"
+                    className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
                   >
                     {submitting ? "Sending…" : "Book Fleet Assessment"}
                     {!submitting && <ArrowRight className="ml-1 size-4" />}

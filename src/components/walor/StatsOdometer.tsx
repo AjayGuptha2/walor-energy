@@ -68,10 +68,10 @@ export function StatsOdometer() {
   const inView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
-    <section ref={ref} id="impact-stats" className="bg-[#111] py-24 md:py-32">
+    <section ref={ref} id="impact-stats" className="bg-foreground/[0.03] py-24 md:py-32">
       <div className="walor-container">
         <div className="text-center mb-14">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#39FF14]">// Impact</span>
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#2323FF]">// Impact</span>
           <h2 className="mt-4 text-3xl md:text-5xl font-bold text-foreground">Numbers that move fleets forward</h2>
         </div>
 
@@ -92,13 +92,13 @@ export function StatsOdometer() {
                 )}
               </div>
               <motion.div
-                className="mt-4 h-[2px] bg-[#39FF14] origin-left"
+                className="mt-4 h-[2px] bg-[#2323FF] origin-left"
                 style={{ boxShadow: "0 0 8px rgba(57,255,20,0.6)" }}
                 initial={{ scaleX: 0 }}
                 animate={inView ? { scaleX: 1 } : {}}
                 transition={{ duration: 0.7, delay: 1.8 + i * 0.1, ease: "easeOut" }}
               />
-              <div className="mt-3 text-sm font-medium uppercase tracking-[0.2em] text-[#39FF14]">
+              <div className="mt-3 text-sm font-medium uppercase tracking-[0.2em] text-[#2323FF]">
                 {s.label}
               </div>
             </motion.div>
