@@ -62,33 +62,33 @@
 :root {
   --radius: 0.75rem;
 
-  /* Walor brand tokens */
-  --walor-blue: oklch(0.18 0.04 250);          /* #0A1628 */
-  --walor-blue-mid: oklch(0.24 0.06 255);      /* #0D2550 */
-  --walor-blue-light: oklch(0.32 0.07 258);    /* #163466 */
-  /* Primary accent shifted to electric blue #2323FF for site-wide consistency */
-  --walor-green: oklch(0.42 0.31 268);         /* #2323FF */
-  --walor-green-dim: oklch(0.50 0.28 268);     /* lighter #2323FF tint */
+  /* Walor brand tokens — light theme */
+  --walor-blue: oklch(0.16 0.04 258);          /* deep navy ink #06081A */
+  --walor-blue-mid: oklch(0.28 0.05 258);      /* secondary ink */
+  --walor-blue-light: oklch(0.55 0.04 258);    /* muted ink */
+  /* Accent: electric blue #2323FF */
+  --walor-green: oklch(0.42 0.31 268);
+  --walor-green-dim: oklch(0.50 0.28 268);
 
-  /* Map shadcn → Walor dark theme by default */
-  --background: var(--walor-blue);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.22 0.05 254);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.22 0.05 254);
-  --popover-foreground: oklch(0.98 0 0);
+  /* shadcn → light theme */
+  --background: oklch(0.99 0.005 258);         /* near-white */
+  --foreground: oklch(0.16 0.04 258);          /* dark navy ink */
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
   --primary: var(--walor-green);
-  --primary-foreground: oklch(0.15 0.04 250);
-  --secondary: oklch(0.28 0.05 256);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.26 0.04 256);
-  --muted-foreground: oklch(0.72 0.02 250);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.01 258);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.96 0.005 258);
+  --muted-foreground: oklch(0.46 0.03 258);
   --accent: var(--walor-green);
-  --accent-foreground: oklch(0.15 0.04 250);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.16 0.04 258 / 10%);
+  --input: oklch(0.16 0.04 258 / 12%);
   --ring: var(--walor-green);
 }
 
@@ -103,14 +103,14 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.32 0.07 258 / 0.6), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 110%, oklch(0.76 0.17 165 / 0.08), transparent);
+      radial-gradient(ellipse 70% 45% at 50% -10%, oklch(0.42 0.31 268 / 0.10), transparent),
+      radial-gradient(ellipse 50% 35% at 90% 110%, oklch(0.42 0.31 268 / 0.06), transparent);
     background-attachment: fixed;
   }
 
   ::selection {
     background: var(--walor-green);
-    color: var(--walor-blue);
+    color: #ffffff;
   }
 }
 
@@ -121,29 +121,32 @@
   .walor-section {
     @apply py-20 md:py-28;
   }
+  /* Light glass card */
   .glass {
-    background: oklch(1 0 0 / 0.03);
-    border: 1px solid oklch(1 0 0 / 0.08);
+    background: oklch(1 0 0 / 0.7);
+    border: 1px solid oklch(0.16 0.04 258 / 0.08);
     backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 oklch(1 0 0 / 0.6) inset, 0 8px 24px -16px oklch(0.16 0.04 258 / 0.18);
   }
   .glass-hover {
     transition: all 0.3s ease;
   }
   .glass-hover:hover {
-    border-color: oklch(0.76 0.17 165 / 0.4);
-    background: oklch(0.76 0.17 165 / 0.04);
+    border-color: oklch(0.42 0.31 268 / 0.45);
+    background: oklch(0.42 0.31 268 / 0.04);
     transform: translateY(-4px);
+    box-shadow: 0 18px 40px -20px oklch(0.42 0.31 268 / 0.35);
   }
   .text-gradient-green {
-    background: linear-gradient(135deg, var(--walor-green), oklch(0.85 0.14 170));
+    background: linear-gradient(135deg, #2323FF, #6E78FF);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .grid-pattern {
     background-image:
-      linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+      linear-gradient(oklch(0.16 0.04 258 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.16 0.04 258 / 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 }
