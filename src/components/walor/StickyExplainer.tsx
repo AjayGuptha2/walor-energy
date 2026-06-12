@@ -16,7 +16,7 @@ export function StickyExplainer() {
       <div className="walor-container">
         <div className="text-center mb-16">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#00BFFF]">// How It Works</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">Inside a Walor Revival</h2>
+          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-foreground">Inside a Walor Revival</h2>
         </div>
 
         {/* Mobile: stacked */}
@@ -153,7 +153,7 @@ function ActiveBoundary() {
     return () => window.removeEventListener("walor:active-part", onActive);
   }, []);
   return (
-    <div className="w-full max-w-[520px] aspect-[4/3] rounded-2xl border border-white/10 bg-black/40 p-6">
+    <div className="w-full max-w-[520px] aspect-[4/3] rounded-2xl border border-foreground/10 bg-black/40 p-6">
       <PackDiagram active={active} />
     </div>
   );
@@ -172,8 +172,8 @@ function DesktopPanel({ part, title, desc }: { part: PartId; title: string; desc
         transition={{ duration: 0.5 }}
       >
         <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#00BFFF] mb-3">Step</div>
-        <h3 className="text-2xl md:text-3xl font-bold text-white">{title}</h3>
-        <p className="mt-4 text-white/65 text-base leading-relaxed">{desc}</p>
+        <h3 className="text-2xl md:text-3xl font-bold text-foreground">{title}</h3>
+        <p className="mt-4 text-foreground/65 text-base leading-relaxed">{desc}</p>
       </motion.div>
     </div>
   );
@@ -184,13 +184,13 @@ function MobileBlock({ part, title, desc }: { part: PartId; title: string; desc:
   const inView = useInView(ref, { once: false, margin: "-30%" });
   return (
     <div ref={ref} className="flex flex-col gap-4">
-      <div className="rounded-xl border border-white/10 bg-black/40 p-4 aspect-[4/3]">
+      <div className="rounded-xl border border-foreground/10 bg-black/40 p-4 aspect-[4/3]">
         <PackDiagram active={inView ? part : null} />
       </div>
       <div>
         <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#00BFFF]">Step</div>
-        <h3 className="mt-2 text-xl font-bold text-white">{title}</h3>
-        <p className="mt-2 text-white/65 text-sm leading-relaxed">{desc}</p>
+        <h3 className="mt-2 text-xl font-bold text-foreground">{title}</h3>
+        <p className="mt-2 text-foreground/65 text-sm leading-relaxed">{desc}</p>
       </div>
     </div>
   );

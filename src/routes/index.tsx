@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div id="top" className="relative min-h-screen text-white">
+    <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
       <ScrollBattery />
       <Navbar />
@@ -97,7 +97,7 @@ function Hero() {
 
       <div className="walor-container relative">
         <Reveal className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-white/70">
+          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-foreground/70">
             <span className="size-1.5 rounded-full bg-[var(--walor-green)] animate-pulse" />
             India's First Full-Pack EV Battery Revival Platform
           </span>
@@ -109,7 +109,7 @@ function Hero() {
           <br className="hidden md:block" /> Power Sustainable Mobility.
         </Reveal>
 
-        <Reveal delay={0.2} as="p" className="mt-6 text-center text-base md:text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
+        <Reveal delay={0.2} as="p" className="mt-6 text-center text-base md:text-lg text-foreground/65 max-w-2xl mx-auto leading-relaxed">
           India's most advanced Full-Pack EV Battery Revival platform — helping commercial fleets cut costs, extend battery life, and maximize fleet ROI.
         </Reveal>
 
@@ -119,7 +119,7 @@ function Hero() {
               Book Fleet Assessment <ArrowRight className="ml-1 size-4" />
             </a>
           </Button>
-          <Button asChild size="lg" variant="outline" className="h-12 px-6 border-white/20 bg-transparent text-white hover:bg-white/5 hover:text-white">
+          <Button asChild size="lg" variant="outline" className="h-12 px-6 border-foreground/20 bg-transparent text-foreground hover:bg-foreground/5 hover:text-foreground">
             <a href="#solutions">Schedule Consultation</a>
           </Button>
         </Reveal>
@@ -138,8 +138,8 @@ function Hero() {
           ].map((m) => (
             <StaggerItem key={m.k} className="bg-[var(--walor-blue)]/40 p-6 md:p-8">
               <div className="font-mono text-3xl md:text-4xl text-gradient-green font-bold">{m.v}</div>
-              <div className="mt-2 text-sm font-medium text-white">{m.k}</div>
-              <div className="text-xs text-white/55 mt-0.5">{m.d}</div>
+              <div className="mt-2 text-sm font-medium text-foreground">{m.k}</div>
+              <div className="text-xs text-foreground/55 mt-0.5">{m.d}</div>
             </StaggerItem>
           ))}
         </Stagger>
@@ -168,12 +168,12 @@ function BatteryVisual() {
               transition={{ delay: 0.6 + i * 0.05, duration: 0.5 }}
               className={`relative h-full flex-1 max-w-[44px] rounded-md bg-gradient-to-t border ${colors}`}
             >
-              <div className="absolute inset-x-2 top-2 h-1 rounded-full bg-white/20" />
+              <div className="absolute inset-x-2 top-2 h-1 rounded-full bg-foreground/20" />
             </motion.div>
           );
         })}
       </div>
-      <div className="absolute bottom-4 left-6 right-6 flex justify-between text-[10px] md:text-xs font-mono uppercase tracking-wider text-white/50">
+      <div className="absolute bottom-4 left-6 right-6 flex justify-between text-[10px] md:text-xs font-mono uppercase tracking-wider text-foreground/50">
         <span>Degraded</span>
         <span>Diagnosing</span>
         <span className="text-[var(--walor-green)]">Revived</span>
@@ -206,18 +206,18 @@ function Problem() {
             <StaggerItem key={p.label} className="group">
               <div className="glass glass-hover h-full rounded-2xl p-6 relative overflow-hidden">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-400/60 to-transparent" />
-                <p.icon className="size-5 text-white/50" />
-                <div className="mt-6 font-mono text-3xl font-bold text-white">{p.stat}</div>
-                <div className="mt-1 text-sm font-medium text-white/90">{p.label}</div>
-                <p className="mt-3 text-sm text-white/55 leading-relaxed">{p.desc}</p>
+                <p.icon className="size-5 text-foreground/50" />
+                <div className="mt-6 font-mono text-3xl font-bold text-foreground">{p.stat}</div>
+                <div className="mt-1 text-sm font-medium text-foreground/90">{p.label}</div>
+                <p className="mt-3 text-sm text-foreground/55 leading-relaxed">{p.desc}</p>
               </div>
             </StaggerItem>
           ))}
         </Stagger>
 
         <Reveal delay={0.2} className="mt-16 text-center">
-          <p className="text-white/60 text-sm">The status quo costs operators millions.</p>
-          <p className="mt-1 text-lg font-medium text-white">There is a better path. ↓</p>
+          <p className="text-foreground/60 text-sm">The status quo costs operators millions.</p>
+          <p className="mt-1 text-lg font-medium text-foreground">There is a better path. ↓</p>
         </Reveal>
       </div>
     </section>
@@ -237,7 +237,7 @@ function Solution() {
   ];
 
   return (
-    <section className="walor-section relative bg-[var(--walor-blue-mid)]/40 border-y border-white/5">
+    <section className="walor-section relative bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="The Walor Process"
@@ -259,8 +259,8 @@ function Solution() {
                       {i + 1}
                     </span>
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-white">{s.t}</h3>
-                  <p className="mt-2 text-sm text-white/55 leading-relaxed">{s.d}</p>
+                  <h3 className="mt-4 text-base font-semibold text-foreground">{s.t}</h3>
+                  <p className="mt-2 text-sm text-foreground/55 leading-relaxed">{s.d}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -292,8 +292,8 @@ function WhyWalor() {
                 <div className="inline-flex size-11 items-center justify-center rounded-lg bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
                   <p.icon className="size-5 text-[var(--walor-green)]" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-white">{p.t}</h3>
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{p.d}</p>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{p.t}</h3>
+                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{p.d}</p>
               </div>
             </StaggerItem>
           ))}
@@ -318,7 +318,7 @@ function Technology() {
   const current = caps.find((c) => c.id === active)!;
 
   return (
-    <section id="technology" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-white/5">
+    <section id="technology" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Technology"
@@ -340,17 +340,17 @@ function Technology() {
                         className={`w-full text-left rounded-xl p-4 flex items-center gap-4 transition-all ${
                           isActive
                             ? "bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30"
-                            : "border border-transparent hover:bg-white/5"
+                            : "border border-transparent hover:bg-foreground/5"
                         }`}
                       >
                         <span
                           className={`grid place-items-center size-10 rounded-lg ${
-                            isActive ? "bg-[var(--walor-green)]/20 text-[var(--walor-green)]" : "bg-white/5 text-white/60"
+                            isActive ? "bg-[var(--walor-green)]/20 text-[var(--walor-green)]" : "bg-foreground/5 text-foreground/60"
                           }`}
                         >
                           <c.icon className="size-4" />
                         </span>
-                        <span className={`text-sm font-medium ${isActive ? "text-white" : "text-white/70"}`}>{c.label}</span>
+                        <span className={`text-sm font-medium ${isActive ? "text-foreground" : "text-foreground/70"}`}>{c.label}</span>
                         {isActive && <ArrowRight className="ml-auto size-4 text-[var(--walor-green)]" />}
                       </button>
                     </li>
@@ -367,12 +367,12 @@ function Technology() {
                 <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">
                   // {current.id}
                 </span>
-                <span className="font-mono text-xs text-white/40">walor.diagnostic.v4</span>
+                <span className="font-mono text-xs text-foreground/40">walor.diagnostic.v4</span>
               </div>
               <h3 className="mt-4 text-2xl font-semibold">{current.label}</h3>
-              <p className="mt-2 text-sm text-white/60 leading-relaxed">{current.detail}</p>
+              <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{current.detail}</p>
 
-              <div className="mt-6 flex-1 min-h-[260px] rounded-xl bg-[var(--walor-blue)]/60 border border-white/5 relative overflow-hidden">
+              <div className="mt-6 flex-1 min-h-[260px] rounded-xl bg-[var(--walor-blue)]/60 border border-foreground/5 relative overflow-hidden">
                 <CapabilityViz id={active} />
               </div>
             </div>
@@ -468,7 +468,7 @@ function CapabilityViz({ id }: { id: string }) {
   }
   // certification
   return (
-    <div className="absolute inset-0 p-6 font-mono text-xs text-white/60 space-y-2">
+    <div className="absolute inset-0 p-6 font-mono text-xs text-foreground/60 space-y-2">
       {[
         ["CAPACITY", "98.4%", "PASS"],
         ["VOLTAGE", "Δ 0.03V", "PASS"],
@@ -482,10 +482,10 @@ function CapabilityViz({ id }: { id: string }) {
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.08 }}
-          className="flex justify-between border-b border-white/5 pb-1"
+          className="flex justify-between border-b border-foreground/5 pb-1"
         >
-          <span className="text-white/40">{row[0]}</span>
-          <span className="text-white">{row[1]}</span>
+          <span className="text-foreground/40">{row[0]}</span>
+          <span className="text-foreground">{row[1]}</span>
           {row[2] && (
             <span className="text-[var(--walor-green)] flex items-center gap-1">
               <CheckCircle2 className="size-3" /> {row[2]}
@@ -518,8 +518,8 @@ function BusinessImpact() {
                 <div className="font-mono text-5xl md:text-6xl font-bold text-gradient-green">
                   <Counter value={m.v} suffix={m.suffix} />
                 </div>
-                <div className="mt-4 text-sm font-medium text-white">{m.label}</div>
-                <div className="text-xs text-white/55 mt-1">{m.desc}</div>
+                <div className="mt-4 text-sm font-medium text-foreground">{m.label}</div>
+                <div className="text-xs text-foreground/55 mt-1">{m.desc}</div>
               </div>
             </StaggerItem>
           ))}
@@ -533,7 +533,7 @@ function BusinessImpact() {
               <CompareBar label="Replacement (Status Quo)" value={100} color="bg-red-500/50" amount="₹7,00,000" />
               <CompareBar label="Walor Revival" value={45} color="bg-[var(--walor-green)]" amount="₹3,15,000" />
             </div>
-            <p className="mt-6 text-xs text-white/40 font-mono uppercase tracking-wider">
+            <p className="mt-6 text-xs text-foreground/40 font-mono uppercase tracking-wider">
               Indicative — actual savings depend on pack chemistry, age & fleet profile
             </p>
           </div>
@@ -547,10 +547,10 @@ function CompareBar({ label, value, color, amount }: { label: string; value: num
   return (
     <div>
       <div className="flex justify-between text-sm mb-2">
-        <span className="text-white/80">{label}</span>
-        <span className="font-mono text-white">{amount}</span>
+        <span className="text-foreground/80">{label}</span>
+        <span className="font-mono text-foreground">{amount}</span>
       </div>
-      <div className="h-3 rounded-full bg-white/5 overflow-hidden">
+      <div className="h-3 rounded-full bg-foreground/5 overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${value}%` }}
@@ -574,7 +574,7 @@ function Sustainability() {
   const nodes = ["Manufacturing", "Deployment", "Degradation", "Walor Revival", "Extended Life", "Sustainable Reuse"];
 
   return (
-    <section id="sustainability" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-white/5">
+    <section id="sustainability" className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Sustainability"
@@ -596,21 +596,21 @@ function Sustainability() {
                     className={`relative rounded-xl p-4 text-center border ${
                       highlight
                         ? "bg-[var(--walor-green)]/15 border-[var(--walor-green)]/50 shadow-[0_0_40px_oklch(0.76_0.17_165/0.3)]"
-                        : "bg-white/5 border-white/10"
+                        : "bg-foreground/5 border-foreground/10"
                     }`}
                   >
                     {highlight && (
                       <div className="absolute inset-0 rounded-xl border-2 border-[var(--walor-green)]/40 animate-pulse-glow" />
                     )}
-                    <div className="font-mono text-[10px] text-white/40">{String(i + 1).padStart(2, "0")}</div>
-                    <div className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-white/80"}`}>
+                    <div className="font-mono text-[10px] text-foreground/40">{String(i + 1).padStart(2, "0")}</div>
+                    <div className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-foreground/80"}`}>
                       {n}
                     </div>
                   </motion.div>
                 );
               })}
             </div>
-            <div className="mt-6 flex items-center justify-center gap-2 text-xs font-mono text-white/40 uppercase tracking-wider">
+            <div className="mt-6 flex items-center justify-center gap-2 text-xs font-mono text-foreground/40 uppercase tracking-wider">
               <Recycle className="size-3.5" /> Closed-loop battery lifecycle
             </div>
           </div>
@@ -624,7 +624,7 @@ function Sustainability() {
                   <i.icon className="size-4 text-[var(--walor-green)]" />
                 </div>
                 <h3 className="mt-4 text-base font-semibold">{i.t}</h3>
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{i.d}</p>
+                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{i.d}</p>
               </div>
             </StaggerItem>
           ))}
@@ -648,14 +648,14 @@ function Trust() {
     <section className="walor-section">
       <div className="walor-container">
         <SectionHeader eyebrow="Ecosystem" title="Building with India's EV Ecosystem" />
-        <Reveal className="mt-8 max-w-3xl mx-auto text-center text-lg text-white/65 leading-relaxed">
+        <Reveal className="mt-8 max-w-3xl mx-auto text-center text-lg text-foreground/65 leading-relaxed">
           Walor Energy is actively working with commercial fleet operators, mobility providers, and EV ecosystem stakeholders to build India's most reliable battery revival infrastructure.
         </Reveal>
 
         <Reveal delay={0.2} className="mt-14 overflow-hidden rounded-2xl glass py-6 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
           <div className="flex gap-12 animate-marquee w-max">
             {[...categories, ...categories].map((c, i) => (
-              <div key={i} className="flex items-center gap-3 text-white/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap">
+              <div key={i} className="flex items-center gap-3 text-foreground/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap">
                 <Zap className="size-4 text-[var(--walor-green)]" />
                 {c}
               </div>
@@ -676,7 +676,7 @@ function Vision() {
   ];
 
   return (
-    <section className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-white/5">
+    <section className="walor-section bg-[var(--walor-blue-mid)]/40 border-y border-foreground/5">
       <div className="walor-container">
         <SectionHeader
           eyebrow="Vision"
@@ -697,13 +697,13 @@ function Vision() {
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">{ph.p}</span>
                     <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isCurrent ? "bg-[var(--walor-green)] text-[var(--walor-blue)]" : "bg-white/5 text-white/40"
+                      isCurrent ? "bg-[var(--walor-green)] text-[var(--walor-blue)]" : "bg-foreground/5 text-foreground/40"
                     }`}>
                       {ph.s}
                     </span>
                   </div>
                   <h3 className="mt-5 text-xl font-semibold">{ph.t}</h3>
-                  <p className="mt-3 text-sm text-white/60 leading-relaxed">{ph.d}</p>
+                  <p className="mt-3 text-sm text-foreground/60 leading-relaxed">{ph.d}</p>
                 </div>
               </StaggerItem>
             );
@@ -725,21 +725,21 @@ function About() {
             Built for Operators Who <span className="text-gradient-green">Can't Afford Downtime.</span>
           </h2>
         </Reveal>
-        <Reveal delay={0.1} className="space-y-5 text-white/65 leading-relaxed">
+        <Reveal delay={0.1} className="space-y-5 text-foreground/65 leading-relaxed">
           <p>
             Walor Energy was founded by professionals who understand fleet economics from the inside — people who have seen batteries fail in the field and know what that costs a fleet operator in real money, real time, and real operational pressure.
           </p>
           <p>
             We built Walor because the alternatives weren't good enough. Cell-level patches that don't address root cause. Full replacements that destroy margins. Disposal that creates liability.
           </p>
-          <p className="text-white">
+          <p className="text-foreground">
             We built the full-pack revival process because that's what operators actually need.
           </p>
-          <div className="pt-4 flex items-center gap-6 text-sm font-mono uppercase tracking-wider text-white/40">
+          <div className="pt-4 flex items-center gap-6 text-sm font-mono uppercase tracking-wider text-foreground/40">
             <span>Hyderabad, IN</span>
-            <span className="size-1 rounded-full bg-white/20" />
+            <span className="size-1 rounded-full bg-foreground/20" />
             <span>Founded 2024</span>
-            <span className="size-1 rounded-full bg-white/20" />
+            <span className="size-1 rounded-full bg-foreground/20" />
             <span>Pre-Series A</span>
           </div>
         </Reveal>
@@ -777,12 +777,12 @@ function Contact() {
         <div className="glass rounded-3xl overflow-hidden">
           <div className="grid lg:grid-cols-5 gap-0">
             {/* Left side */}
-            <div className="lg:col-span-2 p-8 md:p-12 bg-gradient-to-br from-[var(--walor-green)]/10 to-transparent border-r border-white/5">
+            <div className="lg:col-span-2 p-8 md:p-12 bg-gradient-to-br from-[var(--walor-green)]/10 to-transparent border-r border-foreground/5">
               <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">Get Started</span>
               <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-tight">
                 Ready to Eliminate <span className="text-gradient-green">Battery Downtime?</span>
               </h2>
-              <p className="mt-4 text-white/65 leading-relaxed">
+              <p className="mt-4 text-foreground/65 leading-relaxed">
                 Book a free fleet assessment. No commitment. We'll evaluate your current battery health profile and show you the potential ROI of a revival program.
               </p>
 
@@ -790,8 +790,8 @@ function Contact() {
                 <div className="flex items-start gap-3">
                   <Mail className="size-4 text-[var(--walor-green)] mt-0.5" />
                   <div>
-                    <div className="text-white/40 font-mono uppercase text-xs tracking-wider">Email</div>
-                    <a href="mailto:support@walorenergy.com" className="text-white hover:text-[var(--walor-green)] transition-colors">
+                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">Email</div>
+                    <a href="mailto:support@walorenergy.com" className="text-foreground hover:text-[var(--walor-green)] transition-colors">
                       support@walorenergy.com
                     </a>
                   </div>
@@ -799,8 +799,8 @@ function Contact() {
                 <div className="flex items-start gap-3">
                   <MapPin className="size-4 text-[var(--walor-green)] mt-0.5" />
                   <div>
-                    <div className="text-white/40 font-mono uppercase text-xs tracking-wider">Location</div>
-                    <div className="text-white">Hyderabad, Telangana, India</div>
+                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">Location</div>
+                    <div className="text-foreground">Hyderabad, Telangana, India</div>
                   </div>
                 </div>
               </div>
@@ -814,12 +814,12 @@ function Contact() {
                     <CheckCircle2 className="size-8 text-[var(--walor-green)]" />
                   </div>
                   <h3 className="mt-6 text-2xl font-semibold">Request Received</h3>
-                  <p className="mt-2 text-white/60 max-w-sm">
+                  <p className="mt-2 text-foreground/60 max-w-sm">
                     Thanks — our fleet team will reach out within one business day to schedule your assessment.
                   </p>
                   <Button
                     variant="outline"
-                    className="mt-8 border-white/20 bg-transparent hover:bg-white/5"
+                    className="mt-8 border-foreground/20 bg-transparent hover:bg-foreground/5"
                     onClick={() => setSubmitted(false)}
                   >
                     Submit Another
@@ -829,24 +829,24 @@ function Contact() {
                 <form onSubmit={onSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Field label="Full Name *">
-                      <Input name="name" required placeholder="Your name" className="bg-white/5 border-white/10" />
+                      <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
                     </Field>
                     <Field label="Company *">
-                      <Input name="company" required placeholder="Fleet operator" className="bg-white/5 border-white/10" />
+                      <Input name="company" required placeholder="Fleet operator" className="bg-foreground/5 border-foreground/10" />
                     </Field>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Field label="Business Email *">
-                      <Input name="email" type="email" required placeholder="you@company.com" className="bg-white/5 border-white/10" />
+                      <Input name="email" type="email" required placeholder="you@company.com" className="bg-foreground/5 border-foreground/10" />
                     </Field>
                     <Field label="Phone">
-                      <Input name="phone" type="tel" placeholder="+91" className="bg-white/5 border-white/10" />
+                      <Input name="phone" type="tel" placeholder="+91" className="bg-foreground/5 border-foreground/10" />
                     </Field>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Field label="Fleet Size">
                       <Select name="fleet_size">
-                        <SelectTrigger className="bg-white/5 border-white/10">
+                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
                           <SelectValue placeholder="Select range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -859,7 +859,7 @@ function Contact() {
                     </Field>
                     <Field label="Vehicle Type">
                       <Select name="vehicle_type">
-                        <SelectTrigger className="bg-white/5 border-white/10">
+                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -872,7 +872,7 @@ function Contact() {
                     </Field>
                   </div>
                   <Field label="Additional Context">
-                    <Textarea name="message" rows={3} placeholder="Tell us about your fleet & current battery challenges…" className="bg-white/5 border-white/10 resize-none" />
+                    <Textarea name="message" rows={3} placeholder="Tell us about your fleet & current battery challenges…" className="bg-foreground/5 border-foreground/10 resize-none" />
                   </Field>
                   <Button
                     type="submit"
@@ -896,7 +896,7 @@ function Contact() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <Label className="text-xs font-mono uppercase tracking-wider text-white/50">{label}</Label>
+      <Label className="text-xs font-mono uppercase tracking-wider text-foreground/50">{label}</Label>
       <div className="mt-1.5">{children}</div>
     </div>
   );
@@ -905,43 +905,43 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 /* ============================ FOOTER ============================ */
 function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[var(--walor-blue)]">
+    <footer className="border-t border-foreground/5 bg-[var(--walor-blue)]">
       <div className="walor-container py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-semibold text-white">
+            <div className="flex items-center gap-2 font-semibold text-foreground">
               <span className="grid place-items-center size-8 rounded-md bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
                 <Zap className="size-4 text-[var(--walor-green)]" strokeWidth={2.5} />
               </span>
               Walor<span className="text-[var(--walor-green)]">.</span>Energy
             </div>
-            <p className="mt-4 text-sm text-white/55 max-w-sm leading-relaxed">
+            <p className="mt-4 text-sm text-foreground/55 max-w-sm leading-relaxed">
               India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
             </p>
-            <p className="mt-4 text-xs text-white/40 font-mono">Hyderabad, Telangana, India</p>
+            <p className="mt-4 text-xs text-foreground/40 font-mono">Hyderabad, Telangana, India</p>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/40">Explore</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Explore</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#solutions" className="text-white/70 hover:text-white">Solutions</a></li>
-              <li><a href="#technology" className="text-white/70 hover:text-white">Technology</a></li>
-              <li><a href="#impact" className="text-white/70 hover:text-white">Impact</a></li>
-              <li><a href="#sustainability" className="text-white/70 hover:text-white">Sustainability</a></li>
+              <li><a href="#solutions" className="text-foreground/70 hover:text-foreground">Solutions</a></li>
+              <li><a href="#technology" className="text-foreground/70 hover:text-foreground">Technology</a></li>
+              <li><a href="#impact" className="text-foreground/70 hover:text-foreground">Impact</a></li>
+              <li><a href="#sustainability" className="text-foreground/70 hover:text-foreground">Sustainability</a></li>
             </ul>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/40">Contact</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Contact</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="mailto:support@walorenergy.com" className="text-white/70 hover:text-white">support@walorenergy.com</a></li>
-              <li><a href="#contact" className="text-white/70 hover:text-white">Book Assessment</a></li>
+              <li><a href="mailto:support@walorenergy.com" className="text-foreground/70 hover:text-foreground">support@walorenergy.com</a></li>
+              <li><a href="#contact" className="text-foreground/70 hover:text-foreground">Book Assessment</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/40">
+        <div className="mt-12 pt-6 border-t border-foreground/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-foreground/40">
           <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
           <span className="flex gap-6">
-            <a href="#" className="hover:text-white/70">Privacy Policy</a>
-            <a href="#" className="hover:text-white/70">Terms of Service</a>
+            <a href="#" className="hover:text-foreground/70">Privacy Policy</a>
+            <a href="#" className="hover:text-foreground/70">Terms of Service</a>
           </span>
         </div>
       </div>
@@ -960,7 +960,7 @@ function SectionHeader({ eyebrow, title, lead }: { eyebrow: string; title: strin
         {title}
       </Reveal>
       {lead && (
-        <Reveal delay={0.1} as="p" className="mt-5 text-base md:text-lg text-white/60 leading-relaxed">
+        <Reveal delay={0.1} as="p" className="mt-5 text-base md:text-lg text-foreground/60 leading-relaxed">
           {lead}
         </Reveal>
       )}

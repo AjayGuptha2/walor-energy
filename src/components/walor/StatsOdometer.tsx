@@ -72,7 +72,7 @@ export function StatsOdometer() {
       <div className="walor-container">
         <div className="text-center mb-14">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#39FF14]">// Impact</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">Numbers that move fleets forward</h2>
+          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-foreground">Numbers that move fleets forward</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
@@ -84,7 +84,7 @@ export function StatsOdometer() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
               className="text-center md:text-left"
             >
-              <div className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight">
+              <div className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-none tracking-tight">
                 {s.num !== undefined ? (
                   <CountUp to={s.num} prefix={s.prefix} suffix={s.suffix} play={inView} />
                 ) : (
