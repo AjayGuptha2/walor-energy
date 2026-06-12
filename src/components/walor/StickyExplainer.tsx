@@ -53,7 +53,7 @@ function PackDiagram({ active }: { active: PartId | null }) {
       <motion.rect
         x="20" y="40" width="360" height="240" rx="20"
         fill="#0d0d0d"
-        stroke={is("casing") ? "#2323FF" : "#ffffff22"}
+        stroke={is("casing") ? "#2323FF" : "#0A102422"}
         strokeWidth={is("casing") ? 3 : 2}
         animate={{ opacity: dim("casing"), filter: glow("casing") }}
         transition={{ duration: 0.4 }}
@@ -86,8 +86,8 @@ function PackDiagram({ active }: { active: PartId | null }) {
               width="18"
               height="60"
               rx="3"
-              fill={is("cells-old") ? "#444" : "#2a2a2a"}
-              stroke={is("cells-old") ? "#2323FF" : "#ffffff22"}
+              fill={is("cells-old") ? "#9CA3AF" : "#D1D5DB"}
+              stroke={is("cells-old") ? "#2323FF" : "#0A102422"}
               strokeWidth="1"
             />
           );
@@ -110,7 +110,7 @@ function PackDiagram({ active }: { active: PartId | null }) {
               width="28"
               height="60"
               rx="3"
-              fill={is("cells-new") ? "url(#cellGrad)" : "#0a1f1a"}
+              fill={is("cells-new") ? "url(#cellGrad)" : "#EAF0FF"}
               stroke={is("cells-new") ? "#2323FF" : "#2323FF66"}
               strokeWidth="1.2"
             />
