@@ -40,7 +40,7 @@ export function BeforeAfter() {
     <section ref={ref} className="relative py-24 md:py-32 bg-[#0A0A0A]">
       <div className="walor-container">
         <div className="text-center mb-12">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#00CED1]">// Transformation</span>
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#2323FF]">// Transformation</span>
           <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">Before · After</h2>
           <p className="mt-3 text-white/60">Drag the lightning bolt to compare</p>
         </div>
@@ -60,7 +60,7 @@ export function BeforeAfter() {
               transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 70% at 75% 50%, rgba(57,255,20,0.25), transparent 70%)",
+                  "radial-gradient(ellipse 60% 70% at 75% 50%, rgba(35,35,255,0.25), transparent 70%)",
               }}
             />
             <Label position="right" text="After: 94% Capacity Restored" tone="after" />
@@ -77,21 +77,21 @@ export function BeforeAfter() {
 
           {/* Divider handle */}
           <div
-            className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#39FF14] via-[#00CED1] to-[#39FF14] pointer-events-none"
-            style={{ left: `${pos}%`, transform: "translateX(-50%)", boxShadow: "0 0 18px rgba(57,255,20,0.7)" }}
+            className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#2323FF] via-[#2323FF] to-[#2323FF] pointer-events-none"
+            style={{ left: `${pos}%`, transform: "translateX(-50%)", boxShadow: "0 0 18px rgba(35,35,255,0.7)" }}
           />
           <div
-            className="absolute top-1/2 grid place-items-center size-12 rounded-full border-2 border-[#39FF14] bg-black/80 backdrop-blur cursor-grab active:cursor-grabbing touch-none"
+            className="absolute top-1/2 grid place-items-center size-12 rounded-full border-2 border-[#2323FF] bg-black/80 backdrop-blur cursor-grab active:cursor-grabbing touch-none"
             style={{
               left: `${pos}%`,
               transform: "translate(-50%, -50%)",
-              boxShadow: "0 0 24px rgba(57,255,20,0.8), inset 0 0 12px rgba(0,206,209,0.4)",
+              boxShadow: "0 0 24px rgba(35,35,255,0.8), inset 0 0 12px rgba(35,35,255,0.4)",
             }}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
           >
-            <Zap className="size-5 text-[#39FF14]" fill="#39FF14" strokeWidth={2} />
+            <Zap className="size-5 text-[#2323FF]" fill="#2323FF" strokeWidth={2} />
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ function Label({ position, text, tone }: { position: "left" | "right"; text: str
       className={`absolute top-5 ${position === "left" ? "left-5" : "right-5"} px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider backdrop-blur ${
         tone === "before"
           ? "bg-black/60 border border-white/20 text-white/70"
-          : "bg-[#39FF14]/15 border border-[#39FF14]/50 text-[#39FF14]"
+          : "bg-[#2323FF]/15 border border-[#2323FF]/50 text-[#2323FF]"
       }`}
     >
       {text}
@@ -128,9 +128,9 @@ function PackVisual({ variant }: { variant: "before" | "after" }) {
         <div
           className="relative w-full max-w-[640px] aspect-[16/8] rounded-xl border-2 p-4 grid grid-cols-8 grid-rows-3 gap-2"
           style={{
-            borderColor: isBefore ? "rgba(255,255,255,0.15)" : "rgba(0,206,209,0.5)",
+            borderColor: isBefore ? "rgba(255,255,255,0.15)" : "rgba(35,35,255,0.5)",
             background: isBefore ? "#0d0d0d" : "#021414",
-            boxShadow: isBefore ? "none" : "0 0 60px rgba(0,206,209,0.3), inset 0 0 30px rgba(57,255,20,0.1)",
+            boxShadow: isBefore ? "none" : "0 0 60px rgba(35,35,255,0.3), inset 0 0 30px rgba(35,35,255,0.1)",
             filter: isBefore ? "grayscale(0.7)" : "none",
           }}
         >
@@ -145,9 +145,9 @@ function PackVisual({ variant }: { variant: "before" | "after" }) {
                       background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)",
                     }
                   : {
-                      borderColor: "rgba(57,255,20,0.5)",
-                      background: "linear-gradient(180deg, rgba(57,255,20,0.55), rgba(0,206,209,0.35))",
-                      boxShadow: "0 0 8px rgba(57,255,20,0.4)",
+                      borderColor: "rgba(35,35,255,0.5)",
+                      background: "linear-gradient(180deg, rgba(35,35,255,0.55), rgba(35,35,255,0.35))",
+                      boxShadow: "0 0 8px rgba(35,35,255,0.4)",
                     }
               }
             />
