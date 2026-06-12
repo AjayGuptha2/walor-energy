@@ -595,7 +595,7 @@ function Sustainability() {
                     transition={{ delay: i * 0.12 }}
                     className={`relative rounded-xl p-4 text-center border ${
                       highlight
-                        ? "bg-[var(--walor-green)]/15 border-[var(--walor-green)]/50 shadow-[0_0_40px_oklch(0.76_0.17_165/0.3)]"
+                        ? "bg-[var(--walor-green)]/15 border-[var(--walor-green)]/50 shadow-[0_0_40px_oklch(0.42_0.31_268/0.35)]"
                         : "bg-foreground/5 border-foreground/10"
                     }`}
                   >
