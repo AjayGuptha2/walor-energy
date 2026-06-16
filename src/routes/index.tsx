@@ -524,19 +524,6 @@ function BusinessImpact() {
           ))}
         </Stagger>
 
-        {/* Comparison bars */}
-        <Reveal delay={0.2} className="mt-12">
-          <div className="glass rounded-2xl p-6 md:p-10">
-            <h3 className="text-lg font-semibold mb-6">Status Quo vs Walor — Per Vehicle</h3>
-            <div className="space-y-5">
-              <CompareBar label="Replacement (Status Quo)" value={100} color="bg-red-500/50" amount="₹7,00,000" />
-              <CompareBar label="Walor Revival" value={45} color="bg-[var(--walor-green)]" amount="₹3,15,000" />
-            </div>
-            <p className="mt-6 text-xs text-foreground/40 font-mono uppercase tracking-wider">
-              Indicative — actual savings depend on pack chemistry, age & fleet profile
-            </p>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
