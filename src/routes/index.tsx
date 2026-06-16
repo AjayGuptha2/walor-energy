@@ -39,7 +39,7 @@ import { Navbar } from "@/components/walor/Navbar";
 import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
-import { ScrollBattery } from "@/components/walor/ScrollBattery";
+
 import { HeroScroll } from "@/components/walor/HeroScroll";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
 import { BeforeAfter } from "@/components/walor/BeforeAfter";
@@ -66,7 +66,6 @@ function Home() {
   return (
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
-      <ScrollBattery />
       <Navbar />
       <HeroScroll />
       <StickyExplainer />
