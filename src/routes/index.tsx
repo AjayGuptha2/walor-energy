@@ -8,12 +8,6 @@ import {
   AlertTriangle,
   Repeat,
   Trash2,
-  RefreshCw,
-  TrendingUp,
-  Calendar,
-  ShieldCheck,
-  Users,
-  Leaf,
   Recycle,
   Globe,
   Award,
@@ -73,8 +67,6 @@ function Home() {
       <BeforeAfter />
       <Hero />
       <Problem />
-      <Solution />
-      <WhyWalor />
       <Technology />
       <BusinessImpact />
       <Sustainability />
@@ -223,84 +215,6 @@ function Problem() {
   );
 }
 
-/* ============================ SOLUTION ============================ */
-function Solution() {
-  const steps = [
-    { n: "01", t: "Diagnostic Assessment", d: "Deep-scan of full battery pack using proprietary diagnostic protocols. Identifies degraded, mismatched, and failing cells." },
-    { n: "02", t: "Cell-Level Analysis", d: "Voltage profiling, impedance testing, and capacity mapping at individual cell level." },
-    { n: "03", t: "Full-Pack Revival", d: "Removal of degraded cells. Grade-matched replacement cells installed with precision." },
-    { n: "04", t: "Thermal Validation", d: "Full thermal cycle testing to validate heat dissipation, BMS response, and pack stability under load." },
-    { n: "05", t: "System Testing", d: "End-to-end discharge/charge cycle testing against original manufacturer specifications." },
-    { n: "06", t: "Certification", d: "Independent no-new-error certification issued. Full service record documented for audit trail." },
-    { n: "07", t: "Fleet Redeployment", d: "Vehicle returned to service with revived pack and ongoing lifecycle monitoring support." },
-  ];
-
-  return (
-    <section className="walor-section relative bg-foreground/[0.03] border-y border-foreground/5">
-      <div className="walor-container">
-        <SectionHeader
-          eyebrow="The Walor Process"
-          title="Full-Pack EV Battery Revival"
-          lead="We don't patch cells and send you on your way. We perform complete, certified, end-to-end battery pack restoration."
-        />
-
-        <div className="mt-16 relative">
-          {/* Connector line */}
-          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--walor-green)]/40 to-transparent" />
-
-          <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" stagger={0.06}>
-            {steps.map((s, i) => (
-              <StaggerItem key={s.n}>
-                <div className="glass glass-hover h-full rounded-xl p-5 relative">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-[var(--walor-green)]">STEP {s.n}</span>
-                    <span className="size-6 rounded-full grid place-items-center bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30 text-[10px] font-mono text-[var(--walor-green)]">
-                      {i + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">{s.t}</h3>
-                  <p className="mt-2 text-sm text-foreground/55 leading-relaxed">{s.d}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================ WHY WALOR ============================ */
-function WhyWalor() {
-  const props = [
-    { icon: RefreshCw, t: "Restore, Don't Replace", d: "Full-pack revival at 40–50% of replacement cost. Maximum asset value extraction from existing batteries." },
-    { icon: TrendingUp, t: "Lower Cost Per Kilometer", d: "Revived packs perform at near-original capacity. Reduce per-km energy cost and eliminate emergency replacement events." },
-    { icon: Calendar, t: "Extended Asset Lifespan", d: "Extend usable battery life by 2× or more. Align battery lifespan with vehicle lifecycle for predictable fleet economics." },
-    { icon: ShieldCheck, t: "Guaranteed Quality", d: "Every revived pack ships with a no-new-error certification and documented test results. No guesswork, no shortcuts." },
-    { icon: Users, t: "Fleet Lifecycle Partnership", d: "We don't do one-time jobs. Walor integrates into your fleet maintenance program as a long-term battery lifecycle partner." },
-    { icon: Leaf, t: "Measurable ESG Impact", d: "Every revival avoids a battery disposal event. Quantified waste diversion data available for ESG reporting." },
-  ];
-  return (
-    <section className="walor-section">
-      <div className="walor-container">
-        <SectionHeader eyebrow="Why Walor" title="Why Fleet Operators Choose Walor" />
-        <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {props.map((p) => (
-            <StaggerItem key={p.t}>
-              <div className="glass glass-hover h-full rounded-2xl p-6">
-                <div className="inline-flex size-11 items-center justify-center rounded-lg bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-                  <p.icon className="size-5 text-[var(--walor-green)]" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold text-foreground">{p.t}</h3>
-                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{p.d}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </div>
-    </section>
-  );
-}
 
 /* ============================ TECHNOLOGY ============================ */
 function Technology() {
