@@ -529,25 +529,6 @@ function BusinessImpact() {
   );
 }
 
-function CompareBar({ label, value, color, amount }: { label: string; value: number; color: string; amount: string }) {
-  return (
-    <div>
-      <div className="flex justify-between text-sm mb-2">
-        <span className="text-foreground/80">{label}</span>
-        <span className="font-mono text-foreground">{amount}</span>
-      </div>
-      <div className="h-3 rounded-full bg-foreground/5 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${value}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className={`h-full ${color} rounded-full`}
-        />
-      </div>
-    </div>
-  );
-}
 
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
