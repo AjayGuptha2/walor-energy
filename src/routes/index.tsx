@@ -66,7 +66,6 @@ function Home() {
   return (
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
-      <ScrollBattery />
       <Navbar />
       <HeroScroll />
       <StickyExplainer />
