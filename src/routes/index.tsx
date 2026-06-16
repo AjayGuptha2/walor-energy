@@ -43,7 +43,7 @@ import { PageLoad } from "@/components/walor/PageLoad";
 import { HeroScroll } from "@/components/walor/HeroScroll";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
 import { BeforeAfter } from "@/components/walor/BeforeAfter";
-import { StickyExplainer } from "@/components/walor/StickyExplainer";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,7 +68,7 @@ function Home() {
       <PageLoad />
       <Navbar />
       <HeroScroll />
-      <StickyExplainer />
+      
       <StatsOdometer />
       <BeforeAfter />
       <Hero />
