@@ -84,6 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Walor Energy" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Walor Energy — EV Battery Revival for Commercial Fleets" },
+      { name: "twitter:title", content: "Walor Energy — EV Battery Revival for Commercial Fleets" },
+      { property: "og:description", content: "India's most advanced Full-Pack EV Battery Revival platform. Cut fleet costs by 40–50%, extend battery life 2×." },
+      { name: "twitter:description", content: "India's most advanced Full-Pack EV Battery Revival platform. Cut fleet costs by 40–50%, extend battery life 2×." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9c4d55e-3d47-4089-93b1-10ac67997016/id-preview-cb889ecf--e47f5735-fa98-45f2-9566-791ca9c9ab25.lovable.app-1781584048845.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9c4d55e-3d47-4089-93b1-10ac67997016/id-preview-cb889ecf--e47f5735-fa98-45f2-9566-791ca9c9ab25.lovable.app-1781584048845.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
