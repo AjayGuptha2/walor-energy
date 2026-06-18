@@ -54,10 +54,9 @@ function Home() {
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
       <Navbar />
-      <HeroScroll />
+      <HeroCells />
 
       <StatsOdometer />
-      <Hero />
       <Problem />
       <BusinessImpact />
       <Sustainability />
