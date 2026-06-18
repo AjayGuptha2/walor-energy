@@ -11,15 +11,8 @@ import {
   Recycle,
   Globe,
   Award,
-  Activity,
-  Thermometer,
-  Battery,
   Zap,
   CheckCircle2,
-  Cpu,
-  LineChart,
-  ShieldAlert,
-  FileCheck,
   Mail,
   MapPin,
 } from "lucide-react";
@@ -36,7 +29,7 @@ import { PageLoad } from "@/components/walor/PageLoad";
 
 import { HeroScroll } from "@/components/walor/HeroScroll";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
-import { BeforeAfter } from "@/components/walor/BeforeAfter";
+
 
 
 export const Route = createFileRoute("/")({
@@ -62,17 +55,13 @@ function Home() {
       <PageLoad />
       <Navbar />
       <HeroScroll />
-      
+
       <StatsOdometer />
-      <BeforeAfter />
       <Hero />
       <Problem />
-      <Technology />
       <BusinessImpact />
       <Sustainability />
       <Trust />
-      <Vision />
-      <About />
       <Contact />
       <Footer />
     </div>
@@ -115,11 +104,6 @@ function Hero() {
           </Button>
         </Reveal>
 
-        {/* Battery visual */}
-        <Reveal delay={0.4} className="mt-16 max-w-3xl mx-auto">
-          <BatteryVisual />
-        </Reveal>
-
         {/* Metrics strip */}
         <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden glass">
           {[
@@ -136,40 +120,6 @@ function Hero() {
         </Stagger>
       </div>
     </section>
-  );
-}
-
-function BatteryVisual() {
-  return (
-    <div className="relative aspect-[16/7] rounded-2xl glass overflow-hidden p-6 md:p-10">
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      <div className="relative h-full flex items-center justify-center gap-2 md:gap-3">
-        {Array.from({ length: 12 }).map((_, i) => {
-          const stage = i < 4 ? "low" : i < 8 ? "mid" : "high";
-          const colors = {
-            low: "from-red-500/40 to-red-500/10 border-red-500/30",
-            mid: "from-amber-400/40 to-amber-400/10 border-amber-400/30",
-            high: "from-[var(--walor-green)]/60 to-[var(--walor-green)]/10 border-[var(--walor-green)]/50",
-          }[stage];
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 + i * 0.05, duration: 0.5 }}
-              className={`relative h-full flex-1 max-w-[44px] rounded-md bg-gradient-to-t border ${colors}`}
-            >
-              <div className="absolute inset-x-2 top-2 h-1 rounded-full bg-foreground/20" />
-            </motion.div>
-          );
-        })}
-      </div>
-      <div className="absolute bottom-4 left-6 right-6 flex justify-between text-[10px] md:text-xs font-mono uppercase tracking-wider text-foreground/50">
-        <span>Degraded</span>
-        <span>Diagnosing</span>
-        <span className="text-[var(--walor-green)]">Revived</span>
-      </div>
-    </div>
   );
 }
 
@@ -216,199 +166,6 @@ function Problem() {
 }
 
 
-/* ============================ TECHNOLOGY ============================ */
-function Technology() {
-  const caps = [
-    { id: "diagnostics", icon: Activity, label: "Battery Diagnostics", detail: "Full-pack health assessment using multi-point probe arrays and BMS data integration." },
-    { id: "capacity", icon: Battery, label: "Capacity Mapping", detail: "Cell-by-cell capacity profiling to identify degradation patterns before they cascade." },
-    { id: "voltage", icon: LineChart, label: "Voltage Profiling", detail: "High-resolution voltage curves plotted across full charge/discharge cycles." },
-    { id: "cell-matching", icon: Cpu, label: "Cell Matching", detail: "Replacement cells matched within ±0.5% capacity variance to prevent new degradation cycles." },
-    { id: "thermal", icon: Thermometer, label: "Thermal Analysis", detail: "Infrared and contact thermal mapping to identify hotspots and validate BMS response." },
-    { id: "safety", icon: ShieldAlert, label: "Safety Validation", detail: "Short-circuit, overcharge, and over-discharge stress testing per IS/IEC 62133." },
-    { id: "certification", icon: FileCheck, label: "Performance Certification", detail: "Signed test report with pre/post metrics for every pack. Audit-ready documentation." },
-  ];
-  const [active, setActive] = useState(caps[0].id);
-  const current = caps.find((c) => c.id === active)!;
-
-  return (
-    <section id="technology" className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
-      <div className="walor-container">
-        <SectionHeader
-          eyebrow="Technology"
-          title="Engineering-Driven Battery Revival"
-          lead="Precision diagnostics and validated cell-matching — engineered for commercial reliability, not consumer compromise."
-        />
-
-        <div className="mt-16 grid lg:grid-cols-2 gap-8 items-stretch">
-          {/* Capability list */}
-          <Reveal>
-            <div className="glass rounded-2xl p-3 h-full">
-              <ul className="flex flex-col gap-1">
-                {caps.map((c) => {
-                  const isActive = c.id === active;
-                  return (
-                    <li key={c.id}>
-                      <button
-                        onClick={() => setActive(c.id)}
-                        className={`w-full text-left rounded-xl p-4 flex items-center gap-4 transition-all ${
-                          isActive
-                            ? "bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30"
-                            : "border border-transparent hover:bg-foreground/5"
-                        }`}
-                      >
-                        <span
-                          className={`grid place-items-center size-10 rounded-lg ${
-                            isActive ? "bg-[var(--walor-green)]/20 text-[var(--walor-green)]" : "bg-foreground/5 text-foreground/60"
-                          }`}
-                        >
-                          <c.icon className="size-4" />
-                        </span>
-                        <span className={`text-sm font-medium ${isActive ? "text-foreground" : "text-foreground/70"}`}>{c.label}</span>
-                        {isActive && <ArrowRight className="ml-auto size-4 text-[var(--walor-green)]" />}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </Reveal>
-
-          {/* Visualization panel */}
-          <Reveal delay={0.1}>
-            <div className="glass rounded-2xl p-6 md:p-8 h-full flex flex-col">
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">
-                  // {current.id}
-                </span>
-                <span className="font-mono text-xs text-foreground/40">walor.diagnostic.v4</span>
-              </div>
-              <h3 className="mt-4 text-2xl font-semibold">{current.label}</h3>
-              <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{current.detail}</p>
-
-              <div className="mt-6 flex-1 min-h-[260px] rounded-xl bg-foreground/[0.04] border border-foreground/5 relative overflow-hidden">
-                <CapabilityViz id={active} />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CapabilityViz({ id }: { id: string }) {
-  if (id === "voltage" || id === "diagnostics") {
-    // Waveform
-    const points = Array.from({ length: 40 }, (_, i) => {
-      const x = (i / 39) * 100;
-      const y = 50 + Math.sin(i * 0.5) * 20 + Math.cos(i * 0.2) * 8;
-      return `${x},${y}`;
-    }).join(" ");
-    return (
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full p-6">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2323FF" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#2323FF" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        {[20, 40, 60, 80].map((y) => (
-          <line key={y} x1="0" y1={y} x2="100" y2={y} stroke="#0A1024" strokeOpacity="0.05" strokeWidth="0.2" />
-        ))}
-        <motion.polyline
-          fill="none"
-          stroke="#2323FF"
-          strokeWidth="0.6"
-          points={points}
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-        />
-        <polygon points={`0,100 ${points} 100,100`} fill="url(#g1)" />
-      </svg>
-    );
-  }
-  if (id === "thermal") {
-    return (
-      <div className="absolute inset-0 grid grid-cols-8 grid-rows-5 gap-1 p-4">
-        {Array.from({ length: 40 }).map((_, i) => {
-          const heat = Math.random();
-          const color = heat > 0.7 ? "oklch(0.7 0.2 30)" : heat > 0.4 ? "oklch(0.78 0.15 80)" : "#2323FF";
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: i * 0.02 }}
-              className="rounded"
-              style={{ background: color }}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-  if (id === "cell-matching" || id === "capacity") {
-    return (
-      <div className="absolute inset-0 grid grid-cols-10 grid-rows-6 gap-1 p-4">
-        {Array.from({ length: 60 }).map((_, i) => {
-          const match = Math.random() > 0.15;
-          return (
-            <motion.div
-              key={i}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.01 }}
-              className={`rounded ${match ? "bg-[var(--walor-green)]/40 border border-[var(--walor-green)]/60" : "bg-amber-500/30 border border-amber-500/50"}`}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-  if (id === "safety") {
-    return (
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative">
-          <div className="size-32 rounded-full border border-[var(--walor-green)]/30 animate-pulse-glow" />
-          <div className="absolute inset-4 rounded-full border border-[var(--walor-green)]/50" />
-          <div className="absolute inset-8 rounded-full bg-[var(--walor-green)]/20 grid place-items-center">
-            <ShieldCheck className="size-8 text-[var(--walor-green)]" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-  // certification
-  return (
-    <div className="absolute inset-0 p-6 font-mono text-xs text-foreground/60 space-y-2">
-      {[
-        ["CAPACITY", "98.4%", "PASS"],
-        ["VOLTAGE", "Δ 0.03V", "PASS"],
-        ["IMPEDANCE", "12.1mΩ", "PASS"],
-        ["THERMAL", "≤ 42°C", "PASS"],
-        ["BMS SYNC", "OK", "PASS"],
-        ["CERT ID", "WLR-2025-A4F2", ""],
-      ].map((row, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: i * 0.08 }}
-          className="flex justify-between border-b border-foreground/5 pb-1"
-        >
-          <span className="text-foreground/40">{row[0]}</span>
-          <span className="text-foreground">{row[1]}</span>
-          {row[2] && (
-            <span className="text-[var(--walor-green)] flex items-center gap-1">
-              <CheckCircle2 className="size-3" /> {row[2]}
-            </span>
-          )}
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 /* ============================ BUSINESS IMPACT ============================ */
 function BusinessImpact() {
@@ -548,86 +305,6 @@ function Trust() {
   );
 }
 
-/* ============================ VISION ============================ */
-function Vision() {
-  const phases = [
-    { p: "Phase 1", t: "Fleet Revival Operations", d: "Establish certified revival centers. Build operational capacity for commercial EV fleets across Tier 1 cities.", s: "current" },
-    { p: "Phase 2", t: "Revival Infrastructure Network", d: "Decentralized revival network across major fleet hubs — Hyderabad, Bengaluru, Pune, Delhi NCR, Mumbai.", s: "upcoming" },
-    { p: "Phase 3", t: "Battery Lifecycle Platform", d: "Digital platform for fleet operators to track battery health, schedule revivals, and access lifecycle analytics.", s: "vision" },
-  ];
-
-  return (
-    <section className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
-      <div className="walor-container">
-        <SectionHeader
-          eyebrow="Vision"
-          title="Building India's Battery Circular Economy Infrastructure"
-          lead="Walor is not a service provider. We are the infrastructure layer for battery lifecycle management at national scale."
-        />
-
-        <Stagger className="mt-16 grid md:grid-cols-3 gap-5">
-          {phases.map((ph) => {
-            const isCurrent = ph.s === "current";
-            return (
-              <StaggerItem key={ph.p}>
-                <div className={`relative h-full rounded-2xl p-6 md:p-8 border ${
-                  isCurrent
-                    ? "bg-[var(--walor-green)]/8 border-[var(--walor-green)]/40"
-                    : "glass"
-                }`}>
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">{ph.p}</span>
-                    <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isCurrent ? "bg-[var(--walor-green)] text-white" : "bg-foreground/5 text-foreground/40"
-                    }`}>
-                      {ph.s}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-semibold">{ph.t}</h3>
-                  <p className="mt-3 text-sm text-foreground/60 leading-relaxed">{ph.d}</p>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </Stagger>
-      </div>
-    </section>
-  );
-}
-
-/* ============================ ABOUT ============================ */
-function About() {
-  return (
-    <section id="about" className="walor-section">
-      <div className="walor-container grid lg:grid-cols-2 gap-12 items-center">
-        <Reveal>
-          <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">About Walor</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-bold leading-tight">
-            Built for Operators Who <span className="text-gradient-green">Can't Afford Downtime.</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1} className="space-y-5 text-foreground/65 leading-relaxed">
-          <p>
-            Walor Energy was founded by professionals who understand fleet economics from the inside — people who have seen batteries fail in the field and know what that costs a fleet operator in real money, real time, and real operational pressure.
-          </p>
-          <p>
-            We built Walor because the alternatives weren't good enough. Cell-level patches that don't address root cause. Full replacements that destroy margins. Disposal that creates liability.
-          </p>
-          <p className="text-foreground">
-            We built the full-pack revival process because that's what operators actually need.
-          </p>
-          <div className="pt-4 flex items-center gap-6 text-sm font-mono uppercase tracking-wider text-foreground/40">
-            <span>Hyderabad, IN</span>
-            <span className="size-1 rounded-full bg-foreground/20" />
-            <span>Founded 2024</span>
-            <span className="size-1 rounded-full bg-foreground/20" />
-            <span>Pre-Series A</span>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 /* ============================ CONTACT ============================ */
 function Contact() {
