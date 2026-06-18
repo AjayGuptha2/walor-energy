@@ -62,17 +62,13 @@ function Home() {
       <PageLoad />
       <Navbar />
       <HeroScroll />
-      
+
       <StatsOdometer />
-      <BeforeAfter />
       <Hero />
       <Problem />
-      <Technology />
       <BusinessImpact />
       <Sustainability />
       <Trust />
-      <Vision />
-      <About />
       <Contact />
       <Footer />
     </div>
