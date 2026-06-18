@@ -262,9 +262,9 @@ function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    if (!name || !email) {
-      toast.error("Please fill in all required fields.");
+    const phone = String(data.get("phone") || "").trim();
+    if (!name || !phone) {
+      toast.error("Please fill in name and phone number.");
       return;
     }
     setSubmitting(true);
