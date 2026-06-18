@@ -62,34 +62,33 @@
 :root {
   --radius: 0.75rem;
 
-  /* Walor brand tokens — light theme */
-  --walor-blue: oklch(0.16 0.04 258);          /* deep navy ink #06081A */
-  --walor-blue-mid: oklch(0.28 0.05 258);      /* secondary ink */
-  --walor-blue-light: oklch(0.55 0.04 258);    /* muted ink */
-  /* Accent: electric blue #2323FF */
-  --walor-green: oklch(0.42 0.31 268);
-  --walor-green-dim: oklch(0.50 0.28 268);
+  /* Walor brand tokens — electric blue + white only */
+  --walor-blue: #2323FF;
+  --walor-blue-mid: #2323FF;
+  --walor-blue-light: #2323FF;
+  --walor-green: #2323FF;
+  --walor-green-dim: #1C1CD9;
 
-  /* shadcn → light theme */
-  --background: oklch(0.99 0.005 258);         /* near-white */
-  --foreground: oklch(0.16 0.04 258);          /* dark navy ink */
-  --card: oklch(1 0 0);
-  --card-foreground: var(--foreground);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--foreground);
-  --primary: var(--walor-green);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.01 258);
-  --secondary-foreground: var(--foreground);
-  --muted: oklch(0.96 0.005 258);
-  --muted-foreground: oklch(0.46 0.03 258);
-  --accent: var(--walor-green);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.16 0.04 258 / 10%);
-  --input: oklch(0.16 0.04 258 / 12%);
-  --ring: var(--walor-green);
+  /* shadcn → light theme (strict blue + white) */
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+  --primary: #2323FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FFFFFF;
+  --secondary-foreground: #0A0A0A;
+  --muted: #FFFFFF;
+  --muted-foreground: #555555;
+  --accent: #2323FF;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF3B3B;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(35, 35, 255, 0.22);
+  --input: rgba(35, 35, 255, 0.28);
+  --ring: #2323FF;
 }
 
 @layer base {
@@ -98,18 +97,14 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: var(--color-background);
+    background-color: #FFFFFF;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(ellipse 70% 45% at 50% -10%, oklch(0.42 0.31 268 / 0.10), transparent),
-      radial-gradient(ellipse 50% 35% at 90% 110%, oklch(0.42 0.31 268 / 0.06), transparent);
-    background-attachment: fixed;
   }
 
   ::selection {
-    background: var(--walor-green);
+    background: #2323FF;
     color: #ffffff;
   }
 }
@@ -121,32 +116,29 @@
   .walor-section {
     @apply py-20 md:py-28;
   }
-  /* Light glass card */
   .glass {
-    background: oklch(1 0 0 / 0.7);
-    border: 1px solid oklch(0.16 0.04 258 / 0.08);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 oklch(1 0 0 / 0.6) inset, 0 8px 24px -16px oklch(0.16 0.04 258 / 0.18);
+    background: #FFFFFF;
+    border: 1px solid rgba(35, 35, 255, 0.18);
+    box-shadow: 0 8px 24px -16px rgba(35, 35, 255, 0.18);
   }
   .glass-hover {
     transition: all 0.3s ease;
   }
   .glass-hover:hover {
-    border-color: oklch(0.42 0.31 268 / 0.45);
-    background: oklch(0.42 0.31 268 / 0.04);
+    border-color: #2323FF;
+    background: rgba(35, 35, 255, 0.04);
     transform: translateY(-4px);
-    box-shadow: 0 18px 40px -20px oklch(0.42 0.31 268 / 0.35);
+    box-shadow: 0 18px 40px -20px rgba(35, 35, 255, 0.35);
   }
   .text-gradient-green {
-    background: linear-gradient(135deg, #2323FF, #6E78FF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #2323FF;
+    background: none;
+    -webkit-text-fill-color: #2323FF;
   }
   .grid-pattern {
     background-image:
-      linear-gradient(oklch(0.16 0.04 258 / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.16 0.04 258 / 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(35, 35, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(35, 35, 255, 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 }

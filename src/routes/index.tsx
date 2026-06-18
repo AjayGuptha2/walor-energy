@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
@@ -27,7 +27,7 @@ import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
 
-import { HeroScroll } from "@/components/walor/HeroScroll";
+import { HeroCells } from "@/components/walor/HeroCells";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
 
 
@@ -54,10 +54,9 @@ function Home() {
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
       <Navbar />
-      <HeroScroll />
+      <HeroCells />
 
       <StatsOdometer />
-      <Hero />
       <Problem />
       <BusinessImpact />
       <Sustainability />
@@ -68,60 +67,7 @@ function Home() {
   );
 }
 
-/* ============================ HERO ============================ */
-function Hero() {
-  return (
-    <section className="relative overflow-hidden pt-32 md:pt-40 pb-20 md:pb-28">
-      <div className="absolute inset-0 grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[600px] rounded-full bg-[var(--walor-green)]/10 blur-[120px] animate-pulse-glow" />
-
-      <div className="walor-container relative">
-        <Reveal className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-foreground/70">
-            <span className="size-1.5 rounded-full bg-[var(--walor-green)] animate-pulse" />
-            India's First Full-Pack EV Battery Revival Platform
-          </span>
-        </Reveal>
-
-        <Reveal delay={0.1} as="h1" className="mt-8 text-center text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] max-w-5xl mx-auto">
-          Revive Batteries.{" "}
-          <span className="text-gradient-green">Restore Profits.</span>
-          <br className="hidden md:block" /> Power Sustainable Mobility.
-        </Reveal>
-
-        <Reveal delay={0.2} as="p" className="mt-6 text-center text-base md:text-lg text-foreground/65 max-w-2xl mx-auto leading-relaxed">
-          India's most advanced Full-Pack EV Battery Revival platform — helping commercial fleets cut costs, extend battery life, and maximize fleet ROI.
-        </Reveal>
-
-        <Reveal delay={0.3} className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild size="lg" className="bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium h-12 px-6">
-            <a href="#contact">
-              Book Fleet Assessment <ArrowRight className="ml-1 size-4" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="h-12 px-6 border-foreground/20 bg-transparent text-foreground hover:bg-foreground/5 hover:text-foreground">
-            <a href="#solutions">Schedule Consultation</a>
-          </Button>
-        </Reveal>
-
-        {/* Metrics strip */}
-        <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden glass">
-          {[
-            { v: "40–50%", k: "Cost Savings", d: "vs. full battery replacement" },
-            { v: "2×", k: "Battery Life", d: "extended service life" },
-            { v: "60%", k: "Battery Waste", d: "diverted from landfill" },
-          ].map((m) => (
-            <StaggerItem key={m.k} className="bg-foreground/[0.025] p-6 md:p-8">
-              <div className="font-mono text-3xl md:text-4xl text-gradient-green font-bold">{m.v}</div>
-              <div className="mt-2 text-sm font-medium text-foreground">{m.k}</div>
-              <div className="text-xs text-foreground/55 mt-0.5">{m.d}</div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </div>
-    </section>
-  );
-}
+/* Hero replaced by HeroCells animation above */
 
 /* ============================ PROBLEM ============================ */
 function Problem() {
@@ -316,9 +262,9 @@ function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    if (!name || !email) {
-      toast.error("Please fill in all required fields.");
+    const phone = String(data.get("phone") || "").trim();
+    if (!name || !phone) {
+      toast.error("Please fill in name and phone number.");
       return;
     }
     setSubmitting(true);
@@ -385,52 +331,27 @@ function Contact() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Full Name *">
-                      <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                    <Field label="Company *">
-                      <Input name="company" required placeholder="Fleet operator" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Business Email *">
-                      <Input name="email" type="email" required placeholder="you@company.com" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                    <Field label="Phone">
-                      <Input name="phone" type="tel" placeholder="+91" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Fleet Size">
-                      <Select name="fleet_size">
-                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                          <SelectValue placeholder="Select range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1-10">1–10</SelectItem>
-                          <SelectItem value="11-50">11–50</SelectItem>
-                          <SelectItem value="51-200">51–200</SelectItem>
-                          <SelectItem value="200+">200+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                    <Field label="Vehicle Type">
-                      <Select name="vehicle_type">
-                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2W">2-Wheeler</SelectItem>
-                          <SelectItem value="3W">3-Wheeler</SelectItem>
-                          <SelectItem value="4W">4-Wheeler</SelectItem>
-                          <SelectItem value="Bus">Bus</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                  </div>
-                  <Field label="Additional Context">
-                    <Textarea name="message" rows={3} placeholder="Tell us about your fleet & current battery challenges…" className="bg-foreground/5 border-foreground/10 resize-none" />
+                  <Field label="Name *">
+                    <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
+                  </Field>
+                  <Field label="Phone No *">
+                    <Input name="phone" type="tel" required placeholder="+91" className="bg-foreground/5 border-foreground/10" />
+                  </Field>
+                  <Field label="Fleet Size">
+                    <Select name="fleet_size">
+                      <SelectTrigger className="bg-foreground/5 border-foreground/10">
+                        <SelectValue placeholder="Select range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1-10">1–10</SelectItem>
+                        <SelectItem value="11-50">11–50</SelectItem>
+                        <SelectItem value="51-200">51–200</SelectItem>
+                        <SelectItem value="200+">200+</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="Vehicle (Enter the vehicle name)">
+                    <Input name="vehicle" placeholder="e.g. Tata Ace EV, Mahindra Treo" className="bg-foreground/5 border-foreground/10" />
                   </Field>
                   <Button
                     type="submit"
@@ -463,43 +384,42 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 /* ============================ FOOTER ============================ */
 function Footer() {
   return (
-    <footer className="border-t border-foreground/5 bg-[var(--walor-blue)]">
+    <footer className="bg-[#2323FF] text-white">
       <div className="walor-container py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-semibold text-foreground">
-              <span className="grid place-items-center size-8 rounded-md bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-                <Zap className="size-4 text-[var(--walor-green)]" strokeWidth={2.5} />
+            <div className="flex items-center gap-2 font-semibold text-white">
+              <span className="grid place-items-center size-8 rounded-md bg-white/10 border border-white/30">
+                <Zap className="size-4 text-white" strokeWidth={2.5} />
               </span>
-              Walor<span className="text-[var(--walor-green)]">.</span>Energy
+              Walor<span className="text-white">.</span>Energy
             </div>
-            <p className="mt-4 text-sm text-foreground/55 max-w-sm leading-relaxed">
+            <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
               India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
             </p>
-            <p className="mt-4 text-xs text-foreground/40 font-mono">Hyderabad, Telangana, India</p>
+            <p className="mt-4 text-xs text-white/60 font-mono">Hyderabad, Telangana, India</p>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Explore</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Explore</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#solutions" className="text-foreground/70 hover:text-foreground">Solutions</a></li>
-              <li><a href="#technology" className="text-foreground/70 hover:text-foreground">Technology</a></li>
-              <li><a href="#impact" className="text-foreground/70 hover:text-foreground">Impact</a></li>
-              <li><a href="#sustainability" className="text-foreground/70 hover:text-foreground">Sustainability</a></li>
+              <li><a href="#solutions" className="text-white/85 hover:text-white">Solutions</a></li>
+              <li><a href="#impact" className="text-white/85 hover:text-white">Impact</a></li>
+              <li><a href="#sustainability" className="text-white/85 hover:text-white">Sustainability</a></li>
             </ul>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Contact</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Contact</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="mailto:support@walorenergy.com" className="text-foreground/70 hover:text-foreground">support@walorenergy.com</a></li>
-              <li><a href="#contact" className="text-foreground/70 hover:text-foreground">Book Assessment</a></li>
+              <li><a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">support@walorenergy.com</a></li>
+              <li><a href="#contact" className="text-white/85 hover:text-white">Book Assessment</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-foreground/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-foreground/40">
+        <div className="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/70">
           <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
           <span className="flex gap-6">
-            <a href="#" className="hover:text-foreground/70">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground/70">Terms of Service</a>
+            <a href="#" className="hover:text-white">Privacy Policy</a>
+            <a href="#" className="hover:text-white">Terms of Service</a>
           </span>
         </div>
       </div>
