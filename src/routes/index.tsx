@@ -331,52 +331,27 @@ function Contact() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Full Name *">
-                      <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                    <Field label="Company *">
-                      <Input name="company" required placeholder="Fleet operator" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Business Email *">
-                      <Input name="email" type="email" required placeholder="you@company.com" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                    <Field label="Phone">
-                      <Input name="phone" type="tel" placeholder="+91" className="bg-foreground/5 border-foreground/10" />
-                    </Field>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label="Fleet Size">
-                      <Select name="fleet_size">
-                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                          <SelectValue placeholder="Select range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1-10">1–10</SelectItem>
-                          <SelectItem value="11-50">11–50</SelectItem>
-                          <SelectItem value="51-200">51–200</SelectItem>
-                          <SelectItem value="200+">200+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                    <Field label="Vehicle Type">
-                      <Select name="vehicle_type">
-                        <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2W">2-Wheeler</SelectItem>
-                          <SelectItem value="3W">3-Wheeler</SelectItem>
-                          <SelectItem value="4W">4-Wheeler</SelectItem>
-                          <SelectItem value="Bus">Bus</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                  </div>
-                  <Field label="Additional Context">
-                    <Textarea name="message" rows={3} placeholder="Tell us about your fleet & current battery challenges…" className="bg-foreground/5 border-foreground/10 resize-none" />
+                  <Field label="Name *">
+                    <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
+                  </Field>
+                  <Field label="Phone No *">
+                    <Input name="phone" type="tel" required placeholder="+91" className="bg-foreground/5 border-foreground/10" />
+                  </Field>
+                  <Field label="Fleet Size">
+                    <Select name="fleet_size">
+                      <SelectTrigger className="bg-foreground/5 border-foreground/10">
+                        <SelectValue placeholder="Select range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1-10">1–10</SelectItem>
+                        <SelectItem value="11-50">11–50</SelectItem>
+                        <SelectItem value="51-200">51–200</SelectItem>
+                        <SelectItem value="200+">200+</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="Vehicle (Enter the vehicle name)">
+                    <Input name="vehicle" placeholder="e.g. Tata Ace EV, Mahindra Treo" className="bg-foreground/5 border-foreground/10" />
                   </Field>
                   <Button
                     type="submit"
