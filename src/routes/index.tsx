@@ -111,11 +111,6 @@ function Hero() {
           </Button>
         </Reveal>
 
-        {/* Battery visual */}
-        <Reveal delay={0.4} className="mt-16 max-w-3xl mx-auto">
-          <BatteryVisual />
-        </Reveal>
-
         {/* Metrics strip */}
         <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden glass">
           {[
@@ -132,40 +127,6 @@ function Hero() {
         </Stagger>
       </div>
     </section>
-  );
-}
-
-function BatteryVisual() {
-  return (
-    <div className="relative aspect-[16/7] rounded-2xl glass overflow-hidden p-6 md:p-10">
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      <div className="relative h-full flex items-center justify-center gap-2 md:gap-3">
-        {Array.from({ length: 12 }).map((_, i) => {
-          const stage = i < 4 ? "low" : i < 8 ? "mid" : "high";
-          const colors = {
-            low: "from-red-500/40 to-red-500/10 border-red-500/30",
-            mid: "from-amber-400/40 to-amber-400/10 border-amber-400/30",
-            high: "from-[var(--walor-green)]/60 to-[var(--walor-green)]/10 border-[var(--walor-green)]/50",
-          }[stage];
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 + i * 0.05, duration: 0.5 }}
-              className={`relative h-full flex-1 max-w-[44px] rounded-md bg-gradient-to-t border ${colors}`}
-            >
-              <div className="absolute inset-x-2 top-2 h-1 rounded-full bg-foreground/20" />
-            </motion.div>
-          );
-        })}
-      </div>
-      <div className="absolute bottom-4 left-6 right-6 flex justify-between text-[10px] md:text-xs font-mono uppercase tracking-wider text-foreground/50">
-        <span>Degraded</span>
-        <span>Diagnosing</span>
-        <span className="text-[var(--walor-green)]">Revived</span>
-      </div>
-    </div>
   );
 }
 
