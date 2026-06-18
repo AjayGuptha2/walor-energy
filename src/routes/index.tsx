@@ -384,43 +384,42 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 /* ============================ FOOTER ============================ */
 function Footer() {
   return (
-    <footer className="border-t border-foreground/5 bg-[var(--walor-blue)]">
+    <footer className="bg-[#2323FF] text-white">
       <div className="walor-container py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-semibold text-foreground">
-              <span className="grid place-items-center size-8 rounded-md bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-                <Zap className="size-4 text-[var(--walor-green)]" strokeWidth={2.5} />
+            <div className="flex items-center gap-2 font-semibold text-white">
+              <span className="grid place-items-center size-8 rounded-md bg-white/10 border border-white/30">
+                <Zap className="size-4 text-white" strokeWidth={2.5} />
               </span>
-              Walor<span className="text-[var(--walor-green)]">.</span>Energy
+              Walor<span className="text-white">.</span>Energy
             </div>
-            <p className="mt-4 text-sm text-foreground/55 max-w-sm leading-relaxed">
+            <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
               India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
             </p>
-            <p className="mt-4 text-xs text-foreground/40 font-mono">Hyderabad, Telangana, India</p>
+            <p className="mt-4 text-xs text-white/60 font-mono">Hyderabad, Telangana, India</p>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Explore</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Explore</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#solutions" className="text-foreground/70 hover:text-foreground">Solutions</a></li>
-              <li><a href="#technology" className="text-foreground/70 hover:text-foreground">Technology</a></li>
-              <li><a href="#impact" className="text-foreground/70 hover:text-foreground">Impact</a></li>
-              <li><a href="#sustainability" className="text-foreground/70 hover:text-foreground">Sustainability</a></li>
+              <li><a href="#solutions" className="text-white/85 hover:text-white">Solutions</a></li>
+              <li><a href="#impact" className="text-white/85 hover:text-white">Impact</a></li>
+              <li><a href="#sustainability" className="text-white/85 hover:text-white">Sustainability</a></li>
             </ul>
           </div>
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-foreground/40">Contact</div>
+            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Contact</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="mailto:support@walorenergy.com" className="text-foreground/70 hover:text-foreground">support@walorenergy.com</a></li>
-              <li><a href="#contact" className="text-foreground/70 hover:text-foreground">Book Assessment</a></li>
+              <li><a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">support@walorenergy.com</a></li>
+              <li><a href="#contact" className="text-white/85 hover:text-white">Book Assessment</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-foreground/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-foreground/40">
+        <div className="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/70">
           <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
           <span className="flex gap-6">
-            <a href="#" className="hover:text-foreground/70">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground/70">Terms of Service</a>
+            <a href="#" className="hover:text-white">Privacy Policy</a>
+            <a href="#" className="hover:text-white">Terms of Service</a>
           </span>
         </div>
       </div>
