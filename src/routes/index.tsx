@@ -67,60 +67,7 @@ function Home() {
   );
 }
 
-/* ============================ HERO ============================ */
-function Hero() {
-  return (
-    <section className="relative overflow-hidden pt-32 md:pt-40 pb-20 md:pb-28">
-      <div className="absolute inset-0 grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[600px] rounded-full bg-[var(--walor-green)]/10 blur-[120px] animate-pulse-glow" />
-
-      <div className="walor-container relative">
-        <Reveal className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-foreground/70">
-            <span className="size-1.5 rounded-full bg-[var(--walor-green)] animate-pulse" />
-            India's First Full-Pack EV Battery Revival Platform
-          </span>
-        </Reveal>
-
-        <Reveal delay={0.1} as="h1" className="mt-8 text-center text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] max-w-5xl mx-auto">
-          Revive Batteries.{" "}
-          <span className="text-gradient-green">Restore Profits.</span>
-          <br className="hidden md:block" /> Power Sustainable Mobility.
-        </Reveal>
-
-        <Reveal delay={0.2} as="p" className="mt-6 text-center text-base md:text-lg text-foreground/65 max-w-2xl mx-auto leading-relaxed">
-          India's most advanced Full-Pack EV Battery Revival platform — helping commercial fleets cut costs, extend battery life, and maximize fleet ROI.
-        </Reveal>
-
-        <Reveal delay={0.3} className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild size="lg" className="bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium h-12 px-6">
-            <a href="#contact">
-              Book Fleet Assessment <ArrowRight className="ml-1 size-4" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="h-12 px-6 border-foreground/20 bg-transparent text-foreground hover:bg-foreground/5 hover:text-foreground">
-            <a href="#solutions">Schedule Consultation</a>
-          </Button>
-        </Reveal>
-
-        {/* Metrics strip */}
-        <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden glass">
-          {[
-            { v: "40–50%", k: "Cost Savings", d: "vs. full battery replacement" },
-            { v: "2×", k: "Battery Life", d: "extended service life" },
-            { v: "60%", k: "Battery Waste", d: "diverted from landfill" },
-          ].map((m) => (
-            <StaggerItem key={m.k} className="bg-foreground/[0.025] p-6 md:p-8">
-              <div className="font-mono text-3xl md:text-4xl text-gradient-green font-bold">{m.v}</div>
-              <div className="mt-2 text-sm font-medium text-foreground">{m.k}</div>
-              <div className="text-xs text-foreground/55 mt-0.5">{m.d}</div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </div>
-    </section>
-  );
-}
+/* Hero replaced by HeroCells animation above */
 
 /* ============================ PROBLEM ============================ */
 function Problem() {
