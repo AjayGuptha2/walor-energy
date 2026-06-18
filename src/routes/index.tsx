@@ -27,7 +27,7 @@ import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
 
-import { HeroScroll } from "@/components/walor/HeroScroll";
+import { HeroCells } from "@/components/walor/HeroCells";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
 
 
