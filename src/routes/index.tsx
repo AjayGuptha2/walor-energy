@@ -147,12 +147,6 @@ function BusinessImpact() {
 
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
-  const items = [
-    { icon: Recycle, t: "Circular Economy", d: "Walor operates as the circular layer in India's EV battery supply chain — keeping packs in service longer before any recycling or disposal event." },
-    { icon: Globe, t: "Green Fleet Operations", d: "Partner fleets can report quantified battery waste diversion per vehicle per year — a credible, auditable ESG metric." },
-    { icon: Award, t: "ESG-Ready Reporting", d: "We provide fleet operators with battery lifecycle documentation structured for BRSR, GRI, and investor ESG disclosure frameworks." },
-  ];
-
   const nodes = ["Manufacturing", "Deployment", "Degradation", "Walor Revival", "Extended Life", "Sustainable Reuse"];
 
   return (
