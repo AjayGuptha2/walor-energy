@@ -7,10 +7,8 @@ import logoAsset from "@/assets/walor-logo.png.asset.json";
 
 const NAV_LINKS = [
   { label: "Solutions", href: "#solutions" },
-  { label: "Technology", href: "#technology" },
   { label: "Impact", href: "#impact" },
   { label: "Sustainability", href: "#sustainability" },
-  { label: "About", href: "#about" },
 ];
 
 export function Navbar() {
