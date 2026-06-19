@@ -9,8 +9,6 @@ import {
   Repeat,
   Trash2,
   Recycle,
-  Globe,
-  Award,
   Zap,
   CheckCircle2,
   Mail,
@@ -149,12 +147,6 @@ function BusinessImpact() {
 
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
-  const items = [
-    { icon: Recycle, t: "Circular Economy", d: "Walor operates as the circular layer in India's EV battery supply chain — keeping packs in service longer before any recycling or disposal event." },
-    { icon: Globe, t: "Green Fleet Operations", d: "Partner fleets can report quantified battery waste diversion per vehicle per year — a credible, auditable ESG metric." },
-    { icon: Award, t: "ESG-Ready Reporting", d: "We provide fleet operators with battery lifecycle documentation structured for BRSR, GRI, and investor ESG disclosure frameworks." },
-  ];
-
   const nodes = ["Manufacturing", "Deployment", "Degradation", "Walor Revival", "Extended Life", "Sustainable Reuse"];
 
   return (
@@ -199,20 +191,6 @@ function Sustainability() {
             </div>
           </div>
         </Reveal>
-
-        <Stagger className="mt-10 grid md:grid-cols-3 gap-5">
-          {items.map((i) => (
-            <StaggerItem key={i.t}>
-              <div className="glass glass-hover h-full rounded-2xl p-6">
-                <div className="inline-flex size-10 items-center justify-center rounded-lg bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-                  <i.icon className="size-4 text-[var(--walor-green)]" />
-                </div>
-                <h3 className="mt-4 text-base font-semibold">{i.t}</h3>
-                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{i.d}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
       </div>
     </section>
   );
