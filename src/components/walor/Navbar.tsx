@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/walor-logo.png.asset.json";
+
 
 const NAV_LINKS = [
   { label: "Solutions", href: "#solutions" },
@@ -33,10 +35,7 @@ export function Navbar() {
     >
       <nav className="walor-container flex h-16 md:h-20 items-center justify-between">
         <a href="#top" className="flex items-center gap-2 text-foreground font-semibold tracking-tight">
-          <span className="grid place-items-center size-8 rounded-md bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-            <Zap className="size-4 text-[var(--walor-green)]" strokeWidth={2.5} />
-          </span>
-          <span className="text-lg">Walor<span className="text-[var(--walor-green)]">.</span>Energy</span>
+          <img src={logoAsset.url} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
         </a>
 
         <ul className="hidden lg:flex items-center gap-8">

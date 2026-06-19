@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import logoAsset from "@/assets/walor-logo.png.asset.json";
 import { useState } from "react";
 import { motion } from "motion/react";
 import {
@@ -367,10 +368,7 @@ function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 font-semibold text-white">
-              <span className="grid place-items-center size-8 rounded-md bg-white/10 border border-white/30">
-                <Zap className="size-4 text-white" strokeWidth={2.5} />
-              </span>
-              Walor<span className="text-white">.</span>Energy
+              <img src={logoAsset.url} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
             </div>
             <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
               India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
