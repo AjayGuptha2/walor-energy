@@ -191,20 +191,6 @@ function Sustainability() {
             </div>
           </div>
         </Reveal>
-
-        <Stagger className="mt-10 grid md:grid-cols-3 gap-5">
-          {items.map((i) => (
-            <StaggerItem key={i.t}>
-              <div className="glass glass-hover h-full rounded-2xl p-6">
-                <div className="inline-flex size-10 items-center justify-center rounded-lg bg-[var(--walor-green)]/10 border border-[var(--walor-green)]/30">
-                  <i.icon className="size-4 text-[var(--walor-green)]" />
-                </div>
-                <h3 className="mt-4 text-base font-semibold">{i.t}</h3>
-                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{i.d}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
       </div>
     </section>
   );
