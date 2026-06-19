@@ -9,8 +9,6 @@ import {
   Repeat,
   Trash2,
   Recycle,
-  Globe,
-  Award,
   Zap,
   CheckCircle2,
   Mail,
