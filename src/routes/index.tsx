@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logoAsset from "@/assets/walor-logo.png.asset.json";
+import logo from "@/assets/walor-logo.jpeg";
 import { useState } from "react";
 import { motion } from "motion/react";
 import {
@@ -19,7 +19,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import { Navbar } from "@/components/walor/Navbar";
 import { Counter } from "@/components/walor/Counter";
@@ -28,8 +34,6 @@ import { PageLoad } from "@/components/walor/PageLoad";
 
 import { HeroCells } from "@/components/walor/HeroCells";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
-
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,7 +45,10 @@ export const Route = createFileRoute("/")({
           "India's most advanced Full-Pack EV Battery Revival platform. Cut fleet costs by 40–50%, extend battery life 2×, divert 60% of battery waste.",
       },
       { property: "og:title", content: "Walor Energy — EV Battery Revival for Commercial Fleets" },
-      { property: "og:description", content: "Restore batteries. Restore profits. Power sustainable mobility." },
+      {
+        property: "og:description",
+        content: "Restore batteries. Restore profits. Power sustainable mobility.",
+      },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -71,11 +78,36 @@ function Home() {
 /* ============================ PROBLEM ============================ */
 function Problem() {
   const problems = [
-    { icon: Clock, stat: "30–40%", label: "Range Drop", desc: "Degraded packs force shorter routes and more frequent charging stops." },
-    { icon: TrendingDown, stat: "₹2.5L+", label: "Annual Revenue Loss", desc: "Per vehicle, due to downtime, reduced utilization, and emergency service calls." },
-    { icon: AlertTriangle, stat: "3×", label: "Higher Downtime Risk", desc: "Aged batteries fail unexpectedly, stranding vehicles and violating SLAs." },
-    { icon: Repeat, stat: "₹6–8L", label: "Replacement Cost", desc: "Full battery replacement per vehicle — often unbudgeted and margin-destroying." },
-    { icon: Trash2, stat: "18kg+", label: "Battery Waste", desc: "Per pack discarded — a compounding ESG liability for fleet operators." },
+    {
+      icon: Clock,
+      stat: "30–40%",
+      label: "Range Drop",
+      desc: "Degraded packs force shorter routes and more frequent charging stops.",
+    },
+    {
+      icon: TrendingDown,
+      stat: "₹2.5L+",
+      label: "Annual Revenue Loss",
+      desc: "Per vehicle, due to downtime, reduced utilization, and emergency service calls.",
+    },
+    {
+      icon: AlertTriangle,
+      stat: "3×",
+      label: "Higher Downtime Risk",
+      desc: "Aged batteries fail unexpectedly, stranding vehicles and violating SLAs.",
+    },
+    {
+      icon: Repeat,
+      stat: "₹6–8L",
+      label: "Replacement Cost",
+      desc: "Full battery replacement per vehicle — often unbudgeted and margin-destroying.",
+    },
+    {
+      icon: Trash2,
+      stat: "18kg+",
+      label: "Battery Waste",
+      desc: "Per pack discarded — a compounding ESG liability for fleet operators.",
+    },
   ];
 
   return (
@@ -110,15 +142,28 @@ function Problem() {
   );
 }
 
-
-
 /* ============================ BUSINESS IMPACT ============================ */
 function BusinessImpact() {
   const metrics = [
     { v: 50, suffix: "%", label: "CAPEX Savings", desc: "vs. full battery replacement" },
-    { v: 2, suffix: "×", label: "Battery Life Extension", desc: "beyond original degradation point" },
-    { v: 60, suffix: "%", label: "Battery Waste Reduction", desc: "material diverted from disposal" },
-    { v: 98, suffix: "%", label: "Fleet Uptime Target", desc: "post-revival operational availability" },
+    {
+      v: 2,
+      suffix: "×",
+      label: "Battery Life Extension",
+      desc: "beyond original degradation point",
+    },
+    {
+      v: 60,
+      suffix: "%",
+      label: "Battery Waste Reduction",
+      desc: "material diverted from disposal",
+    },
+    {
+      v: 98,
+      suffix: "%",
+      label: "Fleet Uptime Target",
+      desc: "post-revival operational availability",
+    },
   ];
 
   return (
@@ -139,19 +184,27 @@ function BusinessImpact() {
             </StaggerItem>
           ))}
         </Stagger>
-
       </div>
     </section>
   );
 }
 
-
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
-  const nodes = ["Manufacturing", "Deployment", "Degradation", "Walor Revival", "Extended Life", "Sustainable Reuse"];
+  const nodes = [
+    "Manufacturing",
+    "Deployment",
+    "Degradation",
+    "Walor Revival",
+    "Extended Life",
+    "Sustainable Reuse",
+  ];
 
   return (
-    <section id="sustainability" className="walor-section bg-foreground/[0.03] border-y border-foreground/5">
+    <section
+      id="sustainability"
+      className="walor-section bg-foreground/[0.03] border-y border-foreground/5"
+    >
       <div className="walor-container">
         <SectionHeader
           eyebrow="Sustainability"
@@ -179,8 +232,12 @@ function Sustainability() {
                     {highlight && (
                       <div className="absolute inset-0 rounded-xl border-2 border-[var(--walor-green)]/40 animate-pulse-glow" />
                     )}
-                    <div className="font-mono text-[10px] text-foreground/40">{String(i + 1).padStart(2, "0")}</div>
-                    <div className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-foreground/80"}`}>
+                    <div className="font-mono text-[10px] text-foreground/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <div
+                      className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-foreground/80"}`}
+                    >
                       {n}
                     </div>
                   </motion.div>
@@ -212,13 +269,20 @@ function Trust() {
       <div className="walor-container">
         <SectionHeader eyebrow="Ecosystem" title="Building with India's EV Ecosystem" />
         <Reveal className="mt-8 max-w-3xl mx-auto text-center text-lg text-foreground/65 leading-relaxed">
-          Walor Energy is actively working with commercial fleet operators, mobility providers, and EV ecosystem stakeholders to build India's most reliable battery revival infrastructure.
+          Walor Energy is actively working with commercial fleet operators, mobility providers, and
+          EV ecosystem stakeholders to build India's most reliable battery revival infrastructure.
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-14 overflow-hidden rounded-2xl glass py-6 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+        <Reveal
+          delay={0.2}
+          className="mt-14 overflow-hidden rounded-2xl glass py-6 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]"
+        >
           <div className="flex gap-12 animate-marquee w-max">
             {[...categories, ...categories].map((c, i) => (
-              <div key={i} className="flex items-center gap-3 text-foreground/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap">
+              <div
+                key={i}
+                className="flex items-center gap-3 text-foreground/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap"
+              >
                 <Zap className="size-4 text-[var(--walor-green)]" />
                 {c}
               </div>
@@ -229,7 +293,6 @@ function Trust() {
     </section>
   );
 }
-
 
 /* ============================ CONTACT ============================ */
 function Contact() {
@@ -261,20 +324,28 @@ function Contact() {
           <div className="grid lg:grid-cols-5 gap-0">
             {/* Left side */}
             <div className="lg:col-span-2 p-8 md:p-12 bg-gradient-to-br from-[var(--walor-green)]/10 to-transparent border-r border-foreground/5">
-              <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">Get Started</span>
+              <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">
+                Get Started
+              </span>
               <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-tight">
                 Ready to Eliminate <span className="text-gradient-green">Battery Downtime?</span>
               </h2>
               <p className="mt-4 text-foreground/65 leading-relaxed">
-                Book a free fleet assessment. No commitment. We'll evaluate your current battery health profile and show you the potential ROI of a revival program.
+                Book a free fleet assessment. No commitment. We'll evaluate your current battery
+                health profile and show you the potential ROI of a revival program.
               </p>
 
               <div className="mt-10 space-y-4 text-sm">
                 <div className="flex items-start gap-3">
                   <Mail className="size-4 text-[var(--walor-green)] mt-0.5" />
                   <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">Email</div>
-                    <a href="mailto:support@walorenergy.com" className="text-foreground hover:text-[var(--walor-green)] transition-colors">
+                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
+                      Email
+                    </div>
+                    <a
+                      href="mailto:support@walorenergy.com"
+                      className="text-foreground hover:text-[var(--walor-green)] transition-colors"
+                    >
                       support@walorenergy.com
                     </a>
                   </div>
@@ -282,7 +353,9 @@ function Contact() {
                 <div className="flex items-start gap-3">
                   <MapPin className="size-4 text-[var(--walor-green)] mt-0.5" />
                   <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">Location</div>
+                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
+                      Location
+                    </div>
                     <div className="text-foreground">Hyderabad, Telangana, India</div>
                   </div>
                 </div>
@@ -298,7 +371,8 @@ function Contact() {
                   </div>
                   <h3 className="mt-6 text-2xl font-semibold">Request Received</h3>
                   <p className="mt-2 text-foreground/60 max-w-sm">
-                    Thanks — our fleet team will reach out within one business day to schedule your assessment.
+                    Thanks — our fleet team will reach out within one business day to schedule your
+                    assessment.
                   </p>
                   <Button
                     variant="outline"
@@ -311,10 +385,21 @@ function Contact() {
               ) : (
                 <form onSubmit={onSubmit} className="space-y-5">
                   <Field label="Name *">
-                    <Input name="name" required placeholder="Your name" className="bg-foreground/5 border-foreground/10" />
+                    <Input
+                      name="name"
+                      required
+                      placeholder="Your name"
+                      className="bg-foreground/5 border-foreground/10"
+                    />
                   </Field>
                   <Field label="Phone No *">
-                    <Input name="phone" type="tel" required placeholder="+91" className="bg-foreground/5 border-foreground/10" />
+                    <Input
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="+91"
+                      className="bg-foreground/5 border-foreground/10"
+                    />
                   </Field>
                   <Field label="Fleet Size">
                     <Select name="fleet_size">
@@ -330,7 +415,11 @@ function Contact() {
                     </Select>
                   </Field>
                   <Field label="Vehicle (Enter the vehicle name)">
-                    <Input name="vehicle" placeholder="e.g. Tata Ace EV, Mahindra Treo" className="bg-foreground/5 border-foreground/10" />
+                    <Input
+                      name="vehicle"
+                      placeholder="e.g. Tata Ace EV, Mahindra Treo"
+                      className="bg-foreground/5 border-foreground/10"
+                    />
                   </Field>
                   <Button
                     type="submit"
@@ -354,7 +443,9 @@ function Contact() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <Label className="text-xs font-mono uppercase tracking-wider text-foreground/50">{label}</Label>
+      <Label className="text-xs font-mono uppercase tracking-wider text-foreground/50">
+        {label}
+      </Label>
       <div className="mt-1.5">{children}</div>
     </div>
   );
@@ -368,7 +459,7 @@ function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 font-semibold text-white">
-              <img src={logoAsset.url} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
+              <img src={logo} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
             </div>
             <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
               India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
@@ -378,24 +469,48 @@ function Footer() {
           <div>
             <div className="text-xs font-mono uppercase tracking-wider text-white/60">Explore</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#solutions" className="text-white/85 hover:text-white">Solutions</a></li>
-              <li><a href="#impact" className="text-white/85 hover:text-white">Impact</a></li>
-              <li><a href="#sustainability" className="text-white/85 hover:text-white">Sustainability</a></li>
+              <li>
+                <a href="#solutions" className="text-white/85 hover:text-white">
+                  Solutions
+                </a>
+              </li>
+              <li>
+                <a href="#impact" className="text-white/85 hover:text-white">
+                  Impact
+                </a>
+              </li>
+              <li>
+                <a href="#sustainability" className="text-white/85 hover:text-white">
+                  Sustainability
+                </a>
+              </li>
             </ul>
           </div>
           <div>
             <div className="text-xs font-mono uppercase tracking-wider text-white/60">Contact</div>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">support@walorenergy.com</a></li>
-              <li><a href="#contact" className="text-white/85 hover:text-white">Book Assessment</a></li>
+              <li>
+                <a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">
+                  support@walorenergy.com
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="text-white/85 hover:text-white">
+                  Book Assessment
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/70">
           <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
           <span className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="#" className="hover:text-white">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-white">
+              Terms of Service
+            </a>
           </span>
         </div>
       </div>
@@ -404,17 +519,35 @@ function Footer() {
 }
 
 /* ============================ SHARED ============================ */
-function SectionHeader({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) {
+function SectionHeader({
+  eyebrow,
+  title,
+  lead,
+}: {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+}) {
   return (
     <div className="text-center max-w-3xl mx-auto">
       <Reveal>
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--walor-green)]">// {eyebrow}</span>
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--walor-green)]">
+          // {eyebrow}
+        </span>
       </Reveal>
-      <Reveal delay={0.05} as="h2" className="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-[1.1]">
+      <Reveal
+        delay={0.05}
+        as="h2"
+        className="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-[1.1]"
+      >
         {title}
       </Reveal>
       {lead && (
-        <Reveal delay={0.1} as="p" className="mt-5 text-base md:text-lg text-foreground/60 leading-relaxed">
+        <Reveal
+          delay={0.1}
+          as="p"
+          className="mt-5 text-base md:text-lg text-foreground/60 leading-relaxed"
+        >
           {lead}
         </Reveal>
       )}

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logoAsset from "@/assets/walor-logo.png.asset.json";
-
+import logo from "@/assets/walor-logo.jpeg";
 
 const NAV_LINKS = [
   { label: "Solutions", href: "#solutions" },
@@ -28,12 +27,15 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-background/85 backdrop-blur-xl border-b border-foreground/5"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <nav className="walor-container flex h-16 md:h-20 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 text-foreground font-semibold tracking-tight">
-          <img src={logoAsset.url} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
+        <a
+          href="#top"
+          className="flex items-center gap-2 text-foreground font-semibold tracking-tight"
+        >
+          <img src={logo} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
         </a>
 
         <ul className="hidden lg:flex items-center gap-8">
@@ -50,7 +52,10 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button asChild className="hidden md:inline-flex bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium">
+          <Button
+            asChild
+            className="hidden md:inline-flex bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
+          >
             <a href="#contact">Book Fleet Assessment</a>
           </Button>
           <button
@@ -78,8 +83,13 @@ export function Navbar() {
               </li>
             ))}
             <li>
-              <Button asChild className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)]">
-                <a href="#contact" onClick={() => setOpen(false)}>Book Fleet Assessment</a>
+              <Button
+                asChild
+                className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)]"
+              >
+                <a href="#contact" onClick={() => setOpen(false)}>
+                  Book Fleet Assessment
+                </a>
               </Button>
             </li>
           </ul>
