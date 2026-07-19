@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/walor-logo.jpeg";
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowRight,
   Clock,
@@ -14,6 +14,13 @@ import {
   CheckCircle2,
   Mail,
   MapPin,
+  Factory,
+  BatteryCharging,
+  Gauge,
+  Wrench,
+  RotateCw,
+  Leaf,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +38,10 @@ import { Navbar } from "@/components/walor/Navbar";
 import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
-
 import { HeroCells } from "@/components/walor/HeroCells";
 import { StatsOdometer } from "@/components/walor/StatsOdometer";
+import { SustainabilityV2 } from "@/components/walor/SustainabilityV2";
+import { BusinessImpactV2 } from "@/components/walor/BusinessImpactV2";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,8 +72,8 @@ function Home() {
 
       <StatsOdometer />
       <Problem />
-      <BusinessImpact />
-      <Sustainability />
+      <BusinessImpactV2 />
+      <SustainabilityV2 />
       <Trust />
       <Contact />
       <Footer />
@@ -191,14 +199,60 @@ function BusinessImpact() {
 
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
-  const nodes = [
-    "Manufacturing",
-    "Deployment",
-    "Degradation",
-    "Walor Revival",
-    "Extended Life",
-    "Sustainable Reuse",
+  const stages = [
+    {
+      title: "Manufacturing",
+      kicker: "01 / Origin",
+      copy: "Every pack begins with high-value cells and materials designed to move India forward.",
+      detail: "Materials kept in motion",
+      icon: Factory,
+    },
+    {
+      title: "Deployment",
+      kicker: "02 / In service",
+      copy: "Packs deliver dependable power across the routes that keep commercial fleets moving.",
+      detail: "Powering daily operations",
+      icon: BatteryCharging,
+    },
+    {
+      title: "Degradation",
+      kicker: "03 / Diagnosed",
+      copy: "Walor identifies recoverable capacity before a degraded pack becomes costly waste.",
+      detail: "Data-led health assessment",
+      icon: Gauge,
+    },
+    {
+      title: "Walor Revival",
+      kicker: "04 / Our intervention",
+      copy: "Precision diagnostics and module-level restoration return the pack to productive service.",
+      detail: "The Walor revival protocol",
+      icon: Wrench,
+    },
+    {
+      title: "Extended Life",
+      kicker: "05 / Back in motion",
+      copy: "A renewed pack keeps vehicles earning for longer—with lower lifecycle cost and less extraction.",
+      detail: "More kilometres per pack",
+      icon: RotateCw,
+    },
+    {
+      title: "Sustainable Reuse",
+      kicker: "06 / Circular value",
+      copy: "When traction life ends, usable energy and materials stay valuable in the next application.",
+      detail: "A closed-loop future",
+      icon: Leaf,
+    },
   ];
+  const [activeStage, setActiveStage] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveStage((current) => (current + 1) % stages.length);
+    }, 2400);
+    return () => window.clearInterval(timer);
+  }, [stages.length]);
+
+  const active = stages[activeStage];
 
   return (
     <section
@@ -211,41 +265,100 @@ function Sustainability() {
           title="Every Battery Revived Is One Less Battery in Landfill"
         />
 
-        <Reveal className="mt-16">
-          <div className="glass rounded-2xl p-6 md:p-10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-              {nodes.map((n, i) => {
-                const highlight = n === "Walor Revival";
-                return (
-                  <motion.div
-                    key={n}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12 }}
-                    className={`relative rounded-xl p-4 text-center border ${
-                      highlight
-                        ? "bg-[var(--walor-green)]/15 border-[var(--walor-green)]/50 shadow-[0_0_40px_oklch(0.42_0.31_268/0.35)]"
-                        : "bg-foreground/5 border-foreground/10"
-                    }`}
-                  >
-                    {highlight && (
-                      <div className="absolute inset-0 rounded-xl border-2 border-[var(--walor-green)]/40 animate-pulse-glow" />
-                    )}
-                    <div className="font-mono text-[10px] text-foreground/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <div
-                      className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-foreground/80"}`}
+        <Reveal className="mt-14">
+          <div className="lifecycle-shell overflow-hidden rounded-[2rem] border border-[var(--walor-blue)]/15 p-5 md:p-8 lg:p-10">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,.85fr)] lg:gap-8">
+              <div
+                className="lifecycle-orbit mx-auto w-full max-w-[620px]"
+                aria-label="Walor closed-loop battery lifecycle"
+              >
+                <div className="lifecycle-track" />
+                <div className="lifecycle-track lifecycle-track-inner" />
+                <motion.div
+                  className="lifecycle-energy-arm"
+                  animate={{ rotate: activeStage * 60 }}
+                  transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="lifecycle-energy-pulse" />
+                </motion.div>
+                <div className="lifecycle-core">
+                  <div className="lifecycle-core-mark" aria-hidden="true">
+                    <span>W</span>
+                  </div>
+                  <p className="mt-4 text-center font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-[var(--walor-blue)]/60">
+                    Walor revival loop
+                  </p>
+                </div>
+                {stages.map((stage, index) => {
+                  const Icon = stage.icon;
+                  const angle = index * 60 - 90;
+                  const position = {
+                    left: `${50 + Math.cos((angle * Math.PI) / 180) * 46}%`,
+                    top: `${50 + Math.sin((angle * Math.PI) / 180) * 46}%`,
+                  };
+                  const selected = activeStage === index;
+                  return (
+                    <button
+                      key={stage.title}
+                      type="button"
+                      style={position}
+                      onMouseEnter={() => setActiveStage(index)}
+                      onFocus={() => setActiveStage(index)}
+                      onClick={() => setActiveStage(index)}
+                      className={`lifecycle-node ${selected ? "is-active" : ""}`}
+                      aria-label={`Show ${stage.title} stage`}
                     >
-                      {n}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-            <div className="mt-6 flex items-center justify-center gap-2 text-xs font-mono text-foreground/40 uppercase tracking-wider">
-              <Recycle className="size-3.5" /> Closed-loop battery lifecycle
+                      <span className="lifecycle-node-icon">
+                        <Icon className="size-4" />
+                      </span>
+                      <span className="lifecycle-node-label">
+                        <b>{String(index + 1).padStart(2, "0")}</b>
+                        {stage.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="lifecycle-panel relative min-h-[255px] overflow-hidden rounded-2xl p-7 md:p-9">
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[var(--walor-blue)]/10 blur-3xl" />
+                <div className="relative">
+                  <div className="mb-10 flex items-center justify-between border-b border-[var(--walor-blue)]/12 pb-5">
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--walor-blue)]">
+                      Live lifecycle
+                    </span>
+                    <span className="font-mono text-xs text-foreground/35">
+                      {String(activeStage + 1).padStart(2, "0")} / 06
+                    </span>
+                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={active.title}
+                      initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -10, filter: "blur(3px)" }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="mb-4 flex items-center gap-3">
+                        <active.icon className="size-5 text-[var(--walor-blue)]" />
+                        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
+                          {active.kicker}
+                        </span>
+                      </div>
+                      <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                        {active.title}
+                      </h3>
+                      <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-foreground/62">
+                        {active.copy}
+                      </p>
+                      <div className="mt-7 flex items-center gap-2 text-sm font-medium text-[var(--walor-blue)]">
+                        <span>{active.detail}</span>
+                        <ChevronRight className="size-4" />
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -401,13 +514,14 @@ function Contact() {
                       className="bg-foreground/5 border-foreground/10"
                     />
                   </Field>
-                  <Field label="Fleet Size">
+                  <Field label="Number of Vehicles">
                     <Select name="fleet_size">
                       <SelectTrigger className="bg-foreground/5 border-foreground/10">
                         <SelectValue placeholder="Select range" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1-10">1–10</SelectItem>
+                        <SelectItem value="1">1</SelectItem>
+                        <SelectItem value="2-10">2–10</SelectItem>
                         <SelectItem value="11-50">11–50</SelectItem>
                         <SelectItem value="51-200">51–200</SelectItem>
                         <SelectItem value="200+">200+</SelectItem>
@@ -427,7 +541,7 @@ function Contact() {
                     size="lg"
                     className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
                   >
-                    {submitting ? "Sending…" : "Book Fleet Assessment"}
+                    {submitting ? "Sending…" : "Book Vehicle Assessment"}
                     {!submitting && <ArrowRight className="ml-1 size-4" />}
                   </Button>
                 </form>

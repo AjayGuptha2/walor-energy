@@ -93,24 +93,24 @@ export function HeroCells() {
                       ? { opacity: 0 }
                       : started
                         ? {
-                            rotate: [0, -3, 3, -3, 3, 0, 0],
-                            y: [0, 0, 0, 0, 0, 0, -300],
-                            x: [0, 0, 0, 0, 0, 0, tx],
-                            opacity: [1, 1, 1, 1, 1, 1, 0],
-                          }
+                          rotate: [0, -3, 3, -3, 3, 0, 0],
+                          y: [0, 0, 0, 0, 0, 0, -300],
+                          x: [0, 0, 0, 0, 0, 0, tx],
+                          opacity: [1, 1, 1, 1, 1, 1, 0],
+                        }
                         : {}
                   }
                   transition={
                     reduced
                       ? { duration: 0 }
                       : {
-                          duration: 0.7,
-                          delay: exitDelay - 0.15,
-                          times: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 1],
-                          ease: ["linear", "linear", "linear", "linear", "linear", "easeIn"],
-                        }
+                        duration: 0.7,
+                        delay: exitDelay - 0.15,
+                        times: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 1],
+                        ease: ["linear", "linear", "linear", "linear", "linear", "easeIn"],
+                      }
                   }
-                  // separate rotate spin handled via keyframes above end
+                // separate rotate spin handled via keyframes above end
                 />
                 {/* Green fresh cell */}
                 <motion.div
@@ -122,25 +122,25 @@ export function HeroCells() {
                       ? { opacity: 1, y: 0, boxShadow: "0 0 0 #2ED57300" }
                       : started
                         ? {
-                            opacity: 1,
-                            y: 0,
-                            boxShadow: [
-                              "0 0 0px #2ED57300",
-                              "0 0 0px #2ED57300",
-                              "0 0 20px #2ED573",
-                              "0 0 0px #2ED57300",
-                            ],
-                          }
+                          opacity: 1,
+                          y: 0,
+                          boxShadow: [
+                            "0 0 0px #2ED57300",
+                            "0 0 0px #2ED57300",
+                            "0 0 20px #2ED573",
+                            "0 0 0px #2ED57300",
+                          ],
+                        }
                         : { opacity: 0, y: 300 }
                   }
                   transition={
                     reduced
                       ? { duration: 0 }
                       : {
-                          y: { type: "spring", stiffness: 120, damping: 10, delay: enterDelay },
-                          opacity: { duration: 0.3, delay: enterDelay },
-                          boxShadow: { duration: 0.6, delay: enterDelay + 0.2, times: [0, 0.1, 0.5, 1] },
-                        }
+                        y: { type: "spring", stiffness: 120, damping: 10, delay: enterDelay },
+                        opacity: { duration: 0.3, delay: enterDelay },
+                        boxShadow: { duration: 0.6, delay: enterDelay + 0.2, times: [0, 0.1, 0.5, 1] },
+                      }
                   }
                 />
               </div>

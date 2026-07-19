@@ -56,7 +56,7 @@ export function Navbar() {
             asChild
             className="hidden md:inline-flex bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
           >
-            <a href="#contact">Book Fleet Assessment</a>
+            <a href="#contact">Book Vehicle Assessment</a>
           </Button>
           <button
             aria-label="Toggle menu"
@@ -88,7 +88,7 @@ export function Navbar() {
                 className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)]"
               >
                 <a href="#contact" onClick={() => setOpen(false)}>
-                  Book Fleet Assessment
+                  Book Vehicle Assessment
                 </a>
               </Button>
             </li>
