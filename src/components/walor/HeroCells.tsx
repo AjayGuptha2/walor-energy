@@ -1,189 +1,204 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-
-const COLS = 4;
-const ROWS = 3;
-const TOTAL = COLS * ROWS;
-
-// snake/zigzag order: row 0 L→R, row 1 R→L, row 2 L→R
-const order: number[] = [];
-for (let r = 0; r < ROWS; r++) {
-  for (let c = 0; c < COLS; c++) {
-    const col = r % 2 === 0 ? c : COLS - 1 - c;
-    order.push(r * COLS + col);
-  }
-}
-const stepOf = (idx: number) => order.indexOf(idx);
-
-const rand = (seed: number) => {
-  const x = Math.sin(seed * 9301 + 49297) * 233280;
-  return x - Math.floor(x);
-};
+import { useEffect, useState, useRef } from "react";
+import { motion } from "motion/react";
+import { gsap } from "gsap";
+import carImage from "@/assets/hero-car.png";
 
 export function HeroCells() {
-  const reduced = useReducedMotion();
-  const [started, setStarted] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Refs for camera layers
+  const bgRef = useRef<HTMLDivElement>(null);
+  const typoRef = useRef<HTMLDivElement>(null);
+  const vehicleRef = useRef<HTMLDivElement>(null);
+
+  // Mouse coordinates target [-1, 1]
+  const targetX = useRef(0);
+  const targetY = useRef(0);
 
   useEffect(() => {
-    const t = setTimeout(() => setStarted(true), 200);
-    return () => clearTimeout(t);
+    // Detect touch device
+    const checkTouch = () => {
+      setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouch();
   }, []);
 
-  const STAGGER = 0.15;
-  const lastStep = TOTAL - 1;
-  const packPulseDelay = 0.4 + lastStep * STAGGER + 0.8;
-  const headlineDelay = packPulseDelay + 0.5;
-  const subDelay = headlineDelay + 0.3;
-  const ctaDelay = subDelay + 0.3;
+  useEffect(() => {
+    if (isTouchDevice) {
+      // Touch/Mobile: setup a simple infinite idle breathing cycle using GSAP sways
+      const ctx = gsap.context(() => {
+        gsap.to(bgRef.current, {
+          x: "+=1.6",
+          y: "+=0.8",
+          duration: 6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+
+        gsap.to(typoRef.current, {
+          x: "+=3.2",
+          y: "+=1.6",
+          duration: 6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+
+        gsap.to(vehicleRef.current, {
+          x: "+=8",
+          y: "+=4",
+          duration: 6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      });
+
+      return () => ctx.revert();
+    }
+
+    // Desktop: Setup GSAP quickTo for highly efficient mouse tracking and ticker breathing
+    const ctx = gsap.context(() => {
+      // Background quickTo trackers (20% parallax)
+      const xToBg = gsap.quickTo(bgRef.current, "x", { duration: 0.8, ease: "power3.out" });
+      const yToBg = gsap.quickTo(bgRef.current, "y", { duration: 0.8, ease: "power3.out" });
+
+      // Typography quickTo trackers (40% parallax)
+      const xToTypo = gsap.quickTo(typoRef.current, "x", { duration: 0.8, ease: "power3.out" });
+      const yToTypo = gsap.quickTo(typoRef.current, "y", { duration: 0.8, ease: "power3.out" });
+
+      // Vehicle quickTo trackers (100% parallax)
+      const xToVehicle = gsap.quickTo(vehicleRef.current, "x", {
+        duration: 0.8,
+        ease: "power3.out",
+      });
+      const yToVehicle = gsap.quickTo(vehicleRef.current, "y", {
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      const handleTick = (time: number) => {
+        // Compute slow, handheld camera breathing sway (sine/cosine)
+        const breatheX = Math.sin(time * 0.8) * 0.15;
+        const breatheY = Math.cos(time * 1.0) * 0.1;
+
+        // Combine mouse target and breathing offset
+        const finalX = targetX.current + breatheX;
+        const finalY = targetY.current + breatheY;
+
+        // Animate layers at differential coefficients (subtle bounds: 8px / 4px max)
+        xToBg(finalX * 8 * 0.2);
+        yToBg(finalY * 4 * 0.2);
+
+        xToTypo(finalX * 8 * 0.4);
+        yToTypo(finalY * 4 * 0.4);
+
+        xToVehicle(finalX * 8);
+        yToVehicle(finalY * 4);
+      };
+
+      // Add camera movement calculations to the GSAP Ticker
+      gsap.ticker.add(handleTick);
+
+      const handleMouseMove = (e: MouseEvent) => {
+        // Normalize mouse coordinates to range [-1, 1] relative to viewport center
+        targetX.current = (e.clientX / window.innerWidth) * 2 - 1;
+        targetY.current = (e.clientY / window.innerHeight) * 2 - 1;
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        gsap.ticker.remove(handleTick);
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    });
+
+    return () => ctx.revert();
+  }, [isTouchDevice]);
 
   return (
-    <section className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
-      {/* Battery pack */}
-      <motion.div
-        className="relative"
-        style={{ width: "min(92vw, 500px)", aspectRatio: "500 / 250" }}
-        initial={false}
-        animate={
-          reduced
-            ? {}
-            : started
-              ? { scale: [1, 1, 1.03, 1], boxShadow: ["0 0 0 #2323FF00", "0 0 0 #2323FF00", "0 0 25px #2323FF", "0 0 0 #2323FF00"] }
-              : {}
-        }
-        transition={{ duration: 0.7, delay: packPulseDelay, times: [0, 0.2, 0.5, 1] }}
-      >
-        {/* Outer outline */}
+    <section className="relative flex min-h-[100svh] w-full flex-col justify-center overflow-hidden bg-[#F7F8FA] select-none md:min-h-[720px] lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center">
+      {/* 1. CSS Studio Background (z-0) - GSAP Translated */}
+      <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <div
-          className="absolute inset-0 rounded-3xl border-[3px]"
-          style={{ borderColor: "#2323FF" }}
-        />
-        {/* Battery terminal nub */}
-        <div
-          className="absolute top-1/2 -right-2 -translate-y-1/2 h-10 w-3 rounded-r-md"
-          style={{ background: "#2323FF" }}
-        />
-
-        {/* Cells grid */}
-        <div
-          className="absolute inset-0 grid p-5 gap-3"
+          className="w-full h-full"
           style={{
-            gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-            gridTemplateRows: `repeat(${ROWS}, 1fr)`,
+            background: `
+              /* Subtle radial blue glow inspired by Walor brand */
+              radial-gradient(circle at 78% 48%, rgba(35, 35, 255, 0.035) 0%, transparent 60%),
+              /* Floor spotlight / horizon blend */
+              radial-gradient(ellipse at 60% 65%, rgba(251, 252, 253, 0.9) 0%, rgba(247, 248, 250, 0.4) 60%, rgba(243, 245, 247, 0) 100%),
+              /* Base off-white studio linear gradient */
+              linear-gradient(to bottom, #FBFCFD 0%, #F7F8FA 40%, #F3F5F7 100%)
+            `,
           }}
+        />
+      </div>
+
+      {/* 2. Main Content Container (z-10) */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start px-6 pt-32 pb-20 md:px-10 lg:h-full lg:flex-row lg:items-center lg:justify-between lg:py-0">
+        {/* Left Side: Typography - GSAP Translated */}
+        <div
+          ref={typoRef}
+          className="relative z-10 flex w-full flex-col items-start justify-center lg:w-[54%]"
         >
-          {Array.from({ length: TOTAL }).map((_, i) => {
-            const step = stepOf(i);
-            const exitDelay = 0.4 + step * STAGGER;
-            const enterDelay = exitDelay + 0.2;
-            const tx = (rand(i + 1) - 0.5) * 100;
-            const rot = (rand(i + 7) - 0.5) * 360;
-            return (
-              <div key={i} className="relative w-full h-full">
-                {/* Red degraded cell */}
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background: "#FF3B3B",
-                    border: "1px solid #B02020",
-                  }}
-                  initial={{ opacity: 1, y: 0, x: 0, rotate: 0 }}
-                  animate={
-                    reduced
-                      ? { opacity: 0 }
-                      : started
-                        ? {
-                          rotate: [0, -3, 3, -3, 3, 0, 0],
-                          y: [0, 0, 0, 0, 0, 0, -300],
-                          x: [0, 0, 0, 0, 0, 0, tx],
-                          opacity: [1, 1, 1, 1, 1, 1, 0],
-                        }
-                        : {}
-                  }
-                  transition={
-                    reduced
-                      ? { duration: 0 }
-                      : {
-                        duration: 0.7,
-                        delay: exitDelay - 0.15,
-                        times: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 1],
-                        ease: ["linear", "linear", "linear", "linear", "linear", "easeIn"],
-                      }
-                  }
-                // separate rotate spin handled via keyframes above end
-                />
-                {/* Green fresh cell */}
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: "#2ED573" }}
-                  initial={{ opacity: 0, y: 300 }}
-                  animate={
-                    reduced
-                      ? { opacity: 1, y: 0, boxShadow: "0 0 0 #2ED57300" }
-                      : started
-                        ? {
-                          opacity: 1,
-                          y: 0,
-                          boxShadow: [
-                            "0 0 0px #2ED57300",
-                            "0 0 0px #2ED57300",
-                            "0 0 20px #2ED573",
-                            "0 0 0px #2ED57300",
-                          ],
-                        }
-                        : { opacity: 0, y: 300 }
-                  }
-                  transition={
-                    reduced
-                      ? { duration: 0 }
-                      : {
-                        y: { type: "spring", stiffness: 120, damping: 10, delay: enterDelay },
-                        opacity: { duration: 0.3, delay: enterDelay },
-                        boxShadow: { duration: 0.6, delay: enterDelay + 0.2, times: [0, 0.1, 0.5, 1] },
-                      }
-                  }
-                />
-              </div>
-            );
-          })}
+          {/* Eyebrow and Large Hero Heading (z-10) - Framer Motion Entrance */}
+          <motion.div
+            className="relative z-10 w-full max-w-[720px]"
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Editorial Eyebrow */}
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/40 mb-4 md:mb-6">
+              // MODULE-LEVEL DIAGNOSTICS & SYSTEM REVIVAL
+            </div>
+
+            <h1 className="text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#0A0A0A] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.25rem]">
+              Old cells out.
+              <br />
+              <span className="font-light text-[#2323FF]">New cells power in.</span>
+            </h1>
+          </motion.div>
+
+          {/* Subtitle - Framer Motion Entrance */}
+          <motion.div
+            className="relative z-30 mt-6 w-full pointer-events-auto md:mt-8"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="max-w-[280px] text-sm font-normal leading-relaxed text-[#555555]/80 sm:max-w-md md:max-w-lg md:text-base lg:text-lg">
+              WALOR refurbishes pre-owned EV battery packs — replacing degraded cells, restoring
+              full range.
+            </p>
+          </motion.div>
         </div>
-      </motion.div>
 
-      {/* Headline */}
-      <motion.h1
-        className="mt-12 text-center text-3xl md:text-5xl font-bold tracking-tight"
-        style={{ color: "#0A0A0A" }}
-        initial={{ opacity: 0, y: 12 }}
-        animate={reduced ? { opacity: 1, y: 0 } : started ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: reduced ? 0 : headlineDelay }}
-      >
-        Old Cells Out. <span style={{ color: "#2323FF" }}>New Power In.</span>
-      </motion.h1>
-
-      <motion.p
-        className="mt-5 text-center text-base md:text-lg max-w-2xl"
-        style={{ color: "#555555" }}
-        initial={{ opacity: 0, y: 12 }}
-        animate={reduced ? { opacity: 1, y: 0 } : started ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: reduced ? 0 : subDelay }}
-      >
-        WALOR refurbishes pre-owned EV battery packs — replacing degraded cells, restoring full range.
-      </motion.p>
-
-      <motion.div
-        className="mt-8"
-        initial={{ opacity: 0, y: 12 }}
-        animate={reduced ? { opacity: 1, y: 0 } : started ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: reduced ? 0 : ctaDelay }}
-      >
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-base font-semibold text-white transition-transform hover:scale-[1.03]"
-          style={{ background: "#2323FF" }}
+        {/* Right Side: Vehicle Foreground Layer (z-20) - GSAP Translated */}
+        {/* Raised to align the vehicle with the headline on wide screens. */}
+        <div
+          ref={vehicleRef}
+          className="z-20 mt-12 flex w-full select-none items-center justify-center pointer-events-none md:mt-16 lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
         >
-          Get a Fleet Assessment <ArrowRight className="size-4" />
-        </a>
-      </motion.div>
+          {/* Vehicle Visuals - Framer Motion Entrance */}
+          <motion.div
+            className="relative w-full max-w-[480px] sm:max-w-[560px] md:max-w-[640px] lg:max-w-none"
+            initial={{ opacity: 0, scale: 1.05, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            {/* Core Vehicle Image */}
+            <img
+              src={carImage}
+              alt="Walor EV Fleet Vehicle"
+              className="w-full h-auto object-contain relative z-10 scale-110 lg:scale-100"
+            />
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

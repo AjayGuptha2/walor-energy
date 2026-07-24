@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/walor-logo.jpeg";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Lenis from "lenis";
 import {
   ArrowRight,
   Clock,
@@ -39,7 +40,7 @@ import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
 import { HeroCells } from "@/components/walor/HeroCells";
-import { StatsOdometer } from "@/components/walor/StatsOdometer";
+// import { StatsOdometer } from "@/components/walor/StatsOdometer";
 import { SustainabilityV2 } from "@/components/walor/SustainabilityV2";
 import { BusinessImpactV2 } from "@/components/walor/BusinessImpactV2";
 
@@ -64,14 +65,35 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
       <Navbar />
       <HeroCells />
 
-      <StatsOdometer />
-      <Problem />
+      {/* <StatsOdometer /> */}
+      {/* <Problem /> */}
       <BusinessImpactV2 />
       <SustainabilityV2 />
       <Trust />

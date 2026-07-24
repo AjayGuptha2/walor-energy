@@ -35,15 +35,15 @@ export function Navbar() {
           href="#top"
           className="flex items-center gap-2 text-foreground font-semibold tracking-tight"
         >
-          <img src={logo} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
+          <img src={logo} alt="Walor Energy" className="h-5 md:h-6.5 w-auto" />
         </a>
 
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-10">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                className="text-[10px] font-mono uppercase tracking-[0.2em] text-foreground/45 hover:text-foreground transition-colors"
               >
                 {l.label}
               </a>
@@ -54,7 +54,9 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Button
             asChild
-            className="hidden md:inline-flex bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
+            variant="outline"
+            size="sm"
+            className="hidden md:inline-flex text-[10px] uppercase tracking-wider font-semibold border-foreground/15 text-foreground hover:bg-foreground/5 hover:border-foreground/30 shadow-none"
           >
             <a href="#contact">Book Vehicle Assessment</a>
           </Button>
