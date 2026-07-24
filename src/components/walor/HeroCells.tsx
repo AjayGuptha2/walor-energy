@@ -119,7 +119,10 @@ export function HeroCells() {
   }, [isTouchDevice]);
 
   return (
-    <section className="relative flex min-h-[100svh] w-full flex-col justify-center overflow-hidden bg-[#F7F8FA] select-none md:min-h-[720px] lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center">
+    <section
+      className="relative flex h-fit w-full flex-col overflow-hidden bg-[#F7F8FA] select-none lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center"
+      style={{ minHeight: "fit-content" }}
+    >
       {/* 1. CSS Studio Background (z-0) - GSAP Translated */}
       <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <div
@@ -138,7 +141,7 @@ export function HeroCells() {
       </div>
 
       {/* 2. Main Content Container (z-10) */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start px-6 pt-32 pb-20 md:px-10 lg:h-full lg:flex-row lg:items-center lg:justify-between lg:py-0">
+      <div className="relative z-10 mx-auto flex h-fit w-full max-w-[1440px] flex-col items-start px-6 pt-28 pb-0 md:pt-32 md:px-10 lg:h-full lg:min-h-[760px] lg:flex-row lg:items-center lg:justify-between lg:py-0">
         {/* Left Side: Typography - GSAP Translated */}
         <div
           ref={typoRef}
@@ -178,14 +181,13 @@ export function HeroCells() {
         </div>
 
         {/* Right Side: Vehicle Foreground Layer (z-20) - GSAP Translated */}
-        {/* Raised to align the vehicle with the headline on wide screens. */}
         <div
           ref={vehicleRef}
-          className="z-20 mt-12 flex w-full select-none items-center justify-center pointer-events-none md:mt-16 lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
+          className="z-20 mt-4 flex w-full select-none items-end justify-center pointer-events-none lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
         >
           {/* Vehicle Visuals - Framer Motion Entrance */}
           <motion.div
-            className="relative w-full max-w-[480px] sm:max-w-[560px] md:max-w-[640px] lg:max-w-none"
+            className="relative w-full max-w-[520px] md:max-w-[640px] lg:max-w-none"
             initial={{ opacity: 0, scale: 1.05, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -194,7 +196,7 @@ export function HeroCells() {
             <img
               src={carImage}
               alt="Walor EV Fleet Vehicle"
-              className="w-full h-auto object-contain relative z-10 scale-110 lg:scale-100"
+              className="w-[120%] -ml-[10%] md:w-[105%] md:-ml-[2.5%] lg:w-full lg:ml-0 h-auto block object-contain relative z-10"
             />
           </motion.div>
         </div>

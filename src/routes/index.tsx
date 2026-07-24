@@ -44,6 +44,7 @@ import { HeroCells } from "@/components/walor/HeroCells";
 import { SustainabilityV2 } from "@/components/walor/SustainabilityV2";
 import { BusinessImpactV2 } from "@/components/walor/BusinessImpactV2";
 import { EcosystemNetwork } from "@/components/walor/EcosystemNetwork";
+import { ContactCTA } from "@/components/walor/ContactCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,7 +99,7 @@ function Home() {
       <BusinessImpactV2 />
       <SustainabilityV2 />
       <EcosystemNetwork />
-      <Contact />
+      <ContactCTA />
       <Footer />
     </div>
   );
@@ -387,164 +388,6 @@ function Sustainability() {
         </Reveal>
       </div>
     </section>
-  );
-}
-
-/* ============================ CONTACT ============================ */
-function Contact() {
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    if (!name || !phone) {
-      toast.error("Please fill in name and phone number.");
-      return;
-    }
-    setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitting(false);
-    setSubmitted(true);
-    toast.success("Assessment request received. Our team will reach out within 1 business day.");
-    form.reset();
-  };
-
-  return (
-    <section id="contact" className="walor-section">
-      <div className="walor-container">
-        <div className="glass rounded-3xl overflow-hidden">
-          <div className="grid lg:grid-cols-5 gap-0">
-            {/* Left side */}
-            <div className="lg:col-span-2 p-8 md:p-12 bg-gradient-to-br from-[var(--walor-green)]/10 to-transparent border-r border-foreground/5">
-              <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">
-                Get Started
-              </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-tight">
-                Ready to Eliminate <span className="text-gradient-green">Battery Downtime?</span>
-              </h2>
-              <p className="mt-4 text-foreground/65 leading-relaxed">
-                Book a free fleet assessment. No commitment. We'll evaluate your current battery
-                health profile and show you the potential ROI of a revival program.
-              </p>
-
-              <div className="mt-10 space-y-4 text-sm">
-                <div className="flex items-start gap-3">
-                  <Mail className="size-4 text-[var(--walor-green)] mt-0.5" />
-                  <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
-                      Email
-                    </div>
-                    <a
-                      href="mailto:support@walorenergy.com"
-                      className="text-foreground hover:text-[var(--walor-green)] transition-colors"
-                    >
-                      support@walorenergy.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="size-4 text-[var(--walor-green)] mt-0.5" />
-                  <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
-                      Location
-                    </div>
-                    <div className="text-foreground">Hyderabad, Telangana, India</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Form */}
-            <div className="lg:col-span-3 p-8 md:p-12">
-              {submitted ? (
-                <div className="h-full min-h-[400px] flex flex-col items-center justify-center text-center">
-                  <div className="size-16 rounded-full bg-[var(--walor-green)]/15 grid place-items-center">
-                    <CheckCircle2 className="size-8 text-[var(--walor-green)]" />
-                  </div>
-                  <h3 className="mt-6 text-2xl font-semibold">Request Received</h3>
-                  <p className="mt-2 text-foreground/60 max-w-sm">
-                    Thanks — our fleet team will reach out within one business day to schedule your
-                    assessment.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="mt-8 border-foreground/20 bg-transparent hover:bg-foreground/5"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    Submit Another
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} className="space-y-5">
-                  <Field label="Name *">
-                    <Input
-                      name="name"
-                      required
-                      placeholder="Your name"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Field label="Phone No *">
-                    <Input
-                      name="phone"
-                      type="tel"
-                      required
-                      placeholder="+91"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Field label="Number of Vehicles">
-                    <Select name="fleet_size">
-                      <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                        <SelectValue placeholder="Select range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">1</SelectItem>
-                        <SelectItem value="2-10">2–10</SelectItem>
-                        <SelectItem value="11-50">11–50</SelectItem>
-                        <SelectItem value="51-200">51–200</SelectItem>
-                        <SelectItem value="200+">200+</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field label="Vehicle (Enter the vehicle name)">
-                    <Input
-                      name="vehicle"
-                      placeholder="e.g. Tata Ace EV, Mahindra Treo"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Button
-                    type="submit"
-                    disabled={submitting}
-                    size="lg"
-                    className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
-                  >
-                    {submitting ? "Sending…" : "Book Vehicle Assessment"}
-                    {!submitting && <ArrowRight className="ml-1 size-4" />}
-                  </Button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <Label className="text-xs font-mono uppercase tracking-wider text-foreground/50">
-        {label}
-      </Label>
-      <div className="mt-1.5">{children}</div>
-    </div>
   );
 }
 
