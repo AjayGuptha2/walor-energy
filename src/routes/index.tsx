@@ -43,6 +43,7 @@ import { HeroCells } from "@/components/walor/HeroCells";
 // import { StatsOdometer } from "@/components/walor/StatsOdometer";
 import { SustainabilityV2 } from "@/components/walor/SustainabilityV2";
 import { BusinessImpactV2 } from "@/components/walor/BusinessImpactV2";
+import { EcosystemNetwork } from "@/components/walor/EcosystemNetwork";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -96,7 +97,7 @@ function Home() {
       {/* <Problem /> */}
       <BusinessImpactV2 />
       <SustainabilityV2 />
-      <Trust />
+      <EcosystemNetwork />
       <Contact />
       <Footer />
     </div>
@@ -382,46 +383,6 @@ function Sustainability() {
                 </div>
               </div>
             </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ============================ TRUST ============================ */
-function Trust() {
-  const categories = [
-    "Commercial EV Fleets",
-    "Last-Mile Delivery",
-    "EV Logistics",
-    "Corporate Mobility",
-    "Public Transport",
-    "Fleet Finance",
-  ];
-  return (
-    <section className="walor-section">
-      <div className="walor-container">
-        <SectionHeader eyebrow="Ecosystem" title="Building with India's EV Ecosystem" />
-        <Reveal className="mt-8 max-w-3xl mx-auto text-center text-lg text-foreground/65 leading-relaxed">
-          Walor Energy is actively working with commercial fleet operators, mobility providers, and
-          EV ecosystem stakeholders to build India's most reliable battery revival infrastructure.
-        </Reveal>
-
-        <Reveal
-          delay={0.2}
-          className="mt-14 overflow-hidden rounded-2xl glass py-6 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]"
-        >
-          <div className="flex gap-12 animate-marquee w-max">
-            {[...categories, ...categories].map((c, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 text-foreground/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap"
-              >
-                <Zap className="size-4 text-[var(--walor-green)]" />
-                {c}
-              </div>
-            ))}
           </div>
         </Reveal>
       </div>
