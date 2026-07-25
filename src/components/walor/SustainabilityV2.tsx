@@ -19,7 +19,7 @@ const STAGES = [
     copy: "Every pack begins with high-value cells and materials designed to move India forward.",
     detail: "Materials kept in motion",
     icon: Factory,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
   {
     id: "deployment",
@@ -28,7 +28,7 @@ const STAGES = [
     copy: "Packs deliver dependable power across the routes that keep commercial fleets moving.",
     detail: "Powering daily operations",
     icon: BatteryCharging,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
   {
     id: "degradation",
@@ -37,7 +37,7 @@ const STAGES = [
     copy: "Walor identifies recoverable capacity before a degraded pack becomes costly waste.",
     detail: "Data-led health assessment",
     icon: Gauge,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
   {
     id: "revival",
@@ -46,7 +46,7 @@ const STAGES = [
     copy: "Precision diagnostics and module-level restoration return the pack to productive service.",
     detail: "The Walor revival protocol",
     icon: Wrench,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
   {
     id: "extended",
@@ -55,7 +55,7 @@ const STAGES = [
     copy: "A renewed pack keeps vehicles earning for longer — with lower lifecycle cost and less extraction.",
     detail: "More kilometres per pack",
     icon: RotateCw,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
   {
     id: "reuse",
@@ -64,7 +64,7 @@ const STAGES = [
     copy: "When traction life ends, usable energy and materials stay valuable in the next application.",
     detail: "A closed-loop future",
     icon: Leaf,
-    color: "#1479E9",
+    color: "var(--walor-blue)",
   },
 ];
 
@@ -230,13 +230,13 @@ export function SustainabilityV2() {
               {/* Defs */}
               <defs>
                 <radialGradient id="sv2-orbitGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#1479E9" stopOpacity="0.07" />
-                  <stop offset="100%" stopColor="#1479E9" stopOpacity="0" />
+                  <stop offset="0%" stopColor="var(--walor-blue)" stopOpacity="0.07" />
+                  <stop offset="100%" stopColor="var(--walor-blue)" stopOpacity="0" />
                 </radialGradient>
                 <linearGradient id="sv2-pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#1479E9" stopOpacity="0.06" />
-                  <stop offset="50%" stopColor="#1479E9" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#1479E9" stopOpacity="0.06" />
+                  <stop offset="0%" stopColor="var(--walor-blue)" stopOpacity="0.06" />
+                  <stop offset="50%" stopColor="var(--walor-blue)" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="var(--walor-blue)" stopOpacity="0.06" />
                 </linearGradient>
                 <filter id="sv2-glow">
                   <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -250,7 +250,7 @@ export function SustainabilityV2() {
                     dx="0"
                     dy="4"
                     stdDeviation="6"
-                    floodColor="#1479E9"
+                    floodColor="var(--walor-blue)"
                     floodOpacity="0.08"
                   />
                 </filter>
@@ -265,7 +265,7 @@ export function SustainabilityV2() {
                 cy={CY}
                 r={ORBIT_R + 32}
                 fill="none"
-                stroke="rgba(20,121,233,0.04)"
+                stroke="color-mix(in srgb, var(--walor-blue) 4%, transparent)"
                 strokeWidth="1.5"
                 className="sv2-bg-depth-ring sv2-depth-1"
               />
@@ -274,7 +274,7 @@ export function SustainabilityV2() {
                 cy={CY}
                 r={ORBIT_R}
                 fill="none"
-                stroke="rgba(20,121,233,0.03)"
+                stroke="color-mix(in srgb, var(--walor-blue) 3%, transparent)"
                 strokeWidth="8"
                 className="sv2-bg-depth-ring sv2-depth-2"
               />
@@ -283,7 +283,7 @@ export function SustainabilityV2() {
                 cy={CY}
                 r={ORBIT_R - 32}
                 fill="none"
-                stroke="rgba(20,121,233,0.05)"
+                stroke="color-mix(in srgb, var(--walor-blue) 5%, transparent)"
                 strokeWidth="1"
                 className="sv2-bg-depth-ring sv2-depth-3"
               />
@@ -306,7 +306,7 @@ export function SustainabilityV2() {
                   cy={CY}
                   r={ORBIT_R}
                   fill="none"
-                  stroke="rgba(20, 121, 233, 0.65)"
+                  stroke="color-mix(in srgb, var(--walor-blue) 65%, transparent)"
                   strokeWidth="5.5"
                   strokeLinecap="round"
                   strokeDasharray={`70 ${CIRCUMFERENCE}`}
@@ -326,7 +326,7 @@ export function SustainabilityV2() {
                 cy={CY}
                 r={ORBIT_R * 0.55}
                 fill="none"
-                stroke="rgba(20,121,233,0.05)"
+                stroke="color-mix(in srgb, var(--walor-blue) 5%, transparent)"
                 strokeWidth="1"
               />
 
@@ -342,7 +342,7 @@ export function SustainabilityV2() {
                     y1={innerY}
                     x2={pos.x}
                     y2={pos.y}
-                    stroke="rgba(20,121,233,0.06)"
+                    stroke="color-mix(in srgb, var(--walor-blue) 6%, transparent)"
                     strokeWidth="1"
                     strokeDasharray="3 4"
                   />
@@ -381,8 +381,12 @@ export function SustainabilityV2() {
                       {/* Node Glass Background */}
                       <circle
                         r={NODE_R}
-                        fill={isActive ? "#1479E9" : "rgba(255, 255, 255, 0.85)"}
-                        stroke={isActive ? "#1479E9" : "rgba(20, 121, 233, 0.18)"}
+                        fill={isActive ? "var(--walor-blue)" : "rgba(255, 255, 255, 0.85)"}
+                        stroke={
+                          isActive
+                            ? "var(--walor-blue)"
+                            : "color-mix(in srgb, var(--walor-blue) 18%, transparent)"
+                        }
                         strokeWidth={isActive ? "2.5" : "1.5"}
                         filter={isActive ? "url(#sv2-glow)" : "url(#sv2-glass-shadow)"}
                         style={{
@@ -405,7 +409,7 @@ export function SustainabilityV2() {
                             justifyContent: "center",
                             width: "100%",
                             height: "100%",
-                            color: isActive ? "#ffffff" : "#1479E9",
+                            color: isActive ? "#ffffff" : "var(--walor-blue)",
                             opacity: isActive ? 1 : 0.85,
                             transition: "all 0.3s ease",
                           }}
@@ -419,7 +423,7 @@ export function SustainabilityV2() {
                     <text
                       y={NODE_R + 15}
                       textAnchor="middle"
-                      fill={isActive ? "#1479E9" : "rgba(10,10,10,0.5)"}
+                      fill={isActive ? "var(--walor-blue)" : "rgba(10,10,10,0.5)"}
                       fontSize="9"
                       fontWeight="600"
                       fontFamily="Inter, system-ui, sans-serif"
@@ -436,7 +440,7 @@ export function SustainabilityV2() {
                     <text
                       y={-NODE_R - 6}
                       textAnchor="middle"
-                      fill="rgba(20,121,233,0.5)"
+                      fill="color-mix(in srgb, var(--walor-blue) 50%, transparent)"
                       fontSize="7"
                       fontWeight="700"
                       fontFamily="'JetBrains Mono', monospace"

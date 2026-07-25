@@ -119,10 +119,7 @@ export function HeroCells() {
   }, [isTouchDevice]);
 
   return (
-    <section
-      className="relative flex h-fit w-full flex-col overflow-hidden bg-[#F7F8FA] select-none lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center"
-      style={{ minHeight: "fit-content" }}
-    >
+    <section className="relative flex h-fit w-full flex-col overflow-hidden bg-[#F7F8FA] select-none lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center">
       {/* 1. CSS Studio Background (z-0) - GSAP Translated */}
       <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <div
@@ -141,7 +138,7 @@ export function HeroCells() {
       </div>
 
       {/* 2. Main Content Container (z-10) */}
-      <div className="relative z-10 mx-auto flex h-fit w-full max-w-[1440px] flex-col items-start px-6 pt-28 pb-0 md:pt-32 md:px-10 lg:h-full lg:min-h-[760px] lg:flex-row lg:items-center lg:justify-between lg:py-0">
+      <div className="relative z-10 mx-auto flex h-fit w-full max-w-[1440px] flex-col items-start px-6 pt-28 pb-12 md:pt-32 md:px-10 md:pb-0 lg:h-full lg:min-h-[760px] lg:flex-row lg:items-center lg:justify-between lg:py-0">
         {/* Left Side: Typography - GSAP Translated */}
         <div
           ref={typoRef}
@@ -155,27 +152,27 @@ export function HeroCells() {
             transition={{ duration: 1.0, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Editorial Eyebrow */}
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/40 mb-4 md:mb-6">
+            <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/40">
               // MODULE-LEVEL DIAGNOSTICS & SYSTEM REVIVAL
             </div>
 
-            <h1 className="text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#0A0A0A] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.25rem]">
-              Old cells out.
+            <h1 className="text-[clamp(3rem,13vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.045em] text-[#0A0A0A] md:text-6xl lg:text-[4rem] xl:text-[4.25rem]">
+              Powering the Next Life
               <br />
-              <span className="font-light text-[#2323FF]">New cells power in.</span>
+              <span className="font-light text-[#2323FF]">of EV Batteries.</span>
             </h1>
           </motion.div>
 
           {/* Subtitle - Framer Motion Entrance */}
           <motion.div
-            className="relative z-30 mt-6 w-full pointer-events-auto md:mt-8"
+            className="relative z-30 mt-8 w-full pointer-events-auto"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="max-w-[280px] text-sm font-normal leading-relaxed text-[#555555]/80 sm:max-w-md md:max-w-lg md:text-base lg:text-lg">
-              WALOR refurbishes pre-owned EV battery packs — replacing degraded cells, restoring
-              full range.
+            <p className="max-w-[340px] text-sm font-normal leading-relaxed text-[#555555]/80 sm:max-w-md md:max-w-lg md:text-base lg:text-lg">
+              Walor revives EV batteries to deliver longer life, lower costs, and sustainable
+              mobility.
             </p>
           </motion.div>
         </div>
@@ -183,11 +180,11 @@ export function HeroCells() {
         {/* Right Side: Vehicle Foreground Layer (z-20) - GSAP Translated */}
         <div
           ref={vehicleRef}
-          className="z-20 mt-4 flex w-full select-none items-end justify-center pointer-events-none lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
+          className="z-20 mt-10 flex w-full select-none items-end justify-center pointer-events-none md:mt-4 lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
         >
           {/* Vehicle Visuals - Framer Motion Entrance */}
           <motion.div
-            className="relative w-full max-w-[520px] md:max-w-[640px] lg:max-w-none"
+            className="relative w-[84vw] max-w-[390px] md:w-full md:max-w-[640px] lg:max-w-none"
             initial={{ opacity: 0, scale: 1.05, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -196,7 +193,7 @@ export function HeroCells() {
             <img
               src={carImage}
               alt="Walor EV Fleet Vehicle"
-              className="w-[120%] -ml-[10%] md:w-[105%] md:-ml-[2.5%] lg:w-full lg:ml-0 h-auto block object-contain relative z-10"
+              className="relative z-10 block h-auto w-full object-contain md:w-[105%] md:-ml-[2.5%] lg:w-full lg:ml-0"
             />
           </motion.div>
         </div>

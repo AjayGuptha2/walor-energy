@@ -1,5 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/walor-logo.jpeg";
+import logo from "@/assets/walor-logo.png";
+import iiitHyderabadLogo from "@/assets/IIIT_Hyderabad_Logo.png";
+import iitDelhiLogo from "@/assets/iitdlogo.jpeg";
+import mahindraLogo from "@/assets/mahindralogo.png";
+import snistLogo from "@/assets/SNIST.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Lenis from "lenis";
@@ -394,67 +398,164 @@ function Sustainability() {
 /* ============================ FOOTER ============================ */
 function Footer() {
   return (
-    <footer className="bg-[#2323FF] text-white">
-      <div className="walor-container py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-semibold text-white">
-              <img src={logo} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
-            </div>
-            <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
-              India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
-            </p>
-            <p className="mt-4 text-xs text-white/60 font-mono">Hyderabad, Telangana, India</p>
-          </div>
-          <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Explore</div>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <a href="#solutions" className="text-white/85 hover:text-white">
-                  Solutions
-                </a>
-              </li>
-              <li>
-                <a href="#impact" className="text-white/85 hover:text-white">
-                  Impact
-                </a>
-              </li>
-              <li>
-                <a href="#sustainability" className="text-white/85 hover:text-white">
-                  Sustainability
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Contact</div>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">
-                  support@walorenergy.com
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white/85 hover:text-white">
-                  Book Assessment
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/70">
-          <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
-          <span className="flex gap-6">
-            <a href="#" className="hover:text-white">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms of Service
-            </a>
-          </span>
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full bg-white overflow-hidden"
+    >
+      {/* Background Depth Layers (Pure Gradients) */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Transition Zone Mask (Top 120px fades from transparent to solid to ensure seamless merge with white CTA background) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            WebkitMaskImage: `linear-gradient(to bottom, transparent 0px, black 120px)`,
+            maskImage: `linear-gradient(to bottom, transparent 0px, black 120px)`,
+          }}
+        >
+          {/* Layer 1: Base Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FFFFFF] via-[#FAFCFF] via-40% to-[#EEF5FF]" />
+
+          {/* Layer 2: Behind Walor Logo (Top Left) */}
+          <div
+            className="absolute -top-40 -left-40 w-[800px] h-[800px] blur-[130px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.08)" }}
+          />
+
+          {/* Layer 3: Behind Built By Column (Bottom Right) */}
+          <div
+            className="absolute -bottom-40 -right-20 w-[800px] h-[800px] blur-[140px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.05)" }}
+          />
+
+          {/* Layer 4: Very subtle center glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] blur-[160px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.03)" }}
+          />
         </div>
       </div>
-    </footer>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-10 pt-[120px] pb-[80px]">
+        {/* Top 4-Column Layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          {/* Column 1: Brand */}
+          <div className="lg:w-1/4 lg:pr-12 flex flex-col items-start">
+            <img
+              src={logo}
+              alt="Walor Energy"
+              className="h-16 md:h-20 w-auto object-contain mb-8"
+            />
+            <div className="space-y-4 text-[14px] leading-relaxed text-[#555555]">
+              <p>India's Full-Pack EV Battery Revival Platform.</p>
+              <p>Built for Commercial Fleet Operators.</p>
+              <div className="pt-2">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-1">
+                  Location
+                </p>
+                <p className="text-[#0A0A0A]">Hyderabad, Telangana, India</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Vertical Divider 1 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 2: Platform */}
+          <div className="lg:w-1/4 lg:px-6">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-8">
+              Platform
+            </div>
+            <ul className="space-y-5">
+              {["Impact", "Sustainability", "Book Vehicle Assessment"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                    className="group inline-flex items-center text-[14px] text-[#555555] transition-colors hover:text-[#2323FF]"
+                  >
+                    <span className="relative overflow-hidden transition-transform duration-300 group-hover:translate-x-1 pb-0.5">
+                      {item}
+                      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#2323FF] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Vertical Divider 2 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 3: Contact */}
+          <div className="lg:w-1/4 lg:px-6">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-8">
+              Contact
+            </div>
+            <ul className="space-y-6">
+              <li>
+                <a
+                  href="mailto:support@walorenergy.com"
+                  className="group inline-flex items-center gap-2 text-[14px] text-[#555555] transition-colors hover:text-[#2323FF]"
+                >
+                  <Mail className="size-4 text-[#0A0A0A]/30 group-hover:text-[#2323FF] transition-colors stroke-[1.5] shrink-0" />
+                  <span className="relative overflow-hidden transition-transform duration-300 group-hover:translate-x-1 pb-0.5">
+                    support@walorenergy.com
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#2323FF] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                  </span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-center gap-2 text-[14px] text-[#555555]">
+                  <MapPin className="size-4 text-[#0A0A0A]/30 stroke-[1.5] shrink-0" />
+                  <span>Hyderabad, Telangana</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Vertical Divider 3 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 4: Engineering Roots */}
+          <div className="lg:w-1/4 lg:pl-10">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#0A0A0A]/40">
+              Engineering Roots
+            </div>
+            <div className="mt-6 border-t border-[#2323FF]/15" />
+            <div className="mt-5 space-y-4 text-[15px] leading-none text-[#0A0A0A]">
+              {[
+                { logo: iiitHyderabadLogo, alt: "IIIT Hyderabad logo", label: "IIIT Hyderabad" },
+                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT Delhi" },
+                { logo: mahindraLogo, alt: "Mahindra logo", label: "Ex-Mahindra" },
+                { logo: snistLogo, alt: "SNIST logo", label: "SNIST" },
+              ].map(({ logo, alt, label }) => (
+                <div key={label} className="flex items-center gap-4 font-semibold">
+                  <div className="flex h-6 w-16 shrink-0 items-center">
+                    <img src={logo} alt={alt} className="h-6 w-full object-contain opacity-85" />
+                  </div>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-24 pt-8 border-t border-black/[0.05] flex flex-col md:flex-row justify-between items-center gap-4 text-[13px] text-[#0A0A0A]/40">
+          <p>© 2026 Walor Energy Private Limited.</p>
+          <div className="flex items-center gap-8">
+            <a href="#" className="hover:text-[#0A0A0A] transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-[#0A0A0A] transition-colors">
+              Terms of Service
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.footer>
   );
 }
 
