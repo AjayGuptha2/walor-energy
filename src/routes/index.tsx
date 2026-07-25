@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/walor-logo.jpeg";
-import { useState } from "react";
-import { motion } from "motion/react";
+import logo from "@/assets/walor-logo.png";
+import iiitHyderabadLogo from "@/assets/IIIT_Hyderabad_Logo.png";
+import iitDelhiLogo from "@/assets/iitdlogo.jpeg";
+import mahindraLogo from "@/assets/mahindralogo.png";
+import snistLogo from "@/assets/SNIST.jpg";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import Lenis from "lenis";
 import {
   ArrowRight,
   Clock,
@@ -14,6 +19,13 @@ import {
   CheckCircle2,
   Mail,
   MapPin,
+  Factory,
+  BatteryCharging,
+  Gauge,
+  Wrench,
+  RotateCw,
+  Leaf,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +43,12 @@ import { Navbar } from "@/components/walor/Navbar";
 import { Counter } from "@/components/walor/Counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/walor/Reveal";
 import { PageLoad } from "@/components/walor/PageLoad";
-
 import { HeroCells } from "@/components/walor/HeroCells";
-import { StatsOdometer } from "@/components/walor/StatsOdometer";
+// import { StatsOdometer } from "@/components/walor/StatsOdometer";
+import { SustainabilityV2 } from "@/components/walor/SustainabilityV2";
+import { BusinessImpactV2 } from "@/components/walor/BusinessImpactV2";
+import { EcosystemNetwork } from "@/components/walor/EcosystemNetwork";
+import { ContactCTA } from "@/components/walor/ContactCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,18 +71,39 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div id="top" className="relative min-h-screen text-foreground">
       <PageLoad />
       <Navbar />
       <HeroCells />
 
-      <StatsOdometer />
-      <Problem />
-      <BusinessImpact />
-      <Sustainability />
-      <Trust />
-      <Contact />
+      {/* <StatsOdometer /> */}
+      {/* <Problem /> */}
+      <BusinessImpactV2 />
+      <SustainabilityV2 />
+      <EcosystemNetwork />
+      <ContactCTA />
       <Footer />
     </div>
   );
@@ -191,14 +227,60 @@ function BusinessImpact() {
 
 /* ============================ SUSTAINABILITY ============================ */
 function Sustainability() {
-  const nodes = [
-    "Manufacturing",
-    "Deployment",
-    "Degradation",
-    "Walor Revival",
-    "Extended Life",
-    "Sustainable Reuse",
+  const stages = [
+    {
+      title: "Manufacturing",
+      kicker: "01 / Origin",
+      copy: "Every pack begins with high-value cells and materials designed to move India forward.",
+      detail: "Materials kept in motion",
+      icon: Factory,
+    },
+    {
+      title: "Deployment",
+      kicker: "02 / In service",
+      copy: "Packs deliver dependable power across the routes that keep commercial fleets moving.",
+      detail: "Powering daily operations",
+      icon: BatteryCharging,
+    },
+    {
+      title: "Degradation",
+      kicker: "03 / Diagnosed",
+      copy: "Walor identifies recoverable capacity before a degraded pack becomes costly waste.",
+      detail: "Data-led health assessment",
+      icon: Gauge,
+    },
+    {
+      title: "Walor Revival",
+      kicker: "04 / Our intervention",
+      copy: "Precision diagnostics and module-level restoration return the pack to productive service.",
+      detail: "The Walor revival protocol",
+      icon: Wrench,
+    },
+    {
+      title: "Extended Life",
+      kicker: "05 / Back in motion",
+      copy: "A renewed pack keeps vehicles earning for longer—with lower lifecycle cost and less extraction.",
+      detail: "More kilometres per pack",
+      icon: RotateCw,
+    },
+    {
+      title: "Sustainable Reuse",
+      kicker: "06 / Circular value",
+      copy: "When traction life ends, usable energy and materials stay valuable in the next application.",
+      detail: "A closed-loop future",
+      icon: Leaf,
+    },
   ];
+  const [activeStage, setActiveStage] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveStage((current) => (current + 1) % stages.length);
+    }, 2400);
+    return () => window.clearInterval(timer);
+  }, [stages.length]);
+
+  const active = stages[activeStage];
 
   return (
     <section
@@ -211,310 +293,269 @@ function Sustainability() {
           title="Every Battery Revived Is One Less Battery in Landfill"
         />
 
-        <Reveal className="mt-16">
-          <div className="glass rounded-2xl p-6 md:p-10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-              {nodes.map((n, i) => {
-                const highlight = n === "Walor Revival";
-                return (
-                  <motion.div
-                    key={n}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12 }}
-                    className={`relative rounded-xl p-4 text-center border ${
-                      highlight
-                        ? "bg-[var(--walor-green)]/15 border-[var(--walor-green)]/50 shadow-[0_0_40px_oklch(0.42_0.31_268/0.35)]"
-                        : "bg-foreground/5 border-foreground/10"
-                    }`}
-                  >
-                    {highlight && (
-                      <div className="absolute inset-0 rounded-xl border-2 border-[var(--walor-green)]/40 animate-pulse-glow" />
-                    )}
-                    <div className="font-mono text-[10px] text-foreground/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <div
-                      className={`mt-1 text-sm font-medium ${highlight ? "text-[var(--walor-green)]" : "text-foreground/80"}`}
-                    >
-                      {n}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-            <div className="mt-6 flex items-center justify-center gap-2 text-xs font-mono text-foreground/40 uppercase tracking-wider">
-              <Recycle className="size-3.5" /> Closed-loop battery lifecycle
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ============================ TRUST ============================ */
-function Trust() {
-  const categories = [
-    "Commercial EV Fleets",
-    "Last-Mile Delivery",
-    "EV Logistics",
-    "Corporate Mobility",
-    "Public Transport",
-    "Fleet Finance",
-  ];
-  return (
-    <section className="walor-section">
-      <div className="walor-container">
-        <SectionHeader eyebrow="Ecosystem" title="Building with India's EV Ecosystem" />
-        <Reveal className="mt-8 max-w-3xl mx-auto text-center text-lg text-foreground/65 leading-relaxed">
-          Walor Energy is actively working with commercial fleet operators, mobility providers, and
-          EV ecosystem stakeholders to build India's most reliable battery revival infrastructure.
-        </Reveal>
-
-        <Reveal
-          delay={0.2}
-          className="mt-14 overflow-hidden rounded-2xl glass py-6 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]"
-        >
-          <div className="flex gap-12 animate-marquee w-max">
-            {[...categories, ...categories].map((c, i) => (
+        <Reveal className="mt-14">
+          <div className="lifecycle-shell overflow-hidden rounded-[2rem] border border-[var(--walor-blue)]/15 p-5 md:p-8 lg:p-10">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,.85fr)] lg:gap-8">
               <div
-                key={i}
-                className="flex items-center gap-3 text-foreground/60 font-mono uppercase tracking-wider text-sm whitespace-nowrap"
+                className="lifecycle-orbit mx-auto w-full max-w-[620px]"
+                aria-label="Walor closed-loop battery lifecycle"
               >
-                <Zap className="size-4 text-[var(--walor-green)]" />
-                {c}
+                <div className="lifecycle-track" />
+                <div className="lifecycle-track lifecycle-track-inner" />
+                <motion.div
+                  className="lifecycle-energy-arm"
+                  animate={{ rotate: activeStage * 60 }}
+                  transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="lifecycle-energy-pulse" />
+                </motion.div>
+                <div className="lifecycle-core">
+                  <div className="lifecycle-core-mark" aria-hidden="true">
+                    <span>W</span>
+                  </div>
+                  <p className="mt-4 text-center font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-[var(--walor-blue)]/60">
+                    Walor revival loop
+                  </p>
+                </div>
+                {stages.map((stage, index) => {
+                  const Icon = stage.icon;
+                  const angle = index * 60 - 90;
+                  const position = {
+                    left: `${50 + Math.cos((angle * Math.PI) / 180) * 46}%`,
+                    top: `${50 + Math.sin((angle * Math.PI) / 180) * 46}%`,
+                  };
+                  const selected = activeStage === index;
+                  return (
+                    <button
+                      key={stage.title}
+                      type="button"
+                      style={position}
+                      onMouseEnter={() => setActiveStage(index)}
+                      onFocus={() => setActiveStage(index)}
+                      onClick={() => setActiveStage(index)}
+                      className={`lifecycle-node ${selected ? "is-active" : ""}`}
+                      aria-label={`Show ${stage.title} stage`}
+                    >
+                      <span className="lifecycle-node-icon">
+                        <Icon className="size-4" />
+                      </span>
+                      <span className="lifecycle-node-label">
+                        <b>{String(index + 1).padStart(2, "0")}</b>
+                        {stage.title}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-            ))}
+
+              <div className="lifecycle-panel relative min-h-[255px] overflow-hidden rounded-2xl p-7 md:p-9">
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[var(--walor-blue)]/10 blur-3xl" />
+                <div className="relative">
+                  <div className="mb-10 flex items-center justify-between border-b border-[var(--walor-blue)]/12 pb-5">
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--walor-blue)]">
+                      Live lifecycle
+                    </span>
+                    <span className="font-mono text-xs text-foreground/35">
+                      {String(activeStage + 1).padStart(2, "0")} / 06
+                    </span>
+                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={active.title}
+                      initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -10, filter: "blur(3px)" }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="mb-4 flex items-center gap-3">
+                        <active.icon className="size-5 text-[var(--walor-blue)]" />
+                        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
+                          {active.kicker}
+                        </span>
+                      </div>
+                      <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                        {active.title}
+                      </h3>
+                      <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-foreground/62">
+                        {active.copy}
+                      </p>
+                      <div className="mt-7 flex items-center gap-2 text-sm font-medium text-[var(--walor-blue)]">
+                        <span>{active.detail}</span>
+                        <ChevronRight className="size-4" />
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
     </section>
-  );
-}
-
-/* ============================ CONTACT ============================ */
-function Contact() {
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    if (!name || !phone) {
-      toast.error("Please fill in name and phone number.");
-      return;
-    }
-    setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitting(false);
-    setSubmitted(true);
-    toast.success("Assessment request received. Our team will reach out within 1 business day.");
-    form.reset();
-  };
-
-  return (
-    <section id="contact" className="walor-section">
-      <div className="walor-container">
-        <div className="glass rounded-3xl overflow-hidden">
-          <div className="grid lg:grid-cols-5 gap-0">
-            {/* Left side */}
-            <div className="lg:col-span-2 p-8 md:p-12 bg-gradient-to-br from-[var(--walor-green)]/10 to-transparent border-r border-foreground/5">
-              <span className="font-mono text-xs uppercase tracking-wider text-[var(--walor-green)]">
-                Get Started
-              </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-tight">
-                Ready to Eliminate <span className="text-gradient-green">Battery Downtime?</span>
-              </h2>
-              <p className="mt-4 text-foreground/65 leading-relaxed">
-                Book a free fleet assessment. No commitment. We'll evaluate your current battery
-                health profile and show you the potential ROI of a revival program.
-              </p>
-
-              <div className="mt-10 space-y-4 text-sm">
-                <div className="flex items-start gap-3">
-                  <Mail className="size-4 text-[var(--walor-green)] mt-0.5" />
-                  <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
-                      Email
-                    </div>
-                    <a
-                      href="mailto:support@walorenergy.com"
-                      className="text-foreground hover:text-[var(--walor-green)] transition-colors"
-                    >
-                      support@walorenergy.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="size-4 text-[var(--walor-green)] mt-0.5" />
-                  <div>
-                    <div className="text-foreground/40 font-mono uppercase text-xs tracking-wider">
-                      Location
-                    </div>
-                    <div className="text-foreground">Hyderabad, Telangana, India</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Form */}
-            <div className="lg:col-span-3 p-8 md:p-12">
-              {submitted ? (
-                <div className="h-full min-h-[400px] flex flex-col items-center justify-center text-center">
-                  <div className="size-16 rounded-full bg-[var(--walor-green)]/15 grid place-items-center">
-                    <CheckCircle2 className="size-8 text-[var(--walor-green)]" />
-                  </div>
-                  <h3 className="mt-6 text-2xl font-semibold">Request Received</h3>
-                  <p className="mt-2 text-foreground/60 max-w-sm">
-                    Thanks — our fleet team will reach out within one business day to schedule your
-                    assessment.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="mt-8 border-foreground/20 bg-transparent hover:bg-foreground/5"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    Submit Another
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} className="space-y-5">
-                  <Field label="Name *">
-                    <Input
-                      name="name"
-                      required
-                      placeholder="Your name"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Field label="Phone No *">
-                    <Input
-                      name="phone"
-                      type="tel"
-                      required
-                      placeholder="+91"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Field label="Fleet Size">
-                    <Select name="fleet_size">
-                      <SelectTrigger className="bg-foreground/5 border-foreground/10">
-                        <SelectValue placeholder="Select range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-10">1–10</SelectItem>
-                        <SelectItem value="11-50">11–50</SelectItem>
-                        <SelectItem value="51-200">51–200</SelectItem>
-                        <SelectItem value="200+">200+</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field label="Vehicle (Enter the vehicle name)">
-                    <Input
-                      name="vehicle"
-                      placeholder="e.g. Tata Ace EV, Mahindra Treo"
-                      className="bg-foreground/5 border-foreground/10"
-                    />
-                  </Field>
-                  <Button
-                    type="submit"
-                    disabled={submitting}
-                    size="lg"
-                    className="w-full bg-[var(--walor-green)] text-white hover:bg-[var(--walor-green-dim)] font-medium"
-                  >
-                    {submitting ? "Sending…" : "Book Fleet Assessment"}
-                    {!submitting && <ArrowRight className="ml-1 size-4" />}
-                  </Button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <Label className="text-xs font-mono uppercase tracking-wider text-foreground/50">
-        {label}
-      </Label>
-      <div className="mt-1.5">{children}</div>
-    </div>
   );
 }
 
 /* ============================ FOOTER ============================ */
 function Footer() {
   return (
-    <footer className="bg-[#2323FF] text-white">
-      <div className="walor-container py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-semibold text-white">
-              <img src={logo} alt="Walor Energy" className="h-8 md:h-10 w-auto" />
-            </div>
-            <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
-              India's Full-Pack EV Battery Revival platform. Built for commercial fleet operators.
-            </p>
-            <p className="mt-4 text-xs text-white/60 font-mono">Hyderabad, Telangana, India</p>
-          </div>
-          <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Explore</div>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <a href="#solutions" className="text-white/85 hover:text-white">
-                  Solutions
-                </a>
-              </li>
-              <li>
-                <a href="#impact" className="text-white/85 hover:text-white">
-                  Impact
-                </a>
-              </li>
-              <li>
-                <a href="#sustainability" className="text-white/85 hover:text-white">
-                  Sustainability
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-white/60">Contact</div>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <a href="mailto:support@walorenergy.com" className="text-white/85 hover:text-white">
-                  support@walorenergy.com
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white/85 hover:text-white">
-                  Book Assessment
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/70">
-          <span>© 2025 Walor Energy Private Limited. All rights reserved.</span>
-          <span className="flex gap-6">
-            <a href="#" className="hover:text-white">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms of Service
-            </a>
-          </span>
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full bg-white overflow-hidden"
+    >
+      {/* Background Depth Layers (Pure Gradients) */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Transition Zone Mask (Top 120px fades from transparent to solid to ensure seamless merge with white CTA background) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            WebkitMaskImage: `linear-gradient(to bottom, transparent 0px, black 120px)`,
+            maskImage: `linear-gradient(to bottom, transparent 0px, black 120px)`,
+          }}
+        >
+          {/* Layer 1: Base Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FFFFFF] via-[#FAFCFF] via-40% to-[#EEF5FF]" />
+
+          {/* Layer 2: Behind Walor Logo (Top Left) */}
+          <div
+            className="absolute -top-40 -left-40 w-[800px] h-[800px] blur-[130px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.08)" }}
+          />
+
+          {/* Layer 3: Behind Built By Column (Bottom Right) */}
+          <div
+            className="absolute -bottom-40 -right-20 w-[800px] h-[800px] blur-[140px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.05)" }}
+          />
+
+          {/* Layer 4: Very subtle center glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] blur-[160px] rounded-full mix-blend-multiply"
+            style={{ backgroundColor: "rgba(52,90,255,0.03)" }}
+          />
         </div>
       </div>
-    </footer>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-10 pt-[120px] pb-[80px]">
+        {/* Top 4-Column Layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          {/* Column 1: Brand */}
+          <div className="lg:w-1/4 lg:pr-12 flex flex-col items-start">
+            <img
+              src={logo}
+              alt="Walor Energy"
+              className="h-16 md:h-20 w-auto object-contain mb-8"
+            />
+            <div className="space-y-4 text-[14px] leading-relaxed text-[#555555]">
+              <p>India's Full-Pack EV Battery Revival Platform.</p>
+              <p>Built for Commercial Fleet Operators.</p>
+              <div className="pt-2">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-1">
+                  Location
+                </p>
+                <p className="text-[#0A0A0A]">Hyderabad, Telangana, India</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Vertical Divider 1 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 2: Platform */}
+          <div className="lg:w-1/4 lg:px-6">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-8">
+              Platform
+            </div>
+            <ul className="space-y-5">
+              {["Impact", "Sustainability", "Book Vehicle Assessment"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                    className="group inline-flex items-center text-[14px] text-[#555555] transition-colors hover:text-[#2323FF]"
+                  >
+                    <span className="relative overflow-hidden transition-transform duration-300 group-hover:translate-x-1 pb-0.5">
+                      {item}
+                      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#2323FF] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Vertical Divider 2 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 3: Contact */}
+          <div className="lg:w-1/4 lg:px-6">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0A0A0A]/40 mb-8">
+              Contact
+            </div>
+            <ul className="space-y-6">
+              <li>
+                <a
+                  href="mailto:support@walorenergy.com"
+                  className="group inline-flex items-center gap-2 text-[14px] text-[#555555] transition-colors hover:text-[#2323FF]"
+                >
+                  <Mail className="size-4 text-[#0A0A0A]/30 group-hover:text-[#2323FF] transition-colors stroke-[1.5] shrink-0" />
+                  <span className="relative overflow-hidden transition-transform duration-300 group-hover:translate-x-1 pb-0.5">
+                    support@walorenergy.com
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#2323FF] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                  </span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-center gap-2 text-[14px] text-[#555555]">
+                  <MapPin className="size-4 text-[#0A0A0A]/30 stroke-[1.5] shrink-0" />
+                  <span>Hyderabad, Telangana</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Vertical Divider 3 */}
+          <div className="hidden lg:block w-[1px] bg-black/[0.04] shrink-0" />
+
+          {/* Column 4: Engineering Roots */}
+          <div className="lg:w-1/4 lg:pl-10">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#0A0A0A]/40">
+              Engineering Roots
+            </div>
+            <div className="mt-6 border-t border-[#2323FF]/15" />
+            <div className="mt-5 space-y-4 text-[15px] leading-none text-[#0A0A0A]">
+              {[
+                { logo: iiitHyderabadLogo, alt: "IIIT Hyderabad logo", label: "IIIT Hyderabad" },
+                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT Delhi" },
+                { logo: mahindraLogo, alt: "Mahindra logo", label: "Ex-Mahindra" },
+                { logo: snistLogo, alt: "SNIST logo", label: "SNIST" },
+              ].map(({ logo, alt, label }) => (
+                <div key={label} className="flex items-center gap-4 font-semibold">
+                  <div className="flex h-6 w-16 shrink-0 items-center">
+                    <img src={logo} alt={alt} className="h-6 w-full object-contain opacity-85" />
+                  </div>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-24 pt-8 border-t border-black/[0.05] flex flex-col md:flex-row justify-between items-center gap-4 text-[13px] text-[#0A0A0A]/40">
+          <p>© 2026 Walor Energy Private Limited.</p>
+          <div className="flex items-center gap-8">
+            <a href="#" className="hover:text-[#0A0A0A] transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-[#0A0A0A] transition-colors">
+              Terms of Service
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.footer>
   );
 }
 
