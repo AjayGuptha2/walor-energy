@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/walor-logo.png";
 import iiitHyderabadLogo from "@/assets/IIIT_Hyderabad_Logo.png";
+import iitHyderabadLogo from "@/assets/iithydlogo.png";
 import iitDelhiLogo from "@/assets/iitdlogo.jpeg";
 import mahindraLogo from "@/assets/mahindralogo.png";
 import snistLogo from "@/assets/SNIST.jpg";
@@ -526,14 +527,18 @@ function Footer() {
             <div className="mt-6 border-t border-[#2323FF]/15" />
             <div className="mt-5 space-y-4 text-[15px] leading-none text-[#0A0A0A]">
               {[
-                { logo: iiitHyderabadLogo, alt: "IIIT Hyderabad logo", label: "IIIT Hyderabad" },
-                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT Delhi" },
+                { logo: iitHyderabadLogo, alt: "IIT Hyderabad logo", label: "IIT - Hyderabad" },
+                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT - Delhi" },
                 { logo: mahindraLogo, alt: "Mahindra logo", label: "Ex-Mahindra" },
                 { logo: snistLogo, alt: "SNIST logo", label: "SNIST" },
               ].map(({ logo, alt, label }) => (
                 <div key={label} className="flex items-center gap-4 font-semibold">
-                  <div className="flex h-6 w-16 shrink-0 items-center">
-                    <img src={logo} alt={alt} className="h-6 w-full object-contain opacity-85" />
+                  <div className="flex h-[29px] w-[77px] shrink-0 items-center">
+                    <img
+                      src={logo}
+                      alt={alt}
+                      className="h-[29px] w-full object-contain opacity-85"
+                    />
                   </div>
                   <span>{label}</span>
                 </div>

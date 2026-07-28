@@ -30,7 +30,7 @@ const nodes: NodeData[] = [
     title: "Fleet Operators",
     description: "Maximized uptime & lower TCO",
     icon: Truck,
-    x: 150,
+    x: 250,
     y: 100,
   },
   {
@@ -38,7 +38,7 @@ const nodes: NodeData[] = [
     title: "EV Logistics",
     description: "Reliable commercial transport",
     icon: Package,
-    x: 650,
+    x: 750,
     y: 100,
   },
   {
@@ -46,7 +46,7 @@ const nodes: NodeData[] = [
     title: "OEM Partners",
     description: "Battery lifecycle management",
     icon: Factory,
-    x: 80,
+    x: 180,
     y: 300,
   },
   {
@@ -54,7 +54,7 @@ const nodes: NodeData[] = [
     title: "Charging Partners",
     description: "Grid & infrastructure synergy",
     icon: Zap,
-    x: 720,
+    x: 820,
     y: 300,
   },
   {
@@ -62,7 +62,7 @@ const nodes: NodeData[] = [
     title: "Fleet Finance",
     description: "De-risked asset underwriting",
     icon: Wallet,
-    x: 200,
+    x: 300,
     y: 500,
   },
   {
@@ -70,12 +70,12 @@ const nodes: NodeData[] = [
     title: "Public Transport",
     description: "Sustainable mass transit",
     icon: Bus,
-    x: 600,
+    x: 700,
     y: 500,
   },
 ];
 
-const CENTER_X = 400;
+const CENTER_X = 500;
 const CENTER_Y = 300;
 
 export function EcosystemNetwork() {
@@ -89,11 +89,27 @@ export function EcosystemNetwork() {
     setHoveredNode(id);
     hoveredNodeRef.current = id;
   };
-  
+
   const handleMouseLeave = () => {
     setHoveredNode(null);
     hoveredNodeRef.current = null;
   };
+  
+  const [scale, setScale] = useState(1);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateScale = () => {
+      if (wrapperRef.current) {
+        const width = wrapperRef.current.offsetWidth;
+        setScale(Math.min(1, width / 1000));
+      }
+    };
+    
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current || !svgRef.current) return;
@@ -257,109 +273,118 @@ export function EcosystemNetwork() {
           </Reveal>
         </div>
 
-        <div className="relative w-full max-w-[1000px] mx-auto aspect-square md:aspect-[4/3] lg:aspect-[16/10] mt-10">
-          
-          {/* SVG Connection Layer */}
-          <svg 
-            ref={svgRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox="0 0 800 600"
-            preserveAspectRatio="xMidYMid meet"
+        <div ref={wrapperRef} className="w-full max-w-[1000px] mx-auto mt-10">
+          <div 
+            className="relative w-full overflow-visible flex items-center justify-center"
+            style={{ height: `${600 * scale}px` }}
           >
-            {nodes.map((node) => (
-              <path
-                key={`path-${node.id}`}
-                id={`path-${node.id}`}
-                className="connection-path"
-                d={getPathData(node.x, node.y)}
-                fill="none"
-                stroke={hoveredNode === node.id ? "rgba(35, 35, 255, 0.4)" : "rgba(0, 0, 0, 0.06)"}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                style={{ transition: "stroke 0.4s ease" }}
-              />
-            ))}
-            
-            {/* The traveling energy pulse */}
-            <circle
-              ref={pulseRef}
-              r="4"
-              fill="#2323FF"
-              className="opacity-0"
-              style={{ filter: "drop-shadow(0 0 6px rgba(35,35,255,0.8))" }}
-            />
-          </svg>
-
-          {/* HTML Nodes Layer */}
-          <div className="absolute inset-0 w-full h-full">
-            {/* Center Hub */}
             <div 
-              className="center-hub absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10"
-              style={{
-                left: '50%',
-                top: '50%'
-              }}
+              className="absolute w-[1000px] h-[600px] origin-center flex items-center justify-center"
+              style={{ transform: `scale(${scale})` }}
             >
-              {/* Concentric rings */}
-              <div className={`absolute w-32 h-32 rounded-full border border-[#2323FF]/10 transition-all duration-500 ${hoveredNode ? 'scale-110 border-[#2323FF]/30' : ''}`} />
-              <div className={`absolute w-24 h-24 rounded-full border border-[#2323FF]/20 transition-all duration-500 delay-75 ${hoveredNode ? 'scale-110 border-[#2323FF]/40' : ''}`} />
-              
-              {/* Core node */}
-              <div className={`relative w-16 h-16 rounded-full bg-white shadow-xl shadow-[#2323FF]/10 border border-[#2323FF]/20 flex items-center justify-center backdrop-blur-md transition-all duration-300 ${hoveredNode ? 'shadow-[#2323FF]/30 scale-105' : ''}`}>
-                <span className="font-mono text-xl font-bold text-[#2323FF]">W</span>
-                <div className="absolute inset-0 rounded-full bg-[#2323FF]/5 blur-sm" />
-              </div>
-            </div>
+              {/* SVG Connection Layer */}
+              <svg 
+                ref={svgRef}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 1000 600"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                {nodes.map((node) => (
+                  <path
+                    key={`path-${node.id}`}
+                    id={`path-${node.id}`}
+                    className="connection-path"
+                    d={getPathData(node.x, node.y)}
+                    fill="none"
+                    stroke={hoveredNode === node.id ? "rgba(35, 35, 255, 0.4)" : "rgba(0, 0, 0, 0.06)"}
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    style={{ transition: "stroke 0.4s ease" }}
+                  />
+                ))}
+                
+                {/* The traveling energy pulse */}
+                <circle
+                  ref={pulseRef}
+                  r="4"
+                  fill="#2323FF"
+                  className="opacity-0"
+                  style={{ filter: "drop-shadow(0 0 6px rgba(35,35,255,0.8))" }}
+                />
+              </svg>
 
-            {/* Surrounding Nodes */}
-            {nodes.map((node) => {
-              const isHovered = hoveredNode === node.id;
-              const isDimmed = hoveredNode !== null && hoveredNode !== node.id;
-
-              // Convert exact SVG coordinates (0-800, 0-600) to percentage for absolute positioning
-              const leftPercent = (node.x / 800) * 100;
-              const topPercent = (node.y / 600) * 100;
-
-              return (
-                <div
-                  key={node.id}
-                  className="node-card absolute z-20"
-                  style={{ 
-                    left: `${leftPercent}%`, 
-                    top: `${topPercent}%`,
-                    transform: "translate(-50%, -50%)"
+              {/* HTML Nodes Layer */}
+              <div className="absolute inset-0 w-full h-full">
+                {/* Center Hub */}
+                <div 
+                  className="center-hub absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10"
+                  style={{
+                    left: '50%',
+                    top: '50%'
                   }}
-                  onMouseEnter={() => handleMouseEnter(node.id)}
-                  onMouseLeave={() => handleMouseLeave()}
                 >
-                  <div 
-                    id={`card-${node.id}`}
-                    style={{
-                      transition: "opacity 0.4s ease-out, transform 0.4s ease-out",
-                      transform: `scale(${isHovered ? 1.02 : 1})`,
-                      opacity: isDimmed ? 0.4 : 1
-                    }}
-                    className={`flex items-center gap-4 bg-white/70 backdrop-blur-xl border p-4 pr-6 rounded-2xl transition-all duration-400 ${
-                      isHovered 
-                        ? 'border-[#2323FF]/30 shadow-[0_12px_32px_rgba(35,35,255,0.12)]' 
-                        : 'border-black/5 shadow-[0_8px_24px_rgba(0,0,0,0.04)]'
-                    }`}
-                  >
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-xl transition-colors duration-400 ${
-                      isHovered ? 'bg-[#2323FF]/10' : 'bg-black/5'
-                    }`}>
-                      <node.icon className={`size-5 transition-colors duration-400 ${
-                        isHovered ? 'text-[#2323FF]' : 'text-[#0A0A0A]/60'
-                      }`} />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-[#0A0A0A] tracking-tight whitespace-nowrap">{node.title}</h4>
-                      <p className="text-[11px] font-medium text-[#555555]/80 mt-0.5 whitespace-nowrap">{node.description}</p>
-                    </div>
+                  {/* Concentric rings */}
+                  <div className={`absolute w-32 h-32 rounded-full border border-[#2323FF]/10 transition-all duration-500 ${hoveredNode ? 'scale-110 border-[#2323FF]/30' : ''}`} />
+                  <div className={`absolute w-24 h-24 rounded-full border border-[#2323FF]/20 transition-all duration-500 delay-75 ${hoveredNode ? 'scale-110 border-[#2323FF]/40' : ''}`} />
+                  
+                  {/* Core node */}
+                  <div className={`relative w-16 h-16 rounded-full bg-white shadow-xl shadow-[#2323FF]/10 border border-[#2323FF]/20 flex items-center justify-center backdrop-blur-md transition-all duration-300 ${hoveredNode ? 'shadow-[#2323FF]/30 scale-105' : ''}`}>
+                    <span className="font-mono text-xl font-bold text-[#2323FF]">W</span>
+                    <div className="absolute inset-0 rounded-full bg-[#2323FF]/5 blur-sm" />
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Surrounding Nodes */}
+                {nodes.map((node) => {
+                  const isHovered = hoveredNode === node.id;
+                  const isDimmed = hoveredNode !== null && hoveredNode !== node.id;
+
+                  // Convert exact SVG coordinates (0-1000, 0-600) to percentage for absolute positioning
+                  const leftPercent = (node.x / 1000) * 100;
+                  const topPercent = (node.y / 600) * 100;
+
+                  return (
+                    <div
+                      key={node.id}
+                      className="node-card absolute z-20"
+                      style={{ 
+                        left: `${leftPercent}%`, 
+                        top: `${topPercent}%`,
+                        transform: "translate(-50%, -50%)"
+                      }}
+                      onMouseEnter={() => handleMouseEnter(node.id)}
+                      onMouseLeave={() => handleMouseLeave()}
+                    >
+                      <div 
+                        id={`card-${node.id}`}
+                        style={{
+                          transition: "opacity 0.4s ease-out, transform 0.4s ease-out",
+                          transform: `scale(${isHovered ? 1.02 : 1})`,
+                          opacity: isDimmed ? 0.4 : 1
+                        }}
+                        className={`flex items-center gap-4 bg-white/70 backdrop-blur-xl border p-4 pr-6 rounded-2xl transition-all duration-400 ${
+                          isHovered 
+                            ? 'border-[#2323FF]/30 shadow-[0_12px_32px_rgba(35,35,255,0.12)]' 
+                            : 'border-black/5 shadow-[0_8px_24px_rgba(0,0,0,0.04)]'
+                        }`}
+                      >
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-xl transition-colors duration-400 ${
+                          isHovered ? 'bg-[#2323FF]/10' : 'bg-black/5'
+                        }`}>
+                          <node.icon className={`size-5 transition-colors duration-400 ${
+                            isHovered ? 'text-[#2323FF]' : 'text-[#0A0A0A]/60'
+                          }`} />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-[#0A0A0A] tracking-tight whitespace-nowrap">{node.title}</h4>
+                          <p className="text-[11px] font-medium text-[#555555]/80 mt-0.5 whitespace-nowrap">{node.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
