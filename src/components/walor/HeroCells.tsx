@@ -119,7 +119,7 @@ export function HeroCells() {
   }, [isTouchDevice]);
 
   return (
-    <section className="relative flex h-fit w-full flex-col overflow-hidden bg-[#F7F8FA] select-none lg:h-[760px] lg:min-h-[760px] lg:flex-row lg:items-center">
+    <section className="relative flex h-fit w-full flex-col overflow-hidden bg-[#F7F8FA] select-none lg:h-[100svh] lg:min-h-[760px] lg:max-h-[1080px] lg:flex-row lg:items-center">
       {/* 1. CSS Studio Background (z-0) - GSAP Translated */}
       <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <div
@@ -180,7 +180,7 @@ export function HeroCells() {
         {/* Right Side: Vehicle Foreground Layer (z-20) - GSAP Translated */}
         <div
           ref={vehicleRef}
-          className="z-20 mt-10 flex w-full select-none items-end justify-center pointer-events-none md:mt-4 lg:absolute lg:right-0 lg:top-[50%] lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:-translate-y-1/2 lg:justify-end"
+          className="z-20 mt-10 flex w-full select-none items-end justify-center pointer-events-none md:mt-4 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:w-[67%] lg:max-w-[1056px] lg:items-center lg:justify-end"
         >
           {/* Vehicle Visuals - Framer Motion Entrance */}
           <motion.div
@@ -193,7 +193,7 @@ export function HeroCells() {
             <img
               src={carImage}
               alt="Walor EV Fleet Vehicle"
-              className="relative z-10 block h-auto w-full object-contain md:w-[105%] md:-ml-[2.5%] lg:w-full lg:ml-0"
+              className="relative z-10 block h-auto w-full object-contain md:w-[105%] md:-ml-[2.5%] lg:w-full lg:ml-0 lg:max-h-[80svh]"
             />
           </motion.div>
         </div>
