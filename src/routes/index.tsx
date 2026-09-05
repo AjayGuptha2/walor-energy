@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/walor-logo.png";
 import iiitHyderabadLogo from "@/assets/IIIT_Hyderabad_Logo.png";
-import iitHyderabadLogo from "@/assets/iithydlogo.png";
-import iitDelhiLogo from "@/assets/iitdlogo.jpeg";
-import mahindraLogo from "@/assets/mahindralogo.png";
-import snistLogo from "@/assets/SNIST.jpg";
+import iitHyderabadLogo from "@/assets/iith-nbg.png";
+import iitDelhiLogo from "@/assets/iid-nbg.png";
+import mahindraLogo from "@/assets/mahindra-nbg.png";
+import snistegLogo from "@/assets/snist-nbg.png";
+import sreenidhiAscendLogo from "@/assets/Ascend-nbg.png";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Lenis from "lenis";
@@ -527,14 +528,15 @@ function Footer() {
             <div className="mt-6 border-t border-[#2323FF]/15" />
             <div className="mt-5 space-y-4 text-[15px] leading-none text-[#0A0A0A]">
               {[
-                { logo: iitHyderabadLogo, alt: "IIT Hyderabad logo", label: "IIT Hyderabad" },
-                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT Delhi" },
+                { logo: iitHyderabadLogo, alt: "IIT Hyderabad logo", label: "IIT Hyderabad", imgClass: "scale-[1.35]" },
+                { logo: iitDelhiLogo, alt: "IIT Delhi logo", label: "IIT Delhi", imgClass: "scale-[1.35]" },
                 { logo: mahindraLogo, alt: "Mahindra logo", label: "Ex-Mahindra" },
-                { logo: snistLogo, alt: "SNIST logo", label: "SNIST" },
-              ].map(({ logo, alt, label }) => (
+                { logo: snistegLogo, alt: "SNISTEG logo", label: "Sreenidhi Educational Groups" },
+                { logo: sreenidhiAscendLogo, alt: "Sreenidhi Ascend logo", label: "Sreenidhi Ascend" },
+              ].map(({ logo, alt, label, imgClass }) => (
                 <div key={label} className="flex items-center gap-4 font-semibold">
-                  <div className="flex h-[29px] w-[77px] shrink-0 items-center">
-                    <img src={logo} alt={alt} className="h-[29px] w-full object-contain opacity-85" />
+                  <div className="flex h-[45px] w-[90px] shrink-0 items-center justify-center">
+                    <img src={logo} alt={alt} className={`max-h-full max-w-full object-contain opacity-85 ${imgClass || ""}`} />
                   </div>
                   <span>{label}</span>
                 </div>
