@@ -12,6 +12,7 @@ import {
   Bus 
 } from "lucide-react";
 import { Reveal } from "@/components/walor/Reveal";
+import walorLogo from "@/assets/walor-logo.png";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -329,7 +330,13 @@ export function EcosystemNetwork() {
                   
                   {/* Core node */}
                   <div className={`relative w-16 h-16 rounded-full bg-white shadow-xl shadow-[#2323FF]/10 border border-[#2323FF]/20 flex items-center justify-center backdrop-blur-md transition-all duration-300 ${hoveredNode ? 'shadow-[#2323FF]/30 scale-105' : ''}`}>
-                    <span className="font-mono text-xl font-bold text-[#2323FF]">W</span>
+                    <div className="relative h-8 w-11 overflow-hidden" role="img" aria-label="Walor Energy">
+                      <img
+                        src={walorLogo}
+                        alt=""
+                        className="absolute -left-4 -top-4 w-[76px] max-w-none"
+                      />
+                    </div>
                     <div className="absolute inset-0 rounded-full bg-[#2323FF]/5 blur-sm" />
                   </div>
                 </div>

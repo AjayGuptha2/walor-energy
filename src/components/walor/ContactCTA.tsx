@@ -1,7 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, CheckCircle2, FileText, Search, Wrench, Zap, Shield, Mail, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileText,
+  Search,
+  Wrench,
+  Zap,
+  Shield,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -63,7 +73,7 @@ export function ContactCTA() {
         ".premium-container",
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
-        0
+        0,
       );
 
       // Heading and text appears
@@ -71,7 +81,7 @@ export function ContactCTA() {
         ".header-content",
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.1 },
-        0.4
+        0.4,
       );
 
       // Workflow line draws
@@ -79,7 +89,7 @@ export function ContactCTA() {
         ".workflow-line",
         { scaleY: 0 },
         { scaleY: 1, duration: 1, ease: "power2.inOut", transformOrigin: "top" },
-        0.6
+        0.6,
       );
 
       // Workflow steps appear sequentially
@@ -87,7 +97,7 @@ export function ContactCTA() {
         ".workflow-step",
         { opacity: 0, x: -10 },
         { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
-        0.8
+        0.8,
       );
 
       // Assessment card fades in
@@ -95,7 +105,7 @@ export function ContactCTA() {
         ".assessment-card",
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-        1.0
+        1.0,
       );
 
       // Form fields fade in
@@ -103,7 +113,7 @@ export function ContactCTA() {
         ".form-field-anim",
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-        1.2
+        1.2,
       );
 
       // CTA button appears
@@ -111,9 +121,8 @@ export function ContactCTA() {
         ".cta-btn-anim",
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-        1.5
+        1.5,
       );
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -122,17 +131,15 @@ export function ContactCTA() {
   return (
     <section id="contact" className="py-24 relative bg-white" ref={containerRef}>
       <div className="walor-container max-w-[1400px] mx-auto px-6">
-
         {/* The Premium Industrial Workspace Container */}
         <div className="premium-container relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#FAFAFB] to-[#F2F3F7] border border-black/[0.04] shadow-[0_24px_80px_rgba(0,0,0,0.03)] opacity-0">
-
           {/* Faint Engineering Grid Layer */}
           <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.02]">
             <div
               className="absolute inset-0"
               style={{
                 backgroundImage: `linear-gradient(#0A0A0A 1px, transparent 1px), linear-gradient(90deg, #0A0A0A 1px, transparent 1px)`,
-                backgroundSize: `32px 32px`
+                backgroundSize: `32px 32px`,
               }}
             />
           </div>
@@ -142,12 +149,10 @@ export function ContactCTA() {
 
           {/* Split Layout */}
           <div className="grid lg:grid-cols-12 relative z-10 min-h-[760px]">
-
             {/* -------------------------------------------------- */}
             {/* LEFT PANEL (Workflow) - 45% (approx 5 cols) */}
             {/* -------------------------------------------------- */}
             <div className="lg:col-span-5 p-12 md:p-16 lg:p-20 flex flex-col relative border-b lg:border-b-0 border-black/5">
-
               <div className="header-content opacity-0">
                 <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#2323FF] mb-6">
                   // Revival Workflow
@@ -157,7 +162,8 @@ export function ContactCTA() {
                   <span className="text-[#2323FF]">Battery Downtime?</span>
                 </h2>
                 <p className="text-[16px] leading-relaxed text-[#555555] max-w-[400px]">
-                  Share your fleet details and our engineers will guide you through every step of the battery revival process.
+                  Share your fleet details and our engineers will guide you through every step of
+                  the battery revival process.
                 </p>
               </div>
 
@@ -168,7 +174,10 @@ export function ContactCTA() {
 
                 <div className="space-y-10 relative">
                   {WORKFLOW_STEPS.map((step) => (
-                    <div key={step.id} className="workflow-step flex items-start gap-6 relative opacity-0">
+                    <div
+                      key={step.id}
+                      className="workflow-step flex items-start gap-6 relative opacity-0"
+                    >
                       {/* Outlined Engineering Node with Icon */}
                       <div className="relative z-10 w-6 h-6 shrink-0 mt-0.5 rounded bg-[#F7F8FA] border border-black/15 shadow-[0_0_0_4px_#FAFAFB] flex items-center justify-center">
                         <step.icon className="size-3 text-[#0A0A0A]/60 stroke-[1.5]" />
@@ -199,7 +208,6 @@ export function ContactCTA() {
                   <span>Hyderabad, Telangana, India</span>
                 </div>
               </div>
-
             </div>
 
             {/* -------------------------------------------------- */}
@@ -214,18 +222,19 @@ export function ContactCTA() {
             {/* RIGHT PANEL (Form) - 55% (approx 7 cols) */}
             {/* -------------------------------------------------- */}
             <div className="lg:col-span-7 p-6 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center items-center">
-
               {/* Elevated Assessment Console Card */}
               <div className="assessment-card opacity-0 w-full max-w-[560px] bg-white rounded-[28px] border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.04),inset_0_2px_4px_rgba(255,255,255,0.8)] p-8 md:p-12 relative overflow-hidden">
-
                 {submitted ? (
                   <div className="min-h-[400px] flex flex-col items-center justify-center text-center animate-in fade-in duration-700">
                     <div className="size-16 rounded-2xl bg-[#2323FF]/5 border border-[#2323FF]/10 grid place-items-center mb-6">
                       <CheckCircle2 className="size-8 text-[#2323FF]" strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-2xl font-semibold text-[#0A0A0A] tracking-tight">Request Received</h3>
+                    <h3 className="text-2xl font-semibold text-[#0A0A0A] tracking-tight">
+                      Request Received
+                    </h3>
                     <p className="mt-3 text-[#555555] max-w-sm leading-relaxed text-[15px]">
-                      Thanks — our fleet engineering team will reach out within one business day to initiate your assessment.
+                      Thanks — our fleet engineering team will reach out within one business day to
+                      initiate your assessment.
                     </p>
                     <Button
                       variant="outline"
@@ -242,7 +251,8 @@ export function ContactCTA() {
                         Vehicle Assessment
                       </h3>
                       <p className="text-[15px] text-[#555555] leading-relaxed pr-4">
-                        Tell us about your vehicle and we'll prepare a personalized battery revival assessment.
+                        Tell us about your vehicle and we'll prepare a personalized battery revival
+                        assessment.
                       </p>
                     </div>
 
@@ -269,7 +279,10 @@ export function ContactCTA() {
                             pattern="[\+]?[0-9\s\-]+"
                             title="Please enter a valid phone number"
                             onInput={(e) => {
-                              e.currentTarget.value = e.currentTarget.value.replace(/[^\+0-9\s\-]/g, '');
+                              e.currentTarget.value = e.currentTarget.value.replace(
+                                /[^\\+0-9\s\\-]/g,
+                                "",
+                              );
                             }}
                             placeholder="+91"
                             className="h-[56px] rounded-[14px] bg-white border-black/10 shadow-sm focus-visible:border-[#2323FF]/50 focus-visible:ring-4 focus-visible:ring-[#2323FF]/10 transition-all duration-300 text-[16px] px-4"
@@ -280,9 +293,7 @@ export function ContactCTA() {
                       <div className="grid sm:grid-cols-2 gap-6 form-field-anim opacity-0">
                         <Field label="No of Vehicles">
                           <Select name="fleet_size">
-                            <SelectTrigger
-                              className="h-[56px] rounded-[14px] bg-white border-black/10 shadow-sm focus:border-[#2323FF]/50 focus:ring-4 focus:ring-[#2323FF]/10 transition-all duration-300 text-[16px] px-4"
-                            >
+                            <SelectTrigger className="h-[56px] rounded-[14px] bg-white border-black/10 shadow-sm focus:border-[#2323FF]/50 focus:ring-4 focus:ring-[#2323FF]/10 transition-all duration-300 text-[16px] px-4">
                               <SelectValue placeholder="Select range" />
                             </SelectTrigger>
                             <SelectContent className="rounded-xl border-black/10 shadow-lg">
@@ -298,7 +309,7 @@ export function ContactCTA() {
                         <Field label="Vehicle Model">
                           <Input
                             name="vehicle"
-                            placeholder="e.g. Tata Ace EV"
+                            placeholder="e.g. Tata Xpres T EV"
                             className="h-[56px] rounded-[14px] bg-white border-black/10 shadow-sm focus-visible:border-[#2323FF]/50 focus-visible:ring-4 focus-visible:ring-[#2323FF]/10 transition-all duration-300 text-[16px] px-4"
                           />
                         </Field>
@@ -311,13 +322,16 @@ export function ContactCTA() {
                           className="group w-full h-[60px] rounded-2xl bg-gradient-to-r from-[#2323FF] to-[#1A1ACC] text-white font-medium text-[16px] transition-all duration-300 shadow-[0_8px_20px_rgba(35,35,255,0.2)] hover:shadow-[0_12px_28px_rgba(35,35,255,0.3)] hover:from-[#2a2aff] hover:to-[#2323FF] border border-transparent"
                         >
                           {submitting ? "Initiating Request…" : "Book Vehicle Assessment"}
-                          {!submitting && <ArrowRight className="ml-2 size-5 transition-transform duration-300 group-hover:translate-x-2" />}
+                          {!submitting && (
+                            <ArrowRight className="ml-2 size-5 transition-transform duration-300 group-hover:translate-x-2" />
+                          )}
                         </Button>
 
                         <div className="mt-5 flex items-start gap-3 justify-center">
                           <Shield className="size-4 text-green-600 shrink-0 mt-0.5 stroke-[1.5]" />
                           <p className="text-[13px] text-[#555555] leading-relaxed max-w-[280px]">
-                            Your information is secure and confidential. We typically respond within one business day.
+                            Your information is secure and confidential. We typically respond within
+                            one business day.
                           </p>
                         </div>
                       </div>
@@ -326,7 +340,6 @@ export function ContactCTA() {
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -334,7 +347,15 @@ export function ContactCTA() {
   );
 }
 
-function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+function Field({
+  label,
+  required,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <Label className="text-[13px] font-medium text-[#555555] ml-1 mb-2 block">
